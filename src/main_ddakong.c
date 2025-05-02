@@ -17,6 +17,7 @@
 #include "termios_.h"
 #include "typedef_.h"
 #include "winsz.h"
+#include "global_flags.h"
 
 /* globals */
 
@@ -55,7 +56,10 @@ trap_chld (const int signo UNUSED)
     }
   exitcode = WEXITSTATUS (status);
 
-  fprintf (stderr, "# child exited, code:%d\n", exitcode);
+  if (verbose_flag)
+    {
+      fprintf (stderr, "# child exited, code:%d\n", exitcode);
+    }
   exit (exitcode);
 }
 
@@ -80,27 +84,38 @@ handle_stdin_written (const ssize_t n_written, const BYTE *buf, void *aux)
     }
 }
 
+
 int
-main (void)
+main (int argc, char **argv)
 {
+  do_getopt(argc, argv);
+
+  /* start */
   hangeul_clear_automata_status (&_hangeul_avtomat);
 
-#if DEBUG_KEYLOG
   /* key-logging output */
   FILE *fp = NULL;
 
-  fp = fopen (DEBUG_KEYLOG, "w+");
-  if (NULL == fp)
+  if (keylog_filename != NULL)
     {
-      perror (DEBUG_KEYLOG " fopen fail!");
-      exit (EXIT_FAILURE);
+      fp = fopen (keylog_filename, "w+");
+      if (NULL == fp)
+        {
+          const ssize_t errmsg_len = 512;
+          char errmsg[errmsg_len];
+          snprintf(errmsg, errmsg_len, "open(%s) as 'w+' fail", keylog_filename);
+          perror (errmsg);
+          exit (EXIT_FAILURE);
+        }
     }
-#endif
 
   /* forpty + exec */
   child_pid = forkpty_with_exec (&child_fd);
   atexit (_exit_cleanup);
-  fprintf (stderr, "# started child pid: %d\n", child_pid);
+  if (verbose_flag)
+    {
+      fprintf (stderr, "# started child pid: %d\n", child_pid);
+    }
 
   /* signal traps: child-exit, window-change */
   signal_trap_norecover (SIGCHLD, &trap_chld);
@@ -178,12 +193,7 @@ main (void)
               handle_stdin (&im_hdlr_st, STDIN_FILENO /* fd_keyin */,
                             child_fd /* fd_child */, buf, buf_max,
                             handle_stdin_written /* write_cb */,
-/* write_cb_aux */
-#if DEBUG_KEYLOG
-                            (void *)fp
-#else
-                            NULL
-#endif
+                            (void *)fp /* write_cb_aux */
               );
             }
         }

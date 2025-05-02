@@ -16,6 +16,12 @@
   [2025-05-02 Fri]
 
 
+* DONE getopt
+  CLOSED: [2025-05-02 Fri 22:44]
+  [2025-05-02 Fri]
+  - verbose, debug(key-logging)
+
+
 * TODO code hardening
   [2025-05-02 Fri]
 
@@ -23,11 +29,6 @@
 * TODO cmake -or- autoconf 더 정밀하게
   [2025-05-02 Fri]
   - 사용하는 함수, 헤더파일들 체크 제대로
-
-
-* TODO getopt
-  [2025-05-02 Fri]
-  - verbose, debug(key-logging)
 
 
 * TODO lua/dll scripting

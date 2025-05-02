@@ -35,7 +35,7 @@ add_library(ddakongs
 
 target_include_directories(ddakongs PUBLIC include)
 
-add_executable(ddakong src/main_ddakong.c)
+add_executable(ddakong src/getopt_.c src/main_ddakong.c)
 
 target_link_libraries(ddakong PUBLIC ddakongs)
 
