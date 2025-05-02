@@ -9,6 +9,7 @@
 
 #include "cc_nanny.h"
 #include "fd_io.h"
+#include "global_flags.h"
 #include "hangeul.h"
 #include "im_handler.h"
 #include "im_handler_hangeul.h"
@@ -17,7 +18,6 @@
 #include "termios_.h"
 #include "typedef_.h"
 #include "winsz.h"
-#include "global_flags.h"
 
 /* globals */
 
@@ -84,11 +84,10 @@ handle_stdin_written (const ssize_t n_written, const BYTE *buf, void *aux)
     }
 }
 
-
 int
 main (int argc, char **argv)
 {
-  do_getopt(argc, argv);
+  do_getopt (argc, argv);
 
   /* start */
   hangeul_clear_automata_status (&_hangeul_avtomat);
@@ -103,7 +102,8 @@ main (int argc, char **argv)
         {
           const ssize_t errmsg_len = 512;
           char errmsg[errmsg_len];
-          snprintf(errmsg, errmsg_len, "open(%s) as 'w+' fail", keylog_filename);
+          snprintf (errmsg, errmsg_len, "open(%s) as 'w+' fail",
+                    keylog_filename);
           perror (errmsg);
           exit (EXIT_FAILURE);
         }
