@@ -382,7 +382,7 @@ hangeul_2beol_fill (const BYTE ch, hangeul_automata_status *p_status,
               p_status->cho = hangeul_remap_code(JONGSEONG, CHOSEONG, jong_right);
               p_status->jung = hangeul_2beol_find_code(JUNGSEONG, ch);
             }
-          else if (n_decomposed == 1)
+          else if (n_decomposed <= 1)
             {
               /* 분리가능한 종성이 아니라면, 다음 모음에 뺏김.
                *

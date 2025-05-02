@@ -87,14 +87,14 @@ main (void)
 {
   hangeul_clear_automata_status(&_hangeul_avtomat);
 
-#if 0
+#if DEBUG_KEYLOG
   /* key-logging output */
   FILE *fp = NULL;
 
-  fp = fopen ("m2s.txt", "w+");
+  fp = fopen (DEBUG_KEYLOG, "w+");
   if (NULL == fp)
     {
-      perror ("m2s.txt fopen fail!");
+      perror (DEBUG_KEYLOG " fopen fail!");
       exit (EXIT_FAILURE);
     }
 #endif
@@ -181,7 +181,7 @@ main (void)
                             child_fd /* fd_child */, buf, buf_max,
                             handle_stdin_written /* write_cb */,
                             /* write_cb_aux */
-                            #if 0
+                            #if DEBUG_KEYLOG
                             (void *)fp
                             #else
                             NULL
