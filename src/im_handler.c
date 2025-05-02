@@ -1,4 +1,5 @@
 #include "im_handler.h"
+#include "cc_nanny.h"
 
 #include <ctype.h>
 
@@ -27,7 +28,7 @@ _write_unicode_as_utf8 (const int fd, const ssize_t unicode_out_len)
       ssize_t utf8_len = unicode_to_utf8 (_unicode_outbuf[i], _utf8_outbuf);
       if (utf8_len > 0)
         {
-          write (fd, _utf8_outbuf, (size_t)utf8_len);
+          ssize_t n UNUSED = write (fd, _utf8_outbuf, (size_t)utf8_len);
         }
     }
 }

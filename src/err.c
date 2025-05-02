@@ -1,4 +1,5 @@
 #include "err.h"
+#include "cc_nanny.h"
 
 #include <assert.h>
 #include <stdarg.h>
@@ -45,7 +46,7 @@ ERR_printf (ERR *p_err, const char *errmsg_fmt, ...)
 
   va_list vargs;
   va_start (vargs, errmsg_fmt);
-  vasprintf (&outbuf, errmsg_fmt, vargs);
+  int n UNUSED = vasprintf (&outbuf, errmsg_fmt, vargs);
   va_end (vargs);
 
   p_err->errmsg = outbuf;
