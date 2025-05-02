@@ -100,8 +100,8 @@ EXTERN_ void hangeul_2beol_commit_2 (hangeul_automata_status *p_status,
                                      CHOJUNGJONG chojungjong, BYTE ch);
 
 EXTERN_ BYTE hangeul_remap_code (const CHOJUNGJONG from_cjj,
-                                       const CHOJUNGJONG to_cjj,
-                                       const BYTE from_code);
+                                 const CHOJUNGJONG to_cjj,
+                                 const BYTE from_code);
 
 EXTERN_ const BYTE _cho_code_to_2beol_lut[];
 EXTERN_ const ssize_t _cho_code_to_2beol_lut_len;

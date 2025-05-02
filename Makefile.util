@@ -1,15 +1,6 @@
 # -*- mode: makefile-gmake; -*-
 
 
-CMAKE_ARGS ?=
-
-
-.PHONY: cmake+build
-cmake+build:
-	cmake . -Bbuild $(CMAKE_ARGS) -DCMAKE_EXPORT_COMPILE_COMMANDS=1
-
-	cd build/
-	make -j `nproc` -C build/ clean all
 
 
 KEYLOG ?= KEYLOG.txt
@@ -41,5 +32,5 @@ iwyu:
 	$(call find-src-inc,iwyu -I./include {})
 
 
-compile_commands.json:
-	ln -s ${PWD}/build/compile_commands.json .
+bear:
+	bear -- make clean all

@@ -22,11 +22,13 @@
   - verbose, debug(key-logging)
 
 
-* TODO code hardening
+* DONE code hardening
+  CLOSED: [2025-05-03 Sat 01:32]
   [2025-05-02 Fri]
 
 
-* TODO cmake -or- autoconf 더 정밀하게
+* DONE cmake -or- autoconf 더 정밀하게
+  CLOSED: [2025-05-03 Sat 01:32]
   [2025-05-02 Fri]
   - 사용하는 함수, 헤더파일들 체크 제대로
 

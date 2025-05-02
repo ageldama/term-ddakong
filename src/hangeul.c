@@ -430,7 +430,7 @@ hangeul_remap_code (const CHOJUNGJONG from_cjj, const CHOJUNGJONG to_cjj,
       assert ("programming-error: allowed only CHOJUNGJONG" == NULL);
     }
 
-  BYTE from_ch = from_lut[(int) from_code];
+  BYTE from_ch = from_lut[(int)from_code];
   return hangeul_2beol_find_code (to_cjj, from_ch);
 }
 
@@ -558,7 +558,7 @@ hangeul_decompose_jongseong (const BYTE jongseong, BYTE *pout_left,
     }
 
   /* 분해가능한지? */
-  const char *sz_chord = _jong_chord_to_2beol_lut[(int) jongseong];
+  const char *sz_chord = _jong_chord_to_2beol_lut[(int)jongseong];
   if (NULL == sz_chord)
     {
       *pout_left = jongseong;
