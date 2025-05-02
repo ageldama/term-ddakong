@@ -1,9 +1,9 @@
 #ifndef pty__h
 #define pty__h 1
 
-#include "extern_.h"
-
 #include <sys/types.h>
+
+#include "extern_.h"
 
 #ifdef __APPLE__
 #include <util.h>

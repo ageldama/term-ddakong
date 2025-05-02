@@ -1,6 +1,7 @@
-#include "hangeul.h"
 #include <stdint.h>
 #include <stdlib.h>
+
+#include "hangeul.h"
 
 const BYTE _cho_code_to_2beol_lut[] = {
   'r' /* ㄱ 0 */,  'R' /* ㄲ 1 */,  's' /* ㄴ 2 */,  'e' /* ㄷ 3 */,

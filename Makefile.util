@@ -28,12 +28,12 @@ find-src-inc = find .  -type f \
 
 .PHONY: clang-format
 clang-format:
-	$(call find-src-inc,clang-format --style=GNU -i {})
+	$(call find-src-inc,clang-format --style=file -i {})
 
 
 .PHONY: clang-tidy
 clang-tidy:
-	$(call find-src-inc,clang-tidy -p compile_commands.json {})
+	$(call find-src-inc,clang-tidy --config-file .clang-tidy -p compile_commands.json -header-filter=.* {})
 
 
 .PHONY: iwyu

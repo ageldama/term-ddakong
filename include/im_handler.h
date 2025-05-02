@@ -2,10 +2,11 @@
 #ifndef im_handler_h
 #define im_handler_h 1
 
-#include "extern_.h"
-#include "typedef_.h"
 #include <stdlib.h>
 #include <unistd.h>
+
+#include "extern_.h"
+#include "typedef_.h"
 
 #ifndef IM_HANDLER_TOGGLE_STATE
 

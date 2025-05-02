@@ -23,6 +23,10 @@ forkpty_with_exec (int *fd_amaster)
   if (!pid)
     {
       char *sz_shell = getenv ("SHELL");
+      if (NULL == sz_shell)
+        {
+          sz_shell = "/bin/sh";
+        }
       execlp (sz_shell, sz_shell, NULL);
     }
 

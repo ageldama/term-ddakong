@@ -1,10 +1,11 @@
 #ifndef hangeul__h
 #define hangeul__h 1
 
+#include <unistd.h>
+
 #include "err.h"
 #include "extern_.h"
 #include "typedef_.h"
-#include <unistd.h>
 
 #ifndef CHOJUNGJONG
 

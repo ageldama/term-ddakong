@@ -1,8 +1,10 @@
 #include "im_handler.h"
+
+#include <ctype.h>
+
 #include "hangeul.h"
 #include "im_handler_hangeul.h"
 #include "utf8_.h"
-#include <ctype.h>
 
 void
 im_handler_status__empty (im_handler_status *p_status)

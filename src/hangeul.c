@@ -1,9 +1,11 @@
 #include "hangeul.h"
-#include "err.h"
+
 #include <assert.h>
 #include <ctype.h>
 #include <stdint.h>
 #include <stdlib.h>
+
+#include "err.h"
 
 UNICODE_32
 hangeul_auto_compose_to_unicode (const BYTE cho, const BYTE jung,

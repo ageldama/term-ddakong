@@ -1,8 +1,9 @@
-#include "global_flags.h"
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+
+#include "global_flags.h"
 
 int verbose_flag = 1;
 char *keylog_filename = NULL;
