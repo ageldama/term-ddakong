@@ -1,0 +1,12 @@
+* DONE toggle시 preedit 날아감.
+  CLOSED: [2025-05-02 Fri 21:03]
+  [2025-05-02 Fri]
+
+
+* TODO enabled=arrow키등 동작 않음.
+  [2025-05-02 Fri]
+
+* TODO 앙+ㅏ => 아아 // 동작 안함.
+  [2025-05-02 Fri]
+
+

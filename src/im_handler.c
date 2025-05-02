@@ -47,6 +47,18 @@ handle_stdin (im_handler_status *p_status, const int fd_keyin,
           /* TOGGLE key */
           p_status->im_mode = ~(p_status->im_mode);
 
+          if (p_status->im_mode == FALSE)
+            {
+              // remain status->commit & clear
+              UNICODE_32 unich =
+                hangeul_flush_automata_status (&_hangeul_avtomat);
+              if (unich != 0x00)
+                {
+                  _unicode_outbuf[0] = unich;
+                  _write_unicode_as_utf8(fd_child, 1);
+                }
+            }
+
           if (p_status->toggle == IM_HANDLER_TOGGLE__OFF)
             {
               /* 1st TOGGLE */
@@ -55,7 +67,7 @@ handle_stdin (im_handler_status *p_status, const int fd_keyin,
             }
           else
             {
-              /* 2nd TOGGLE */
+              /* 2nd consequent TOGGLE */
               p_status->toggle = IM_HANDLER_TOGGLE__OFF;
 
               ssize_t n_written = write (fd_child, buf, (size_t)n_read);
@@ -63,15 +75,6 @@ handle_stdin (im_handler_status *p_status, const int fd_keyin,
               if (NULL != write_cb)
                 {
                   write_cb (n_written, buf, write_cb_aux);
-                }
-
-              // remain status->commit & clear
-              UNICODE_32 unich =
-                hangeul_flush_automata_status (&_hangeul_avtomat);
-              if (unich != 0x00)
-                {
-                  _unicode_outbuf[0] = unich;
-                  _write_unicode_as_utf8(fd_child, 1);
                 }
             }
         }
