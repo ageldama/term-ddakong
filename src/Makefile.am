@@ -1,8 +1,12 @@
 AM_CPPFLAGS = -fPIC \
-    -fhardened -Wall -Wextra -Werror \
+    -Wall -Wextra -Werror \
     -Wconversion -Wsign-conversion \
     -Wformat-security \
+    -Wno-nullability-completeness \
+    -Wno-c23-extensions \
     -std=c99 -D_POSIX_C_SOURCE -D_GNU_SOURCE
+
+# TODO -fhardened (gcc)
 
 
 noinst_LIBRARIES = libddakongs.a
