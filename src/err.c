@@ -1,51 +1,47 @@
 #include "err.h"
 
-
 #include <assert.h>
 #include <stdarg.h>
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-
-
-
-BOOL ERR_err_p(const ERR *p_err)
+BOOL
+ERR_err_p (const ERR *p_err)
 {
-  assert(p_err != NULL);
-  if (p_err->errmsg == NULL) return FALSE;
+  assert (p_err != NULL);
+  if (p_err->errmsg == NULL)
+    return FALSE;
   return TRUE;
 }
 
-
-void ERR_clear(ERR *p_err)
+void
+ERR_clear (ERR *p_err)
 {
-  assert(p_err != NULL);
+  assert (p_err != NULL);
   if (p_err->errmsg_free != NULL)
     {
-      p_err->errmsg_free(p_err->errmsg);
+      p_err->errmsg_free (p_err->errmsg);
     }
   p_err->errmsg = NULL;
 }
 
-
-void ERR_set
-(ERR *p_err, const char *errmsg,
- ERR_errmsg_free errmsg_free)
+void
+ERR_set (ERR *p_err, const char *errmsg, ERR_errmsg_free errmsg_free)
 {
-  assert(p_err != NULL);
-  assert(FALSE == ERR_err_p(p_err));
+  assert (p_err != NULL);
+  assert (FALSE == ERR_err_p (p_err));
 
-  p_err->errmsg = (char *) errmsg;
+  p_err->errmsg = (char *)errmsg;
   p_err->errmsg_free = errmsg_free;
 }
 
-
-char *ERR_printf(ERR *p_err, const char *errmsg_fmt, ...)
+char *
+ERR_printf (ERR *p_err, const char *errmsg_fmt, ...)
 {
   char *outbuf = NULL;
 
-  assert(p_err != NULL);
-  assert(FALSE == ERR_err_p(p_err));
+  assert (p_err != NULL);
+  assert (FALSE == ERR_err_p (p_err));
 
   va_list vargs;
   va_start (vargs, errmsg_fmt);
@@ -58,29 +54,26 @@ char *ERR_printf(ERR *p_err, const char *errmsg_fmt, ...)
   return p_err->errmsg;
 }
 
-
-void ERR_dieif(const ERR *p_err)
+void
+ERR_dieif (const ERR *p_err)
 {
-  assert(p_err != NULL);
+  assert (p_err != NULL);
 
-  if (ERR_err_p(p_err))
+  if (ERR_err_p (p_err))
     {
-      assert(p_err->errmsg == NULL);
-      assert(p_err == NULL); /* fallback */
+      assert (p_err->errmsg == NULL);
+      assert (p_err == NULL); /* fallback */
     }
 }
 
-
-void ERR_warn_and_clear_if(ERR *p_err, FILE *fp_out)
+void
+ERR_warn_and_clear_if (ERR *p_err, FILE *fp_out)
 {
-  assert(p_err != NULL);
+  assert (p_err != NULL);
 
-  if (ERR_err_p(p_err))
+  if (ERR_err_p (p_err))
     {
-      fprintf(fp_out, "[WARN] %s\n", p_err->errmsg);
-      ERR_clear(p_err);
+      fprintf (fp_out, "[WARN] %s\n", p_err->errmsg);
+      ERR_clear (p_err);
     }
 }
-
-
-

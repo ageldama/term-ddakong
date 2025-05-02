@@ -1,0 +1,28 @@
+# -*- mode: makefile-gmake; -*-
+
+
+CMAKE_ARGS ?=
+
+
+.PHONY: cmake+build
+cmake+build:
+	cmake . -Bbuild $(CMAKE_ARGS)
+	cd build/
+	make -j `nproc` -C build/ clean all
+
+
+KEYLOG ?= keylog.txt
+
+.PHONY: dbg-tail-xxd
+dbg-tail-xxd:
+	tail -f $(KEYLOG) | xxd -c 1
+
+
+.PHONY: clang-format
+clang-format:
+	find .  -type f \
+	\( -path './src/*' -or \
+	    -path './include/*' \) \
+	-name '*.[ch]' \
+	-exec clang-format --style=GNU -i {} \;
+

@@ -9,15 +9,14 @@
 
 #include "cc_nanny.h"
 #include "fd_io.h"
+#include "hangeul.h"
 #include "im_handler.h"
+#include "im_handler_hangeul.h"
 #include "pty_.h"
 #include "sig.h"
 #include "termios_.h"
 #include "typedef_.h"
 #include "winsz.h"
-#include "hangeul.h"
-#include "im_handler_hangeul.h"
-
 
 /* globals */
 
@@ -81,11 +80,10 @@ handle_stdin_written (const ssize_t n_written, const BYTE *buf, void *aux)
     }
 }
 
-
 int
 main (void)
 {
-  hangeul_clear_automata_status(&_hangeul_avtomat);
+  hangeul_clear_automata_status (&_hangeul_avtomat);
 
 #if DEBUG_KEYLOG
   /* key-logging output */
@@ -180,13 +178,13 @@ main (void)
               handle_stdin (&im_hdlr_st, STDIN_FILENO /* fd_keyin */,
                             child_fd /* fd_child */, buf, buf_max,
                             handle_stdin_written /* write_cb */,
-                            /* write_cb_aux */
-                            #if DEBUG_KEYLOG
+/* write_cb_aux */
+#if DEBUG_KEYLOG
                             (void *)fp
-                            #else
+#else
                             NULL
-                            #endif
-                            );
+#endif
+              );
             }
         }
     }
