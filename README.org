@@ -1,0 +1,66 @@
+* ddakong
+
+  ANSI C99-으로 작성된 가볍고 빠른 2벌식 한글입력기
+
+  1) 다른 라이브러리 의존성 없음.
+  2) x86_64 / Release 빌드 실행파일 크기: =25 KiB=.
+  3) X윈도, Wayland 등 의존성 없음.
+     - linux console/terminal에서 바로 실행가능.
+     - (예: https://gjedeer.github.io/fbterm/ 등과 함께)
+
+
+  UTF-8, 2벌식 한글키보드를 지원합니다.
+
+
+* 사용법
+
+   1) ~./ddakong~ : 실행, ~SHELL~-환경변수의 쉘이 실행됨.
+      - ~fbterm /usr/local/bin/ddakong~-처럼 아예 fbterm에서 매
+        vconsole마다 열리도록 하면 편함.
+
+   2) ~Control+h~ 키를 누르면 한글모드으로 전환합니다.
+      - 조합중인 한글(pre-edit 문자)을 표시하지는 못합니다. (그냥 터미널이니까요)
+      - 버그가 있을 수 있습니다. (...방금 만들었습니다.)
+
+   3) ~Control+h~ 키를 2번 연속 누르면, 그냥 ~C-h~ 문자가 입력됩니다.
+      - (전통적인 유닉스 터미널에서 backspace-역할)
+
+   4) 추가기능: 자음은 2번 연속 누르면 쌍자음으로 변환합니다.
+      - (예) ㄱ + ㄱ => ㄲ.
+
+
+
+
+* 설치
+
+  TODO
+
+
+** 직접빌드
+
+   1. x86_64, [[https://gcc.gnu.org/gcc-14/][gcc 14+]], [[https://wiki.debian.org/DebianUnstable][debian unstable]]-에서 작업/테스트햇습니다.
+      - ...특별히 쓴게 없어서 다른 환경에서도 잘 굴러갈거 같습니다.
+
+   2. [[https://cmake.org/][cmake]] 3.10+ 이 필요합니다.
+
+   #+begin_src shell
+     git clone git@github.com:ageldama/term-ddakong.git
+     cd term-ddakong
+     cmake -Bbuild .
+     cd build
+     make
+
+     # `ddakong` 실행파일 생성됨, 복사하여 사용.
+   #+end_src
+
+
+* 라이센스 / License
+  [[https://www.gnu.org/licenses/gpl-3.0.html#top][GPLv3]] 을 따릅니다.
+
+  - 참고: https://ko.wikipedia.org/wiki/GNU_%EC%9D%BC%EB%B0%98_%EA%B3%B5%EC%A4%91_%EC%82%AC%EC%9A%A9_%ED%97%88%EA%B0%80%EC%84%9C
+
+
+* 후원 / Support
+  - Bitcoin ~bc1qyx5f8trraemf9r520qy889g42rpq398cw9yysw~
+  - Ethereum ~0x68990903ED084F51d0aF53991867468aF2100281~
+
