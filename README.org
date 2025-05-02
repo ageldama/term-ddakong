@@ -56,19 +56,19 @@
 
 ** 직접빌드
 
-   1. x86_64, [[https://gcc.gnu.org/gcc-14/][gcc 14+]], [[https://wiki.debian.org/DebianUnstable][debian unstable]]-에서 작업/테스트햇습니다.
+   1. x86_64, [[https://gcc.gnu.org/gcc-12/][gcc 12+]], [[https://wiki.debian.org/DebianStable][debian stable]]-에서 작업/테스트햇습니다.
       - ...특별히 쓴게 없어서 다른 환경에서도 잘 굴러갈거 같습니다.
 
-   2. [[https://cmake.org/][cmake]] 3.10+ 이 필요합니다.
+   2. gcc 12+, gnu make 4.3+ 이 필요합니다.
 
    #+begin_src shell
      git clone git@github.com:ageldama/term-ddakong.git
      cd term-ddakong
-     cmake -Bbuild .
-     cd build
+     ./configure # _or_ ./configure --prefix=/usr/local
      make
 
-     # `ddakong` 실행파일 생성됨, 복사하여 사용.
+     # `src/ddakong` 실행파일 생성됨, 복사하여 사용하거나,
+     make install
    #+end_src
 
 
