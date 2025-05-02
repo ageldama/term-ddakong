@@ -77,3 +77,4 @@ autoscan.log
 /src/.deps/
 /stamp-h1
 /src/Makefile
+/term-ddakong-*.tar.gz

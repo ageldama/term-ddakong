@@ -111,8 +111,8 @@ am__v_AR_1 =
 libddakongs_a_AR = $(AR) $(ARFLAGS)
 libddakongs_a_RANLIB = $(RANLIB)
 libddakongs_a_LIBADD =
-am_libddakongs_a_OBJECTS = fd_io.$(OBJEXT) getopt_.$(OBJEXT) \
-	hangeul.$(OBJEXT) hangeul_tables.$(OBJEXT) \
+am_libddakongs_a_OBJECTS = err.$(OBJEXT) fd_io.$(OBJEXT) \
+	getopt_.$(OBJEXT) hangeul.$(OBJEXT) hangeul_tables.$(OBJEXT) \
 	im_handler.$(OBJEXT) im_handler_hangeul.$(OBJEXT) \
 	pty_.$(OBJEXT) sig.$(OBJEXT) termios_.$(OBJEXT) \
 	utf8_.$(OBJEXT) winsz.$(OBJEXT)
@@ -135,11 +135,11 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/fd_io.Po ./$(DEPDIR)/getopt_.Po \
-	./$(DEPDIR)/hangeul.Po ./$(DEPDIR)/hangeul_tables.Po \
-	./$(DEPDIR)/im_handler.Po ./$(DEPDIR)/im_handler_hangeul.Po \
-	./$(DEPDIR)/main_ddakong.Po ./$(DEPDIR)/pty_.Po \
-	./$(DEPDIR)/sig.Po ./$(DEPDIR)/termios_.Po \
+am__depfiles_remade = ./$(DEPDIR)/err.Po ./$(DEPDIR)/fd_io.Po \
+	./$(DEPDIR)/getopt_.Po ./$(DEPDIR)/hangeul.Po \
+	./$(DEPDIR)/hangeul_tables.Po ./$(DEPDIR)/im_handler.Po \
+	./$(DEPDIR)/im_handler_hangeul.Po ./$(DEPDIR)/main_ddakong.Po \
+	./$(DEPDIR)/pty_.Po ./$(DEPDIR)/sig.Po ./$(DEPDIR)/termios_.Po \
 	./$(DEPDIR)/utf8_.Po ./$(DEPDIR)/winsz.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
@@ -273,11 +273,12 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-AM_CPPFLAGS = -I../include
+AM_CPPFLAGS = 
 noinst_LIBRARIES = libddakongs.a
-libddakongs_a_SOURCES = err.h fd_io.c getopt_.c hangeul.c hangeul_tables.c im_handler.c im_handler_hangeul.c pty_.c sig.c termios_.c utf8_.c winsz.c
+libddakongs_a_SOURCES = err.c fd_io.c getopt_.c hangeul.c hangeul_tables.c im_handler.c im_handler_hangeul.c pty_.c sig.c termios_.c utf8_.c winsz.c
 ddakong_SOURCES = main_ddakong.c
 ddakong_LDADD = libddakongs.a
+EXTRA_DIST = *.h
 all: all-am
 
 .SUFFIXES:
@@ -372,6 +373,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/err.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/fd_io.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/getopt_.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/hangeul.Po@am__quote@ # am--include-marker
@@ -532,6 +534,7 @@ clean-am: clean-binPROGRAMS clean-generic clean-noinstLIBRARIES \
 	mostlyclean-am
 
 distclean: distclean-am
+	-rm -f ./$(DEPDIR)/err.Po
 	-rm -f ./$(DEPDIR)/fd_io.Po
 	-rm -f ./$(DEPDIR)/getopt_.Po
 	-rm -f ./$(DEPDIR)/hangeul.Po
@@ -589,6 +592,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
+	-rm -f ./$(DEPDIR)/err.Po
 	-rm -f ./$(DEPDIR)/fd_io.Po
 	-rm -f ./$(DEPDIR)/getopt_.Po
 	-rm -f ./$(DEPDIR)/hangeul.Po

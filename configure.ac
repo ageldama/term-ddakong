@@ -5,7 +5,7 @@ AC_PREREQ([2.72])
 AC_INIT([term-ddakong], [0.0.3], [ageldama@gmail.com])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 
-AC_CONFIG_SRCDIR([include/extern_.h])
+AC_CONFIG_SRCDIR([src/main_ddakong.c])
 AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.

@@ -608,7 +608,7 @@ PACKAGE_STRING='term-ddakong 0.0.3'
 PACKAGE_BUGREPORT='ageldama@gmail.com'
 PACKAGE_URL=''
 
-ac_unique_file="include/extern_.h"
+ac_unique_file="src/main_ddakong.c"
 # Factoring default headers for most tests.
 ac_includes_default="\
 #include <stddef.h>
