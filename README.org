@@ -33,6 +33,19 @@
 
 
 
+   커맨드라인 옵션:
+
+   #+begin_src shell
+     # ./ddakong  -h
+
+     Usage: ./build/ddakong [-h] [-q] [-l KEYLOG]
+       Option (-h) : Show help 도움말
+       Option (-q) : Quiet STDERR-에 메시지 쓰지 않기
+       Option (-l FILENAME) : Write keylog to specified file - 지정한 파일에 키로깅
+       Option (-L) : Write keylog to `KEYLOG.txt'
+   #+end_src
+
+
 
 * 설치
 
