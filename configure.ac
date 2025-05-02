@@ -3,11 +3,15 @@
 
 AC_PREREQ([2.72])
 AC_INIT([term-ddakong], [0.0.3], [ageldama@gmail.com])
+AM_INIT_AUTOMAKE([-Wall -Werror foreign])
+
 AC_CONFIG_SRCDIR([include/extern_.h])
 AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.
 AC_PROG_CC
+AC_PROG_RANLIB
+AM_PROG_AR
 
 # Checks for libraries.
 
@@ -22,5 +26,6 @@ AC_TYPE_SSIZE_T
 # Checks for library functions.
 AC_CHECK_FUNCS([atexit])
 
-AC_CONFIG_FILES([Makefile])
+#
+AC_CONFIG_FILES([Makefile src/Makefile])
 AC_OUTPUT
