@@ -2,8 +2,8 @@
   CLOSED: [2025-05-02 Fri 21:03]
   [2025-05-02 Fri]
 
-
-* TODO enabled=arrow키등 동작 않음.
+* DONE enabled=arrow키등 동작 않음.
+  CLOSED: [2025-05-02 Fri 21:38]
   [2025-05-02 Fri]
 
 * DONE 앙+ㅏ => 아아 // 동작 안함.

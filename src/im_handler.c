@@ -2,7 +2,7 @@
 #include "hangeul.h"
 #include "utf8_.h"
 #include "im_handler_hangeul.h"
-
+#include <ctype.h>
 
 void
 im_handler_status__empty (im_handler_status *p_status)
@@ -32,6 +32,37 @@ _write_unicode_as_utf8(const int fd, const ssize_t unicode_out_len)
     }
 }
 
+
+void
+handle_stdin_write_as_read
+(
+ const int fd_child,
+ BYTE *buf, const ssize_t n_read,
+ handle_write_to_child_cb_t write_cb, void *write_cb_aux
+)
+{
+  ssize_t n_written = write (fd_child, buf, (size_t)n_read);
+
+  if (NULL != write_cb)
+    {
+      write_cb (n_written, buf, write_cb_aux);
+    }
+}
+
+
+void handle_stdin_write_remain (const int fd_child)
+{
+  // remain status->commit & clear
+  UNICODE_32 unich =
+    hangeul_flush_automata_status (&_hangeul_avtomat);
+  if (unich != 0x00)
+    {
+      _unicode_outbuf[0] = unich;
+      _write_unicode_as_utf8(fd_child, 1);
+    }
+}
+
+
 void
 handle_stdin (im_handler_status *p_status, const int fd_keyin,
               const int fd_child, BYTE *buf, const ssize_t buf_max,
@@ -49,14 +80,7 @@ handle_stdin (im_handler_status *p_status, const int fd_keyin,
 
           if (p_status->im_mode == FALSE)
             {
-              // remain status->commit & clear
-              UNICODE_32 unich =
-                hangeul_flush_automata_status (&_hangeul_avtomat);
-              if (unich != 0x00)
-                {
-                  _unicode_outbuf[0] = unich;
-                  _write_unicode_as_utf8(fd_child, 1);
-                }
+              handle_stdin_write_remain (fd_child);
             }
 
           if (p_status->toggle == IM_HANDLER_TOGGLE__OFF)
@@ -70,12 +94,8 @@ handle_stdin (im_handler_status *p_status, const int fd_keyin,
               /* 2nd consequent TOGGLE */
               p_status->toggle = IM_HANDLER_TOGGLE__OFF;
 
-              ssize_t n_written = write (fd_child, buf, (size_t)n_read);
-
-              if (NULL != write_cb)
-                {
-                  write_cb (n_written, buf, write_cb_aux);
-                }
+              handle_stdin_write_as_read(fd_child, buf, n_read,
+                                         write_cb, write_cb_aux);
             }
         }
       else
@@ -85,22 +105,30 @@ handle_stdin (im_handler_status *p_status, const int fd_keyin,
 
           if (p_status->im_mode)
             {
-              for (int i = 0 ; i < n_read ; i ++)
+              if (n_read >= 1 && buf[0] == 0x1b)
                 {
-                  ssize_t unicode_out_len =
-                    hangeul_2beol_fill(buf[i], &_hangeul_avtomat,
-                                       _unicode_outbuf, _UNICODE_OUTBUF_MAX);
-                  _write_unicode_as_utf8(fd_child, unicode_out_len);
+                  /* im=enabled & input=ansi-seq => flush + passthru */
+                  handle_stdin_write_remain (fd_child);
+                  handle_stdin_write_as_read(fd_child, buf, n_read,
+                                             write_cb, write_cb_aux);
+                }
+              else
+                {
+                  /* im=enabled => ... */
+                  for (int i = 0 ; i < n_read ; i ++)
+                    {
+                      ssize_t unicode_out_len =
+                        hangeul_2beol_fill(buf[i], &_hangeul_avtomat,
+                                           _unicode_outbuf, _UNICODE_OUTBUF_MAX);
+                      _write_unicode_as_utf8(fd_child, unicode_out_len);
+                    }
                 }
             }
           else
             {
-              ssize_t n_written = write (fd_child, buf, (size_t)n_read);
-
-              if (NULL != write_cb)
-                {
-                  write_cb (n_written, buf, write_cb_aux);
-                }
+              /* im=disabled => passthru. */
+              handle_stdin_write_as_read(fd_child, buf, n_read,
+                                         write_cb, write_cb_aux);
             }
         }
     }
