@@ -1,4 +1,4 @@
-AM_CPPFLAGS =
+AM_CPPFLAGS = -std=c99 -D_POSIX_C_SOURCE -D_GNU_SOURCE
 
 noinst_LIBRARIES = libddakongs.a
 

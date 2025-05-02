@@ -741,6 +741,7 @@ ac_user_opts='
 enable_option_checking
 enable_silent_rules
 enable_dependency_tracking
+enable_assert
 '
       ac_precious_vars='build_alias
 host_alias
@@ -1379,6 +1380,7 @@ Optional Features:
                           do not reject slow dependency extractors
   --disable-dependency-tracking
                           speeds up one-time build
+  --disable-assert        turn off assertions
 
 Some influential environment variables:
   CC          C compiler command
@@ -3282,6 +3284,8 @@ fi
 ac_config_headers="$ac_config_headers config.h"
 
 
+
+
 # Checks for programs.
 
 
@@ -4564,6 +4568,48 @@ else
 fi
 
 
+
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking whether C compiler accepts -std=c99" >&5
+printf %s "checking whether C compiler accepts -std=c99... " >&6; }
+if test ${ax_cv_check_cflags___std_c99+y}
+then :
+  printf %s "(cached) " >&6
+else case e in #(
+  e)
+  ax_check_save_flags=$CFLAGS
+  CFLAGS="$CFLAGS  -std=c99"
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+int
+main (void)
+{
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"
+then :
+  ax_cv_check_cflags___std_c99=yes
+else case e in #(
+  e) ax_cv_check_cflags___std_c99=no ;;
+esac
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.beam conftest.$ac_ext
+  CFLAGS=$ax_check_save_flags ;;
+esac
+fi
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ax_cv_check_cflags___std_c99" >&5
+printf "%s\n" "$ax_cv_check_cflags___std_c99" >&6; }
+if test "x$ax_cv_check_cflags___std_c99" = xyes
+then :
+  :
+else case e in #(
+  e) : ;;
+esac
+fi
+
 if test -n "$ac_tool_prefix"; then
   # Extract the first word of "${ac_tool_prefix}ranlib", so it can be a program name with args.
 set dummy ${ac_tool_prefix}ranlib; ac_word=$2
@@ -4667,7 +4713,6 @@ esac
 else
   RANLIB="$ac_cv_prog_RANLIB"
 fi
-
 
 
   if test -n "$ac_tool_prefix"; then
@@ -4858,6 +4903,8 @@ unknown)
 esac
 
 
+
+
 # Checks for libraries.
 
 # Checks for header files.
@@ -4890,35 +4937,107 @@ then :
 printf "%s\n" "#define STDC_HEADERS 1" >>confdefs.h
 
 fi
-ac_fn_c_check_header_compile "$LINENO" "fcntl.h" "ac_cv_header_fcntl_h" "$ac_includes_default"
-if test "x$ac_cv_header_fcntl_h" = xyes
+       for ac_header in stdint.h fcntl.h stdint.h sys/epoll.h sys/ioctl.h pty.h sys/types.h stddef.h signal.h sys/wait.h stdarg.h ctype.h termios.h unistd.h
+do :
+  as_ac_Header=`printf "%s\n" "ac_cv_header_$ac_header" | sed "$as_sed_sh"`
+ac_fn_c_check_header_compile "$LINENO" "$ac_header" "$as_ac_Header" "$ac_includes_default"
+if eval test \"x\$"$as_ac_Header"\" = x"yes"
 then :
-  printf "%s\n" "#define HAVE_FCNTL_H 1" >>confdefs.h
+  cat >>confdefs.h <<_ACEOF
+#define `printf "%s\n" "HAVE_$ac_header" | sed "$as_sed_cpp"` 1
+_ACEOF
 
+else case e in #(
+  e) as_fn_error $? "required header cannot be found" "$LINENO" 5 ;;
+esac
 fi
-ac_fn_c_check_header_compile "$LINENO" "stdint.h" "ac_cv_header_stdint_h" "$ac_includes_default"
-if test "x$ac_cv_header_stdint_h" = xyes
-then :
-  printf "%s\n" "#define HAVE_STDINT_H 1" >>confdefs.h
 
+done
+
+
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking whether to enable assertions" >&5
+printf %s "checking whether to enable assertions... " >&6; }
+  # Check whether --enable-assert was given.
+if test ${enable_assert+y}
+then :
+  enableval=$enable_assert; ac_enable_assert=$enableval
+     if       test "x$enableval" = xno
+then :
+
+printf "%s\n" "#define NDEBUG 1" >>confdefs.h
+
+elif test "x$enableval" != xyes
+then :
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: invalid argument supplied to --enable-assert" >&5
+printf "%s\n" "$as_me: WARNING: invalid argument supplied to --enable-assert" >&2;}
+	ac_enable_assert=yes
 fi
-ac_fn_c_check_header_compile "$LINENO" "sys/ioctl.h" "ac_cv_header_sys_ioctl_h" "$ac_includes_default"
-if test "x$ac_cv_header_sys_ioctl_h" = xyes
-then :
-  printf "%s\n" "#define HAVE_SYS_IOCTL_H 1" >>confdefs.h
-
+else case e in #(
+  e) ac_enable_assert=yes ;;
+esac
 fi
-ac_fn_c_check_header_compile "$LINENO" "termios.h" "ac_cv_header_termios_h" "$ac_includes_default"
-if test "x$ac_cv_header_termios_h" = xyes
-then :
-  printf "%s\n" "#define HAVE_TERMIOS_H 1" >>confdefs.h
 
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_enable_assert" >&5
+printf "%s\n" "$ac_enable_assert" >&6; }
+
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking whether termios.h defines TIOCGWINSZ" >&5
+printf %s "checking whether termios.h defines TIOCGWINSZ... " >&6; }
+if test ${ac_cv_sys_tiocgwinsz_in_termios_h+y}
+then :
+  printf %s "(cached) " >&6
+else case e in #(
+  e) cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+$ac_includes_default
+#include <termios.h>
+const int tiocgwinsz = TIOCGWINSZ;
+
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"
+then :
+  ac_cv_sys_tiocgwinsz_in_termios_h=yes
+else case e in #(
+  e) ac_cv_sys_tiocgwinsz_in_termios_h=no ;;
+esac
 fi
-ac_fn_c_check_header_compile "$LINENO" "unistd.h" "ac_cv_header_unistd_h" "$ac_includes_default"
-if test "x$ac_cv_header_unistd_h" = xyes
-then :
-  printf "%s\n" "#define HAVE_UNISTD_H 1" >>confdefs.h
+rm -f core conftest.err conftest.$ac_objext conftest.beam conftest.$ac_ext ;;
+esac
+fi
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_sys_tiocgwinsz_in_termios_h" >&5
+printf "%s\n" "$ac_cv_sys_tiocgwinsz_in_termios_h" >&6; }
 
+if test $ac_cv_sys_tiocgwinsz_in_termios_h != yes; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking whether sys/ioctl.h defines TIOCGWINSZ" >&5
+printf %s "checking whether sys/ioctl.h defines TIOCGWINSZ... " >&6; }
+if test ${ac_cv_sys_tiocgwinsz_in_sys_ioctl_h+y}
+then :
+  printf %s "(cached) " >&6
+else case e in #(
+  e) cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+$ac_includes_default
+#include <sys/ioctl.h>
+const int tiocgwinsz = TIOCGWINSZ;
+
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"
+then :
+  ac_cv_sys_tiocgwinsz_in_sys_ioctl_h=yes
+else case e in #(
+  e) ac_cv_sys_tiocgwinsz_in_sys_ioctl_h=no ;;
+esac
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.beam conftest.$ac_ext ;;
+esac
+fi
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_sys_tiocgwinsz_in_sys_ioctl_h" >&5
+printf "%s\n" "$ac_cv_sys_tiocgwinsz_in_sys_ioctl_h" >&6; }
+
+  if test $ac_cv_sys_tiocgwinsz_in_sys_ioctl_h = yes; then
+
+printf "%s\n" "#define GWINSZ_IN_SYS_IOCTL 1" >>confdefs.h
+
+  fi
 fi
 
 
@@ -4986,12 +5105,33 @@ fi
 
 
 # Checks for library functions.
-ac_fn_c_check_func "$LINENO" "atexit" "ac_cv_func_atexit"
-if test "x$ac_cv_func_atexit" = xyes
-then :
-  printf "%s\n" "#define HAVE_ATEXIT 1" >>confdefs.h
 
+
+
+  for ac_func in atexit forkpty epoll_create1 getenv execlp kill close read write sigemptyset sigaction waitpid snprintf perror isalpha isprint ioctl tcgetattr tcsetattr getopt abort vasprintf exit fprintf fcntl
+do :
+  as_ac_var=`printf "%s\n" "ac_cv_func_$ac_func" | sed "$as_sed_sh"`
+ac_fn_c_check_func "$LINENO" "$ac_func" "$as_ac_var"
+if eval test \"x\$"$as_ac_var"\" = x"yes"
+then :
+  cat >>confdefs.h <<_ACEOF
+#define `printf "%s\n" "HAVE_$ac_func" | sed "$as_sed_cpp"` 1
+_ACEOF
+
+else case e in #(
+  e) as_fn_error $? "required function cannot be found" "$LINENO" 5 ;;
+esac
 fi
+
+done
+
+
+
+# TODO TIOCGWINSZ struct winsize
+# TODO ISTRIP ICANON ECHO ISIG TCSANOW
+# TODO WEXITSTATUS WNOHANG
+# TODO optarg optopt abort
+# TODO F_SETFL, F_GETFL, O_NONBLOCK
 
 
 #
