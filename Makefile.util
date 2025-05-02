@@ -6,7 +6,8 @@ CMAKE_ARGS ?=
 
 .PHONY: cmake+build
 cmake+build:
-	cmake . -Bbuild $(CMAKE_ARGS)
+	cmake . -Bbuild $(CMAKE_ARGS) -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+
 	cd build/
 	make -j `nproc` -C build/ clean all
 
@@ -18,11 +19,27 @@ dbg-tail-xxd:
 	tail -f $(KEYLOG) | xxd -c 1
 
 
-.PHONY: clang-format
-clang-format:
-	find .  -type f \
+find-src-inc = find .  -type f \
 	\( -path './src/*' -or \
 	    -path './include/*' \) \
 	-name '*.[ch]' \
-	-exec clang-format --style=GNU -i {} \;
+	-exec $(1) \;
 
+
+.PHONY: clang-format
+clang-format:
+	$(call find-src-inc,clang-format --style=GNU -i {})
+
+
+.PHONY: clang-tidy
+clang-tidy:
+	$(call find-src-inc,clang-tidy -p compile_commands.json {})
+
+
+.PHONY: iwyu
+iwyu:
+	$(call find-src-inc,iwyu -I./include {})
+
+
+compile_commands.json:
+	ln -s ${PWD}/build/compile_commands.json .
