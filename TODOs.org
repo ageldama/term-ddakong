@@ -11,3 +11,42 @@
   [2025-05-02 Fri]
 
 
+* DONE clang-format/tidy/iwyu 등 적용하기
+  CLOSED: [2025-05-02 Fri 22:13]
+  [2025-05-02 Fri]
+
+
+* DONE getopt
+  CLOSED: [2025-05-02 Fri 22:44]
+  [2025-05-02 Fri]
+  - verbose, debug(key-logging)
+
+
+* DONE code hardening
+  CLOSED: [2025-05-03 Sat 01:32]
+  [2025-05-02 Fri]
+
+
+* DONE cmake -or- autoconf 더 정밀하게
+  CLOSED: [2025-05-03 Sat 01:32]
+  [2025-05-02 Fri]
+  - 사용하는 함수, 헤더파일들 체크 제대로
+
+
+* TODO lua/dll scripting
+  [2025-05-02 Fri]
+  - 다른 입력기, 다른 인코딩을 지원할 수 있도록.
+
+
+* TODO 소스코드 조금 포매팅, 주석작성, 문서화
+  [2025-05-02 Fri]
+
+
+* TODO rpi3 (armhf), rpi4 (arm64) 등 릴리즈 바이너리
+  [2025-05-02 Fri]
+
+
+* TODO 다른 토글키 : C-h 이외에?
+  [2025-05-02 Fri]
+
+

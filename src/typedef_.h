@@ -1,9 +1,9 @@
 #ifndef typedef__h
 #define typedef__h 1
 
-#include "extern_.h"
-
 #include <stdint.h>
+
+#include "extern_.h"
 
 #ifndef BYTE
 #define BYTE char

@@ -67,3 +67,14 @@ m2s.txt
 autoscan.log
 
 /build
+/KEYLOG.txt
+/autom4te.cache/
+/src/ddakong
+/config.h
+/config.log
+/config.status
+/Makefile
+/src/.deps/
+/stamp-h1
+/src/Makefile
+/term-ddakong-*.tar.gz

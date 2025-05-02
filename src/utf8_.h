@@ -1,8 +1,9 @@
 #ifndef utf8__h
 #define utf8__h 1
 
-#include "typedef_.h"
 #include <stdint.h>
+
+#include "typedef_.h"
 
 /**
  * Convert Unicode code point into UTF-8 bytes

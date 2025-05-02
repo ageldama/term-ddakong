@@ -1,6 +1,7 @@
-#include "hangeul.h"
 #include <stdint.h>
 #include <stdlib.h>
+
+#include "hangeul.h"
 
 const BYTE _cho_code_to_2beol_lut[] = {
   'r' /* ㄱ 0 */,  'R' /* ㄲ 1 */,  's' /* ㄴ 2 */,  'e' /* ㄷ 3 */,
@@ -103,114 +104,299 @@ const BYTE *_jong_chord_to_2beol_lut[] = {
 
 const ssize_t _jong_chord_to_2beol_lut_len = 19;
 
+const hangeul_jamo_jaeum_unicode_2beol_row_t _jamo_jaeum_unicode_2beol_lut[]
+    = {
+        /* 0x3131 ㄱ */
+        {
+            .cjj = CHOSEONG,
+            .code = 0,
+            .unicode = 0x3131,
+        },
+        {
+            .cjj = JONGSEONG,
+            .code = 1,
+            .unicode = 0x3131,
+        },
 
+        /* 0x3132 ㄲ */
+        {
+            .cjj = CHOSEONG,
+            .code = 1,
+            .unicode = 0x3132,
+        },
+        {
+            .cjj = JONGSEONG,
+            .code = 2,
+            .unicode = 0x3132,
+        },
 
-const hangeul_jamo_jaeum_unicode_2beol_row_t _jamo_jaeum_unicode_2beol_lut[] = {
-  /* 0x3131 ㄱ */
-  { .cjj = CHOSEONG, .code = 0, .unicode = 0x3131, },
-  { .cjj = JONGSEONG, .code = 1, .unicode = 0x3131, },
+        /* 0x3133 ㄳ */
+        {
+            .cjj = JONGSEONG,
+            .code = 3,
+            .unicode = 0x3133,
+        },
 
-  /* 0x3132 ㄲ */
-  { .cjj = CHOSEONG, .code = 1, .unicode = 0x3132, },
-  { .cjj = JONGSEONG, .code = 2, .unicode = 0x3132, },
+        /* 0x3134 ㄴ */
+        {
+            .cjj = CHOSEONG,
+            .code = 2,
+            .unicode = 0x3134,
+        },
+        {
+            .cjj = JONGSEONG,
+            .code = 4,
+            .unicode = 0x3134,
+        },
 
-  /* 0x3133 ㄳ */
-  { .cjj = JONGSEONG, .code = 3, .unicode = 0x3133, },
+        /* 0x3135 ㄵ */
+        {
+            .cjj = JONGSEONG,
+            .code = 5,
+            .unicode = 0x3135,
+        },
 
-  /* 0x3134 ㄴ */
-  { .cjj = CHOSEONG, .code = 2, .unicode = 0x3134, },
-  { .cjj = JONGSEONG, .code = 4, .unicode = 0x3134, },
+        /* 0x3136 ㄶ */
+        {
+            .cjj = JONGSEONG,
+            .code = 6,
+            .unicode = 0x3136,
+        },
 
-  /* 0x3135 ㄵ */
-  { .cjj = JONGSEONG, .code = 5, .unicode = 0x3135, },
+        /* 0x3137 ㄷ */
+        {
+            .cjj = CHOSEONG,
+            .code = 3,
+            .unicode = 0x3137,
+        },
+        {
+            .cjj = JONGSEONG,
+            .code = 7,
+            .unicode = 0x3137,
+        },
 
-  /* 0x3136 ㄶ */
-  { .cjj = JONGSEONG, .code = 6, .unicode = 0x3136, },
+        /* 0x3138 ㄸ */
+        {
+            .cjj = CHOSEONG,
+            .code = 4,
+            .unicode = 0x3138,
+        },
 
-  /* 0x3137 ㄷ */
-  { .cjj = CHOSEONG, .code = 3, .unicode = 0x3137, },
-  { .cjj = JONGSEONG, .code = 7, .unicode = 0x3137, },
+        /* 0x3139 ㄹ */
+        {
+            .cjj = CHOSEONG,
+            .code = 5,
+            .unicode = 0x3139,
+        },
+        {
+            .cjj = JONGSEONG,
+            .code = 8,
+            .unicode = 0x3139,
+        },
 
-  /* 0x3138 ㄸ */
-  { .cjj = CHOSEONG, .code = 4, .unicode = 0x3138, },
+        /* 0x313a ㄺ */
+        {
+            .cjj = JONGSEONG,
+            .code = 9,
+            .unicode = 0x313a,
+        },
 
-  /* 0x3139 ㄹ */
-  { .cjj = CHOSEONG, .code = 5, .unicode = 0x3139, },
-  { .cjj = JONGSEONG, .code = 8, .unicode = 0x3139, },
+        /* 0x313b ㄻ */
+        {
+            .cjj = JONGSEONG,
+            .code = 10,
+            .unicode = 0x313b,
+        },
 
-  /* 0x313a ㄺ */
-  { .cjj = JONGSEONG, .code = 9, .unicode = 0x313a, },
+        /* 0x313c ㄼ */
+        {
+            .cjj = JONGSEONG,
+            .code = 11,
+            .unicode = 0x313c,
+        },
 
-  /* 0x313b ㄻ */
-  { .cjj = JONGSEONG, .code = 10, .unicode = 0x313b, },
+        /* 0x313d ㄽ */
+        {
+            .cjj = JONGSEONG,
+            .code = 12,
+            .unicode = 0x313d,
+        },
 
-  /* 0x313c ㄼ */
-  { .cjj = JONGSEONG, .code = 11, .unicode = 0x313c, },
+        /* 0x313e ㄾ */
+        {
+            .cjj = JONGSEONG,
+            .code = 13,
+            .unicode = 0x313e,
+        },
 
-  /* 0x313d ㄽ */
-  { .cjj = JONGSEONG, .code = 12, .unicode = 0x313d, },
+        /* 0x313f ㄿ */
+        {
+            .cjj = JONGSEONG,
+            .code = 14,
+            .unicode = 0x313f,
+        },
 
-  /* 0x313e ㄾ */
-  { .cjj = JONGSEONG, .code = 13, .unicode = 0x313e, },
+        /* 0x3140 ㅀ */
+        {
+            .cjj = JONGSEONG,
+            .code = 15,
+            .unicode = 0x3140,
+        },
 
-  /* 0x313f ㄿ */
-  { .cjj = JONGSEONG, .code = 14, .unicode = 0x313f, },
+        /* 0x3141 ㅁ */
+        {
+            .cjj = CHOSEONG,
+            .code = 6,
+            .unicode = 0x3141,
+        },
+        {
+            .cjj = JONGSEONG,
+            .code = 16,
+            .unicode = 0x3141,
+        },
 
-  /* 0x3140 ㅀ */
-  { .cjj = JONGSEONG, .code = 15, .unicode = 0x3140, },
+        /* 0x3142 ㅂ */
+        {
+            .cjj = CHOSEONG,
+            .code = 7,
+            .unicode = 0x3142,
+        },
+        {
+            .cjj = JONGSEONG,
+            .code = 17,
+            .unicode = 0x3142,
+        },
 
-  /* 0x3141 ㅁ */
-  { .cjj = CHOSEONG, .code = 6, .unicode = 0x3141, },
-  { .cjj = JONGSEONG, .code = 16, .unicode = 0x3141, },
+        /* 0x3143 ㅃ */
+        {
+            .cjj = CHOSEONG,
+            .code = 8,
+            .unicode = 0x3143,
+        },
 
-  /* 0x3142 ㅂ */
-  { .cjj = CHOSEONG, .code = 7, .unicode = 0x3142, },
-  { .cjj = JONGSEONG, .code = 17, .unicode = 0x3142, },
+        /* 0x3144 ㅄ */
+        {
+            .cjj = JONGSEONG,
+            .code = 18,
+            .unicode = 0x3144,
+        },
 
-  /* 0x3143 ㅃ */
-  { .cjj = CHOSEONG, .code = 8, .unicode = 0x3143, },
+        /* 0x3145 ㅅ */
+        {
+            .cjj = CHOSEONG,
+            .code = 9,
+            .unicode = 0x3145,
+        },
+        {
+            .cjj = JONGSEONG,
+            .code = 19,
+            .unicode = 0x3145,
+        },
 
-  /* 0x3144 ㅄ */
-  { .cjj = JONGSEONG, .code = 18, .unicode = 0x3144, },
+        /* 0x3146 ㅆ */
+        {
+            .cjj = CHOSEONG,
+            .code = 10,
+            .unicode = 0x3146,
+        },
+        {
+            .cjj = JONGSEONG,
+            .code = 20,
+            .unicode = 0x3146,
+        },
 
-  /* 0x3145 ㅅ */
-  { .cjj = CHOSEONG, .code = 9, .unicode = 0x3145, },
-  { .cjj = JONGSEONG, .code = 19, .unicode = 0x3145, },
+        /* 0x3147 ㅇ */
+        {
+            .cjj = CHOSEONG,
+            .code = 11,
+            .unicode = 0x3147,
+        },
+        {
+            .cjj = JONGSEONG,
+            .code = 21,
+            .unicode = 0x3147,
+        },
 
-  /* 0x3146 ㅆ */
-  { .cjj = CHOSEONG, .code = 10, .unicode = 0x3146, },
-  { .cjj = JONGSEONG, .code = 20, .unicode = 0x3146, },
+        /* 0x3148 ㅈ */
+        {
+            .cjj = CHOSEONG,
+            .code = 12,
+            .unicode = 0x3148,
+        },
+        {
+            .cjj = JONGSEONG,
+            .code = 22,
+            .unicode = 0x3148,
+        },
 
-  /* 0x3147 ㅇ */
-  { .cjj = CHOSEONG, .code = 11, .unicode = 0x3147, },
-  { .cjj = JONGSEONG, .code = 21, .unicode = 0x3147, },
+        /* 0x3149 ㅉ */
+        {
+            .cjj = CHOSEONG,
+            .code = 13,
+            .unicode = 0x3149,
+        },
 
-  /* 0x3148 ㅈ */
-  { .cjj = CHOSEONG, .code = 12, .unicode = 0x3148, },
-  { .cjj = JONGSEONG, .code = 22, .unicode = 0x3148, },
+        /* 0x314a ㅊ */
+        {
+            .cjj = CHOSEONG,
+            .code = 14,
+            .unicode = 0x314a,
+        },
+        {
+            .cjj = JONGSEONG,
+            .code = 23,
+            .unicode = 0x314a,
+        },
 
-  /* 0x3149 ㅉ */
-  { .cjj = CHOSEONG, .code = 13, .unicode = 0x3149, },
+        /* 0x314b ㅋ */
+        {
+            .cjj = CHOSEONG,
+            .code = 15,
+            .unicode = 0x314b,
+        },
+        {
+            .cjj = JONGSEONG,
+            .code = 24,
+            .unicode = 0x314b,
+        },
 
-  /* 0x314a ㅊ */
-  { .cjj = CHOSEONG, .code = 14, .unicode = 0x314a, },
-  { .cjj = JONGSEONG, .code = 23, .unicode = 0x314a, },
+        /* 0x314c ㅌ */
+        {
+            .cjj = CHOSEONG,
+            .code = 16,
+            .unicode = 0x314c,
+        },
+        {
+            .cjj = JONGSEONG,
+            .code = 25,
+            .unicode = 0x314c,
+        },
 
-  /* 0x314b ㅋ */
-  { .cjj = CHOSEONG, .code = 15, .unicode = 0x314b, },
-  { .cjj = JONGSEONG, .code = 24, .unicode = 0x314b, },
+        /* 0x314d ㅍ */
+        {
+            .cjj = CHOSEONG,
+            .code = 17,
+            .unicode = 0x314d,
+        },
+        {
+            .cjj = JONGSEONG,
+            .code = 26,
+            .unicode = 0x314d,
+        },
 
-  /* 0x314c ㅌ */
-  { .cjj = CHOSEONG, .code = 16, .unicode = 0x314c, },
-  { .cjj = JONGSEONG, .code = 25, .unicode = 0x314c, },
+        /* 0x314e ㅎ */
+        {
+            .cjj = CHOSEONG,
+            .code = 18,
+            .unicode = 0x314e,
+        },
+        {
+            .cjj = JONGSEONG,
+            .code = 27,
+            .unicode = 0x314e,
+        },
+      };
 
-  /* 0x314d ㅍ */
-  { .cjj = CHOSEONG, .code = 17, .unicode = 0x314d, },
-  { .cjj = JONGSEONG, .code = 26, .unicode = 0x314d, },
-
-  /* 0x314e ㅎ */
-  { .cjj = CHOSEONG, .code = 18, .unicode = 0x314e, },
-  { .cjj = JONGSEONG, .code = 27, .unicode = 0x314e, },
-};
-
-const ssize_t _jamo_jaeum_unicode_2beol_lut_len = sizeof(_jamo_jaeum_unicode_2beol_lut) / sizeof(hangeul_jamo_jaeum_unicode_2beol_row_t);
+const ssize_t _jamo_jaeum_unicode_2beol_lut_len
+    = sizeof (_jamo_jaeum_unicode_2beol_lut)
+      / sizeof (hangeul_jamo_jaeum_unicode_2beol_row_t);

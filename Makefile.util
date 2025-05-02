@@ -1,0 +1,36 @@
+# -*- mode: makefile-gmake; -*-
+
+
+
+
+KEYLOG ?= KEYLOG.txt
+
+.PHONY: dbg-tail-xxd
+dbg-tail-xxd:
+	tail -f $(KEYLOG) | xxd -c 1
+
+
+find-src-inc = find .  -type f \
+	\( -path './src/*' -or \
+	    -path './include/*' \) \
+	-name '*.[ch]' \
+	-exec $(1) \;
+
+
+.PHONY: clang-format
+clang-format:
+	$(call find-src-inc,clang-format --style=file -i {})
+
+
+.PHONY: clang-tidy
+clang-tidy:
+	$(call find-src-inc,clang-tidy --config-file .clang-tidy -p compile_commands.json -header-filter=.* {})
+
+
+.PHONY: iwyu
+iwyu:
+	$(call find-src-inc,iwyu -I./include {})
+
+
+bear:
+	bear -- make clean all

@@ -17,6 +17,9 @@
    1) ~./ddakong~ : 실행, ~SHELL~-환경변수의 쉘이 실행됨.
       - ~fbterm /usr/local/bin/ddakong~-처럼 아예 fbterm에서 매
         vconsole마다 열리도록 하면 편함.
+      - ~SHELL~-환경변수는 실행파일의 경로만 지정가능합니다.
+        - 인자를 전달해야 하거나 하다면, 쉘스크립트으로 작성하여 그
+          경로를 지정해야 합니다.
 
    2) ~Control+h~ 키를 누르면 한글모드으로 전환합니다.
       - 조합중인 한글(pre-edit 문자)을 표시하지는 못합니다. (그냥 터미널이니까요)
@@ -30,6 +33,19 @@
 
 
 
+   커맨드라인 옵션:
+
+   #+begin_src shell
+     # ./ddakong  -h
+
+     Usage: ./build/ddakong [-h] [-q] [-l KEYLOG]
+       Option (-h) : Show help 도움말
+       Option (-q) : Quiet STDERR-에 메시지 쓰지 않기
+       Option (-l FILENAME) : Write keylog to specified file - 지정한 파일에 키로깅
+       Option (-L) : Write keylog to `KEYLOG.txt'
+   #+end_src
+
+
 
 * 설치
 
@@ -40,19 +56,19 @@
 
 ** 직접빌드
 
-   1. x86_64, [[https://gcc.gnu.org/gcc-14/][gcc 14+]], [[https://wiki.debian.org/DebianUnstable][debian unstable]]-에서 작업/테스트햇습니다.
+   1. x86_64, [[https://gcc.gnu.org/gcc-12/][gcc 12+]], [[https://wiki.debian.org/DebianStable][debian stable]]-에서 작업/테스트햇습니다.
       - ...특별히 쓴게 없어서 다른 환경에서도 잘 굴러갈거 같습니다.
 
-   2. [[https://cmake.org/][cmake]] 3.10+ 이 필요합니다.
+   2. gcc 12+, gnu make 4.3+ 이 필요합니다.
 
    #+begin_src shell
      git clone git@github.com:ageldama/term-ddakong.git
      cd term-ddakong
-     cmake -Bbuild .
-     cd build
+     ./configure # _or_ ./configure --prefix=/usr/local
      make
 
-     # `ddakong` 실행파일 생성됨, 복사하여 사용.
+     # `src/ddakong` 실행파일 생성됨, 복사하여 사용하거나,
+     make install
    #+end_src
 
 
