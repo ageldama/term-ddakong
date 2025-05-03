@@ -211,34 +211,63 @@ EXTERN_ BOOL hangeul_partial_jamo_p (const BYTE cho, const BYTE jung,
 EXTERN_ BOOL
 hangeul_empty_automata_status_p (const hangeul_automata_status *p_status);
 
+/**
+ * 한글2벌식 알파벳 입력을 자음/모음으로 구분
+ *
+ * @param ch 입력 char 문자 (예: 'c', 'a')
+ *
+ * @return 자모음구분
+ */
 EXTERN_ JAMOEUM hangeul_2beol_alpha_as_jamoeum (const BYTE ch);
 
+/** TODO */
 EXTERN_ ssize_t hangeul_2beol_fill (const BYTE ch,
                                     hangeul_automata_status *p_status,
                                     UNICODE_32 *outbuf,
                                     const ssize_t outbuf_max);
 
+/** TODO */
 EXTERN_ BYTE hangeul_2beol_find_code (const CHOJUNGJONG chojungjong,
                                       const BYTE ch);
 
+/** TODO */
 EXTERN_ BYTE hangeul_double_jaeum (const CHOJUNGJONG, const BYTE prev_ch,
                                    const BYTE ch);
 
+/**
+ * 유니코드 포인트 정수값을 outbuf에 출력
+ *
+ * *p_pos-의 현재 위치가 outbuf_max에 같거나 넘어서면,
+ *  assertion-error.
+ *
+ * @param outbuf 출력버퍼
+ *
+ * @param outbuf_max 출력버퍼크기
+ *
+ * @param p_pos (non-null) [in] 출력전 버퍼위치, [out] 출력후 새
+ * 버퍼위치.
+ *
+ * @param ch 출력할 유니코드 포인트 정수값
+ */
 EXTERN_ void hangeul_put_unicode (UNICODE_32 *outbuf, const ssize_t outbuf_max,
                                   ssize_t *p_pos, UNICODE_32 ch);
 
+/** TODO */
 EXTERN_ int hangeul_decompose_jongseong (const BYTE jongseong, BYTE *pout_left,
                                          BYTE *pout_right);
 
+/** TODO */
 EXTERN_ UNICODE_32 hangeul_2beol_commit_1_and_flush (
     hangeul_automata_status *p_status, UNICODE_32 *outbuf,
     const ssize_t outbuf_max, ssize_t *p_cur_pos);
 
+/** TODO */
 EXTERN_ UNICODE_32 hangeul_put_jamo_unicode (UNICODE_32 *outbuf,
                                              const ssize_t outbuf_max,
                                              ssize_t *p_pos, CHOJUNGJONG cjj,
                                              BYTE ch);
 
+/** TODO */
 EXTERN_ void hangeul_2beol_commit_2 (hangeul_automata_status *p_status,
                                      UNICODE_32 *outbuf,
                                      const ssize_t outbuf_max,
