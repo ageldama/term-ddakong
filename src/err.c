@@ -88,3 +88,8 @@ ERR_warn_and_clear_if (ERR *p_err, FILE *fp_out)
       ERR_clear (p_err);
     }
 }
+
+void ERR_set_nofree_fn(ERR *p_err, const char *sz_errmsg)
+{
+  ERR_set_nofree(p_err, sz_errmsg);
+}

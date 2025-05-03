@@ -3,15 +3,19 @@
 
 #include "config.h"
 #include "extern_.h"
-
+#include <stdlib.h>
 
 typedef struct {
   void *p_func;
   char *sz_func_name;
-} PLUGIN_FUNC_ENTRY;
+  char *sz_func_doc;
+} plugin_func_t;
 
 
-/* TODO factor-out: main => im_handler */
+
+EXTERN_ const plugin_func_t plugin_funcs[];
+
+EXTERN_ const ssize_t plugin_funcs_len;
 
 
 #endif /* ! plugin_h */
