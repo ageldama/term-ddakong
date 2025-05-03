@@ -10,6 +10,7 @@
 #include "sig.h"
 #include "pty_.h"
 #include "im_handler_hangeul.h"
+#include "hangeul.h"
 
 
 /* SUPPORT: global_flags.h */
@@ -30,6 +31,41 @@ char *__get_default_keylog_filename(void)
 
 hangeul_automata_status *get_current_hangeul_automata_status(void)
 { return &_hangeul_avtomat; }
+
+
+/* SUPPORT: hangeul.h */
+
+CHOJUNGJONG __hangeul_const_chojungjong_nul(void)
+{ return CHOJUNGJONG_NUL; }
+
+CHOJUNGJONG __hangeul_const_choseong(void)
+{ return CHOSEONG;}
+
+CHOJUNGJONG __hangeul_const_jungseong(void)
+{ return JUNGSEONG;}
+
+CHOJUNGJONG __hangeul_const_jongseong(void)
+{ return JONGSEONG;}
+
+CHOJUNGJONG __hangeul_const_moeum(void)
+{ return MOEUM;}
+
+CHOJUNGJONG __hangeul_const_jaeum(void)
+{ return JAEUM;}
+
+  /* TODO hangeul_automata_status__new */
+  /* TODO hangeul_automata_status__delete */
+  /* TODO hangeul_automata_status__get_stage */
+  /* TODO hangeul_automata_status__set_stage */
+  /* TODO hangeul_automata_status__get_prev_ch */
+  /* TODO hangeul_automata_status__set_prev_ch */
+  /* TODO hangeul_automata_status__get_cho */
+  /* TODO hangeul_automata_status__set_cho */
+  /* TODO hangeul_automata_status__get_jung */
+  /* TODO hangeul_automata_status__set_jung */
+  /* TODO hangeul_automata_status__get_jong */
+  /* TODO hangeul_automata_status__set_jong */
+
 
 
 /* SUPPORT: $_ */
@@ -156,6 +192,90 @@ const plugin_func_t plugin_funcs[] = {
     .sz_func_name = "kill_forkpty",
     .sz_func_doc = "", },
 
+  /* hangeul.h */
+  { .p_func = __hangeul_const_chojungjong_nul,
+    .sz_func_name = "hangeul_const_chojungjong_nul",
+    .sz_func_doc = "", },
+  { .p_func = __hangeul_const_choseong,
+    .sz_func_name = "hangeul_const_choseong",
+    .sz_func_doc = "", },
+  { .p_func = __hangeul_const_jungseong,
+    .sz_func_name = "hangeul_const_jungseong",
+    .sz_func_doc = "", },
+  { .p_func = __hangeul_const_jongseong,
+    .sz_func_name = "hangeul_const_jongseong",
+    .sz_func_doc = "", },
+  { .p_func = __hangeul_const_moeum,
+    .sz_func_name = "hangeul_const_moeum",
+    .sz_func_doc = "", },
+  { .p_func = __hangeul_const_jaeum,
+    .sz_func_name = "hangeul_const_jaeum",
+    .sz_func_doc = "", },
+
+  /* TODO hangeul_automata_status__new */
+  /* TODO hangeul_automata_status__delete */
+  /* TODO hangeul_automata_status__get_stage */
+  /* TODO hangeul_automata_status__set_stage */
+  /* TODO hangeul_automata_status__get_prev_ch */
+  /* TODO hangeul_automata_status__set_prev_ch */
+  /* TODO hangeul_automata_status__get_cho */
+  /* TODO hangeul_automata_status__set_cho */
+  /* TODO hangeul_automata_status__get_jung */
+  /* TODO hangeul_automata_status__set_jung */
+  /* TODO hangeul_automata_status__get_jong */
+  /* TODO hangeul_automata_status__set_jong */
+
+  { .p_func = hangeul_clear_automata_status,
+    .sz_func_name = "hangeul_clear_automata_status",
+    .sz_func_doc = "", },
+  { .p_func = hangeul_flush_automata_status,
+    .sz_func_name = "hangeul_flush_automata_status",
+    .sz_func_doc = "", },
+  { .p_func = hangeul_auto_compose_to_unicode,
+    .sz_func_name = "hangeul_auto_compose_to_unicode",
+    .sz_func_doc = "", },
+  { .p_func = hangeul_full_compose_to_unicode,
+    .sz_func_name = "hangeul_full_compose_to_unicode",
+    .sz_func_doc = "", },
+  { .p_func = hangeul_jamo_compose_to_unicode,
+    .sz_func_name = "hangeul_jamo_compose_to_unicode",
+    .sz_func_doc = "", },
+  { .p_func = hangeul_jamo_jaeum_to_unicode,
+    .sz_func_name = "hangeul_jamo_jaeum_to_unicode",
+    .sz_func_doc = "", },
+  { .p_func = hangeul_partial_jamo_p,
+    .sz_func_name = "hangeul_partial_jamo_p",
+    .sz_func_doc = "", },
+  { .p_func = hangeul_empty_automata_status_p,
+    .sz_func_name = "hangeul_empty_automata_status_p",
+    .sz_func_doc = "", },
+  { .p_func = hangeul_2beol_alpha_as_jamoeum,
+    .sz_func_name = "hangeul_2beol_alpha_as_jamoeum",
+    .sz_func_doc = "", },
+  { .p_func = hangeul_2beol_fill,
+    .sz_func_name = "hangeul_2beol_fill",
+    .sz_func_doc = "", },
+  { .p_func = hangeul_2beol_find_code,
+    .sz_func_name = "hangeul_2beol_find_code",
+    .sz_func_doc = "", },
+  { .p_func = hangeul_double_jaeum,
+    .sz_func_name = "hangeul_double_jaeum",
+    .sz_func_doc = "", },
+  { .p_func = hangeul_put_unicode,
+    .sz_func_name = "hangeul_put_unicode",
+    .sz_func_doc = "", },
+  { .p_func = hangeul_decompose_jongseong,
+    .sz_func_name = "hangeul_decompose_jongseong",
+    .sz_func_doc = "", },
+  { .p_func = hangeul_2beol_commit_1_and_flush,
+    .sz_func_name = "hangeul_2beol_commit_1_and_flush",
+    .sz_func_doc = "", },
+  { .p_func = hangeul_put_jamo_unicode,
+    .sz_func_name = "hangeul_put_jamo_unicode",
+    .sz_func_doc = "", },
+  { .p_func = hangeul_remap_code,
+    .sz_func_name = "hangeul_remap_code",
+    .sz_func_doc = "", },
 };
 
 const ssize_t plugin_funcs_len = sizeof(plugin_funcs) / sizeof(plugin_func_t);
