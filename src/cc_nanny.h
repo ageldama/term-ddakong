@@ -1,9 +1,9 @@
 /**
  * cc/gcc warning/error mitigations
  *
- * Copyright 2025 <ageldama@gmail.com>, 2025. All rights reserved. Use
- * of this source code is governed by a GPLv3 license that can be
- * found in the LICENSE file.
+ * Copyright 2025 Jonghyouk Yun <ageldama@gmail.com>, 2025. All rights
+ * reserved. Use of this source code is governed by a GPLv3 license
+ * that can be found in the license file.
  */
 
 #ifndef cc_nanny_h

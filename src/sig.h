@@ -1,9 +1,9 @@
 /**
  * Unix signal handling utilities
  *
- * copyright 2025 <ageldama@gmail.com>, 2025. all rights reserved. use
- * of this source code is governed by a gplv3 license that can be
- * found in the license file.
+ * Copyright 2025 Jonghyouk Yun <ageldama@gmail.com>, 2025. All rights
+ * reserved. Use of this source code is governed by a GPLv3 license
+ * that can be found in the license file.
  */
 
 #ifndef sig_h
