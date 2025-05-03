@@ -1,3 +1,11 @@
+/**
+ * ddakong main
+ *
+ * Copyright 2025 Jonghyouk Yun <ageldama@gmail.com>, 2025. All rights
+ * reserved. Use of this source code is governed by a GPLv3 license
+ * that can be found in the license file.
+ */
+
 #include "config.h"
 
 #include <assert.h>
@@ -27,8 +35,21 @@ pid_t child_pid = 0;
 
 /* internals */
 
+/**
+ * exit()-종료시 deinit
+ *
+ * 1) pty-fd, exec-process 정리
+ *
+ * 2) termios 상태 복구
+ */
 void _exit_cleanup (void);
 
+/**
+ * 자식프로세스 종료시그널 처리
+ *
+ * forkpty()/exec() 프로세스가 종료된 것이므로, ddakong도
+ * 정리/종료처리.
+ */
 void trap_chld (const int signo UNUSED);
 
 void trap_winch (int sig_no UNUSED);
