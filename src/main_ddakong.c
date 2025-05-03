@@ -166,6 +166,14 @@ handle_stdin_written (const ssize_t n_written, const BYTE *buf, void *aux)
 int
 main (int argc, char **argv)
 {
+  /* 기본 입력핸들러를 위한 상태 */
+  im_handler_status default_im_hndlr_st;
+  im_handler_status__empty (&default_im_hndlr_st);
+
+  set_current_handle_input_status(&default_im_hndlr_st);
+  set_current_handle_input_fn((handle_input_fn_t) handle_stdin);
+
+  /* getopt */
   do_getopt (argc, argv);
 
   if (verbose_flag)
@@ -252,10 +260,10 @@ main (int argc, char **argv)
   const ssize_t buf_max = 1024;
   char buf[buf_max];
 
-  im_handler_status im_hdlr_st;
-  im_handler_status__empty (&im_hdlr_st);
-
   /* mainloop */
+  handle_input_fn_t handle_input = get_current_handle_input_fn();
+  void *p_handle_input_status = get_current_handle_input_status();
+
   while (1)
     {
       int nfds = epoll_wait (epollfd, events, MAX_EVENTS, epoll_timeout_ms);
@@ -275,10 +283,11 @@ main (int argc, char **argv)
             }
           else if (STDIN_FILENO == fd)
             {
-              handle_stdin (&im_hdlr_st, STDIN_FILENO /* fd_keyin */,
-                            child_fd /* fd_child */, buf, buf_max,
-                            handle_stdin_written /* write_cb */,
-                            (void *)fp /* write_cb_aux */
+              handle_input
+                (p_handle_input_status, STDIN_FILENO /* fd_keyin */,
+                 child_fd /* fd_child */, buf, buf_max,
+                 handle_stdin_written /* write_cb */,
+                 (void *)fp /* write_cb_aux */
               );
             }
         }
