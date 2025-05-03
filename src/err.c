@@ -1,3 +1,11 @@
+/**
+ * Simple error facility for plain-C
+ *
+ * Copyright Jonghyouk Yun <ageldama@gmail.com>, 2025. All rights
+ * reserved. Use of this source code is governed by a GPLv3 license
+ * that can be found in the license file.
+ */
+
 #include "err.h"
 #include "cc_nanny.h"
 
@@ -74,6 +82,8 @@ ERR_warn_and_clear_if (ERR *p_err, FILE *fp_out)
 
   if (ERR_err_p (p_err))
     {
+      FILE *fp = fp_out;
+      if (fp == NULL) fp = stderr;
       fprintf (fp_out, "[WARN] %s\n", p_err->errmsg);
       ERR_clear (p_err);
     }

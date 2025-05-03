@@ -1,3 +1,11 @@
+/**
+ * ddakong main
+ *
+ * Copyright Jonghyouk Yun <ageldama@gmail.com>, 2025. All rights
+ * reserved. Use of this source code is governed by a GPLv3 license
+ * that can be found in the license file.
+ */
+
 #include "config.h"
 
 #include <assert.h>
@@ -27,14 +35,66 @@ pid_t child_pid = 0;
 
 /* internals */
 
+/**
+ * exit()-종료시 deinit (atexit())
+ *
+ * @see exit()
+ *
+ * @see atexit()
+ *
+ * @see termios__reset()
+ *
+ * @see kill_forkpty()
+ *
+ * 1) pty-fd, exec-process 정리
+ *
+ * 2) termios 상태 복구
+ */
 void _exit_cleanup (void);
 
+/**
+ * 자식프로세스 종료시그널 처리
+ *
+ * forkpty()/exec() 프로세스가 종료된 것이므로, ddakong도
+ * 정리/종료처리.
+ *
+ * @see forkpty()
+ *
+ * @see execlp()
+ *
+ * @see waitpid()
+ *
+ * @see exit()
+ */
 void trap_chld (const int signo UNUSED);
 
+/**
+ * termios window-size-change 처리
+ *
+ * 하위-pty에 터미널크기 변동을 반영해줌.
+ *
+ * @see signal()
+ *
+ * @see winsz_update()
+ */
 void trap_winch (int sig_no UNUSED);
 
+/**
+ * SIGTERM(kill) 종료처리
+ *
+ * atexit 핸들러 동작하도록 연결.
+ *
+ * @see _exit_cleanup
+ *
+ * @see exit
+ */
 void trap_term (int sig_no);
 
+/**
+ * stdin 입력을 처리한 다음 호출되는 콜백함수
+ *
+ * key-logging 파일에 기록.
+ */
 void handle_stdin_written (const ssize_t n_written, const BYTE *buf,
                            void *aux);
 
@@ -107,6 +167,11 @@ int
 main (int argc, char **argv)
 {
   do_getopt (argc, argv);
+
+  if (verbose_flag)
+    {
+      print_banner(stderr);
+    }
 
   /* start */
   hangeul_clear_automata_status (&_hangeul_avtomat);

@@ -1,3 +1,11 @@
+/**
+ * 한글/2벌식 => 유니코드 오토마타
+ *
+ * Copyright Jonghyouk Yun <ageldama@gmail.com>, 2025. All rights
+ * reserved. Use of this source code is governed by a GPLv3 license
+ * that can be found in the license file.
+ */
+
 #include "hangeul.h"
 
 #include <assert.h>
@@ -139,50 +147,6 @@ hangeul_2beol_alpha_as_jamoeum (const BYTE ch)
     }
 }
 
-void
-hangeul_2beol_commit_2 (hangeul_automata_status *p_status, UNICODE_32 *outbuf,
-                        const ssize_t outbuf_max, ssize_t *p_cur_pos,
-                        CHOJUNGJONG chojungjong, BYTE ch)
-{
-  /* previous state: */
-  if (!hangeul_empty_automata_status_p (p_status))
-    {
-      UNICODE_32 prev_ch = hangeul_auto_compose_to_unicode (
-          p_status->cho, p_status->jung, p_status->jong);
-      hangeul_put_unicode (outbuf, outbuf_max, p_cur_pos, prev_ch);
-    }
-
-  /* current input: */
-  UNICODE_32 new_ch;
-
-  switch (chojungjong)
-    {
-    case CHOSEONG:
-      new_ch = hangeul_auto_compose_to_unicode (
-          hangeul_2beol_find_code (chojungjong, ch), CHOJUNGJONG_NUL,
-          CHOJUNGJONG_NUL);
-      break;
-
-    case JUNGSEONG:
-      new_ch = hangeul_auto_compose_to_unicode (
-          CHOJUNGJONG_NUL, hangeul_2beol_find_code (chojungjong, ch),
-          CHOJUNGJONG_NUL);
-      break;
-
-    case JONGSEONG:
-      new_ch = hangeul_auto_compose_to_unicode (
-          CHOJUNGJONG_NUL, CHOJUNGJONG_NUL,
-          hangeul_2beol_find_code (chojungjong, ch));
-      break;
-
-    default:
-      assert ("programming-error: allowed only CHOJUNGJONG" == NULL);
-    }
-
-  hangeul_put_unicode (outbuf, outbuf_max, p_cur_pos, new_ch);
-
-  hangeul_clear_automata_status (p_status);
-}
 
 ssize_t
 hangeul_2beol_fill (const BYTE ch, hangeul_automata_status *p_status,
@@ -487,6 +451,7 @@ hangeul_double_jaeum (const CHOJUNGJONG chojungjong, const BYTE prev_ch,
       lut_len = _cho_chord_to_2beol_lut_len;
       break;
     case JUNGSEONG:
+      /* NOTE 함수이름은 "자음"-이지만, 모음도 처리 데헷! */
       lut = (BYTE **)_jung_chord_to_2beol_lut;
       lut_len = _jung_chord_to_2beol_lut_len;
       break;

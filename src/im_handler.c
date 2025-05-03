@@ -1,3 +1,11 @@
+/**
+ * im_handler 표준입력 처리
+ *
+ * Copyright Jonghyouk Yun <ageldama@gmail.com>, 2025. All rights
+ * reserved. Use of this source code is governed by a GPLv3 license
+ * that can be found in the license file.
+ */
+
 #include "im_handler.h"
 #include "cc_nanny.h"
 
@@ -59,6 +67,18 @@ handle_stdin_write_remain (const int fd_child)
     }
 }
 
+#ifndef im_handler__CONTROL_H /* C-h */
+#define im_handler__CONTROL_H 0x08
+#endif
+
+#ifndef im_handler__TOGGLE_KEY_LEN
+#define im_handler__TOGGLE_KEY_LEN 1
+#endif
+
+#ifndef im_handler__ANSI_BEGIN
+#define im_handler__ANSI_BEGIN 0x1b
+#endif
+
 void
 handle_stdin (im_handler_status *p_status, const int fd_keyin,
               const int fd_child, BYTE *buf, const ssize_t buf_max,
@@ -69,7 +89,9 @@ handle_stdin (im_handler_status *p_status, const int fd_keyin,
     ;
   else if (n_read > 0)
     {
-      if (n_read == 1 && buf[0] == 0x08 /* C-h */)
+      /* NOTE 1글자 토클키 밖엔 지원 못함 */
+      if (n_read == im_handler__TOGGLE_KEY_LEN
+          && buf[0] == im_handler__CONTROL_H)
         {
           /* TOGGLE key */
           p_status->im_mode = ~(p_status->im_mode);
@@ -101,7 +123,7 @@ handle_stdin (im_handler_status *p_status, const int fd_keyin,
 
           if (p_status->im_mode)
             {
-              if (n_read >= 1 && buf[0] == 0x1b)
+              if (n_read >= 1 && buf[0] == im_handler__ANSI_BEGIN)
                 {
                   /* im=enabled & input=ansi-seq => flush + passthru */
                   handle_stdin_write_remain (fd_child);
