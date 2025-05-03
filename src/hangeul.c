@@ -147,50 +147,6 @@ hangeul_2beol_alpha_as_jamoeum (const BYTE ch)
     }
 }
 
-void
-hangeul_2beol_commit_2 (hangeul_automata_status *p_status, UNICODE_32 *outbuf,
-                        const ssize_t outbuf_max, ssize_t *p_cur_pos,
-                        CHOJUNGJONG chojungjong, BYTE ch)
-{
-  /* previous state: */
-  if (!hangeul_empty_automata_status_p (p_status))
-    {
-      UNICODE_32 prev_ch = hangeul_auto_compose_to_unicode (
-          p_status->cho, p_status->jung, p_status->jong);
-      hangeul_put_unicode (outbuf, outbuf_max, p_cur_pos, prev_ch);
-    }
-
-  /* current input: */
-  UNICODE_32 new_ch;
-
-  switch (chojungjong)
-    {
-    case CHOSEONG:
-      new_ch = hangeul_auto_compose_to_unicode (
-          hangeul_2beol_find_code (chojungjong, ch), CHOJUNGJONG_NUL,
-          CHOJUNGJONG_NUL);
-      break;
-
-    case JUNGSEONG:
-      new_ch = hangeul_auto_compose_to_unicode (
-          CHOJUNGJONG_NUL, hangeul_2beol_find_code (chojungjong, ch),
-          CHOJUNGJONG_NUL);
-      break;
-
-    case JONGSEONG:
-      new_ch = hangeul_auto_compose_to_unicode (
-          CHOJUNGJONG_NUL, CHOJUNGJONG_NUL,
-          hangeul_2beol_find_code (chojungjong, ch));
-      break;
-
-    default:
-      assert ("programming-error: allowed only CHOJUNGJONG" == NULL);
-    }
-
-  hangeul_put_unicode (outbuf, outbuf_max, p_cur_pos, new_ch);
-
-  hangeul_clear_automata_status (p_status);
-}
 
 ssize_t
 hangeul_2beol_fill (const BYTE ch, hangeul_automata_status *p_status,

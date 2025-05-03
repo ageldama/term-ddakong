@@ -344,13 +344,6 @@ EXTERN_ UNICODE_32 hangeul_put_jamo_unicode (UNICODE_32 *outbuf,
                                              ssize_t *p_pos, CHOJUNGJONG cjj,
                                              BYTE ch);
 
-/** TODO */
-EXTERN_ void hangeul_2beol_commit_2 (hangeul_automata_status *p_status,
-                                     UNICODE_32 *outbuf,
-                                     const ssize_t outbuf_max,
-                                     ssize_t *p_cur_pos,
-                                     CHOJUNGJONG chojungjong, BYTE ch);
-
 /**
  * 한글2벌식 초중종에 따른 LUT-index 코드값을 다른 초중종에 매칭되는
  * 코드값으로 변환
