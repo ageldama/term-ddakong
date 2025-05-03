@@ -173,16 +173,15 @@ main (int argc, char **argv)
   set_current_handle_input_status(&default_im_hndlr_st);
   set_current_handle_input_fn((handle_input_fn_t) handle_stdin);
 
-  /* getopt */
+  hangeul_clear_automata_status (&_hangeul_avtomat);
+
+  /* getopt: 커맨드라인 파라미터 처리 */
   do_getopt (argc, argv);
 
   if (verbose_flag)
     {
       print_banner(stderr);
     }
-
-  /* start */
-  hangeul_clear_automata_status (&_hangeul_avtomat);
 
   /* key-logging output */
   FILE *fp = NULL;
