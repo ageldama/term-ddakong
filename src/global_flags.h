@@ -21,6 +21,8 @@ EXTERN_ int verbose_flag;
  */
 EXTERN_ char *keylog_filename;
 
+EXTERN_ char *default_keylog_filename;
+
 
 void print_banner(FILE *fp);
 
