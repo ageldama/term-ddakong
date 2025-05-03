@@ -3284,7 +3284,7 @@ fi
 ac_config_headers="$ac_config_headers config.h"
 
 
-
+#AC_CONFIG_MACRO_DIR([m4])
 
 # Checks for programs.
 
