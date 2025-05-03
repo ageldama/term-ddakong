@@ -47,9 +47,14 @@ isalpha isprint
 ioctl tcgetattr tcsetattr
 getopt abort
 vasprintf
-dlopen dlsym dlclose dlerror
 exit fprintf fcntl],[],[AC_MSG_ERROR([required function cannot be found])])
 
+
+AC_CHECK_LIB(dl, [dlopen],
+[
+  LIBS="$LIBS -ldl"
+  AC_DEFINE([HAVE_DLOPEN], [1], [have dlopen])
+], [])
 
 
 # TODO TIOCGWINSZ struct winsize
