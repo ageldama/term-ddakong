@@ -8,7 +8,7 @@
 
 
 
-set_current_handle_input_fn_t set_current_handle_input = NULL;
+set_current_handle_input_fn_t set_current_handle_input_fn = NULL;
 
 
 void ddakong_plugin_entry
@@ -22,13 +22,24 @@ void ddakong_plugin_entry
 
       /* capture needed function: */
       if (0 == strcmp(p_func_row->sz_func_name,
-                      "set_current_handle_input"))
+                      "set_current_handle_input_fn"))
         {
-          set_current_handle_input = p_func_row->p_func;
+          set_current_handle_input_fn = p_func_row->p_func;
+          fprintf(stderr, "# GOT set_current_handle_input_fn: %p\n",
+                  set_current_handle_input_fn);
         }
     }
 
-  /* FIXME: */
-  /* set_current_handle_input((void *) handle_input); */
-  set_current_handle_input((void *) NULL);
+  if (set_current_handle_input_fn != NULL)
+    {
+      set_current_handle_input_fn((void *) handle_input);
+      fprintf(stderr, "# my own custom `handle_input` has been installed: %p\n",
+              handle_input);
+    }
+  else
+    {
+      fprintf(stderr, "# own custom `handle_input` installation failed: `set_current_handle_input_fn`-plugin function not found\n");
+    }
+
+  fprintf(stderr, "\n\n# CUSTOM PLUGIN HAS LOADED: PRESS ANY ALPHABET KEY...\n\n");
 }
