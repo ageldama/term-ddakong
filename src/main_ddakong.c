@@ -27,6 +27,8 @@
 #include "termios_.h"
 #include "typedef_.h"
 #include "winsz.h"
+#include "plugin.h"
+
 
 /* globals */
 
@@ -181,6 +183,21 @@ main (int argc, char **argv)
   if (verbose_flag)
     {
       print_banner(stderr);
+    }
+
+  /* dll-plugin: 초기화 */
+  dll_plugin_context_t dll_plugin_ctx;
+  dll_plugin_ctx.p_dll = NULL;
+
+  if (NULL != plugin_dll_filename)
+    {
+      BOOL dll_plugin_loaded = dll_plugin_load(&dll_plugin_ctx,
+                                               plugin_dll_filename);
+      if (verbose_flag)
+        {
+          fprintf(stderr, "# dll-plugin loaded?(%d)\n",
+                  dll_plugin_loaded);
+        }
     }
 
   /* key-logging output */
