@@ -38,6 +38,14 @@ pid_t child_pid = 0;
 /**
  * exit()-종료시 deinit (atexit())
  *
+ * @see exit()
+ *
+ * @see atexit()
+ *
+ * @see termios__reset()
+ *
+ * @see kill_forkpty()
+ *
  * 1) pty-fd, exec-process 정리
  *
  * 2) termios 상태 복구
@@ -49,6 +57,14 @@ void _exit_cleanup (void);
  *
  * forkpty()/exec() 프로세스가 종료된 것이므로, ddakong도
  * 정리/종료처리.
+ *
+ * @see forkpty()
+ *
+ * @see execlp()
+ *
+ * @see waitpid()
+ *
+ * @see exit()
  */
 void trap_chld (const int signo UNUSED);
 
@@ -56,6 +72,10 @@ void trap_chld (const int signo UNUSED);
  * termios window-size-change 처리
  *
  * 하위-pty에 터미널크기 변동을 반영해줌.
+ *
+ * @see signal()
+ *
+ * @see winsz_update()
  */
 void trap_winch (int sig_no UNUSED);
 
@@ -63,6 +83,10 @@ void trap_winch (int sig_no UNUSED);
  * SIGTERM(kill) 종료처리
  *
  * atexit 핸들러 동작하도록 연결.
+ *
+ * @see _exit_cleanup
+ *
+ * @see exit
  */
 void trap_term (int sig_no);
 

@@ -15,6 +15,10 @@
  * 현재 프로세스의 "termios window-size"-을 얻어서,
  * child_fd(pty child)-에 그대로 적용하기.
  *
+ * @see ioctl
+ *
+ * @see struct winsize
+ *
  * @param child_fd 윈도크기를 복사 받을 대상 fd
  */
 EXTERN_ void winsz_update (const int child_fd);

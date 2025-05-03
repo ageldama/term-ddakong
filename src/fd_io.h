@@ -19,6 +19,10 @@
  * `src_fd'-의 모든 내용을 읽지 않고, 지금 available-한 내용만
  * `buf_max'-만큼만 읽어서 복사.
  *
+ * @see read()
+ *
+ * @see write()
+ *
  * @param src_fd read()-수행할 file-descriptor
  *
  * @param dst_fd write()-할 file-descriptor
@@ -36,6 +40,8 @@ EXTERN_ ssize_t cp_fd (const int src_fd, const int dst_fd, char *buf,
 /**
  * 지정한 `fd'-을 non-blocking mode으로 설정
  *
+ * @see fcntl
+ *
  * @param fd fcntl() 적용할 file-descriptor
  *
  * @param p_old_fl `fd'-의 원래 fcntl()-세팅값을 전달하는
@@ -47,6 +53,8 @@ EXTERN_ int fcntl_nb (const int fd, int *p_old_fl);
 
 /**
  * file-descriptor을 epoll-file-descriptor에 추가하기
+ *
+ * @param epoll_ctl
  *
  * @param epollfd target epoll-fd
  *

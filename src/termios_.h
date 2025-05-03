@@ -26,12 +26,18 @@
  * - SIG : Control-C 등 처리를 받지 않고, pty-child에 그대로
  *   forwarding하기 위해 끔.
  *
+ * @see tcgetattr()
+ *
+ * @see tcsetattr()
+ *
  * @param echo "echo"-모드 켤지? (BOOL)
  */
 EXTERN_ void termios__init (int echo);
 
 /**
  * termios 상태복구
+ *
+ * @see tcsetattr()
  *
  * termios__init()-에서 저장해둔 원래 상태를 사용.
  */

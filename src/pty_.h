@@ -30,6 +30,12 @@
  *
  * 생성한 하위-pty의 file-descriptor을 non-blocking mode으로 설정.
  *
+ * @see forkpty()
+ *
+ * @see execlp()
+ *
+ * @see getenv()
+ *
  * @param fd_amaster (non-null) forkpty()-한 pty-file-descriptor을 전달
  * 받을 포인터.
  *
@@ -39,6 +45,10 @@ EXTERN_ pid_t forkpty_with_exec (int *fd_amaster);
 
 /**
  * forkpty() / exec()-한 프로세스/pty-fd을 종료처리
+ *
+ * @see kill()
+ *
+ * @see waitpid()
  *
  * @param pid 종료할 프로세스id
  *

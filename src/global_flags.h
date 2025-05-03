@@ -23,6 +23,8 @@ EXTERN_ char *keylog_filename;
 
 /**
  * 커맨드라인 처리함수
+ *
+ * @see getopt
  */
 EXTERN_ void do_getopt (int argc, char **argv);
 

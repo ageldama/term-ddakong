@@ -65,6 +65,10 @@ void im_handler_status__empty (im_handler_status *p_status);
 /**
  * 표준입력 처리 함수
  *
+ * @see read
+ *
+ * @see write
+ *
  * @param p_status (non-null) 상태구조체
  *
  * @param fd_keyin 입력을 read()-할 file-descriptor
