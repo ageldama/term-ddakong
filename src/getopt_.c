@@ -1,3 +1,11 @@
+/**
+ * 커맨드라인 파라미터 처리
+ *
+ * Copyright 2025 <ageldama@gmail.com>, 2025. All rights reserved. Use
+ * of this source code is governed by a GPLv3 license that can be
+ * found in the LICENSE file.
+ */
+
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>

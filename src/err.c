@@ -1,3 +1,11 @@
+/**
+ * Simple error facility for plain-C
+ *
+ * Copyright 2025 <ageldama@gmail.com>, 2025. All rights reserved. Use
+ * of this source code is governed by a GPLv3 license that can be
+ * found in the LICENSE file.
+ */
+
 #include "err.h"
 #include "cc_nanny.h"
 
