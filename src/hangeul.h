@@ -226,12 +226,33 @@ EXTERN_ ssize_t hangeul_2beol_fill (const BYTE ch,
                                     UNICODE_32 *outbuf,
                                     const ssize_t outbuf_max);
 
-/** TODO */
+/**
+ * 한글2벌식 초중종에 따른 입력 알파벳코드 => LUT-index 변환
+ *
+ * @param chojungjong 변환할 알파벳에 대입할 초중종-구분
+ *
+ * @param ch 변환할 입력 알파벳 char. (예: 'a')
+ *
+ * @return 변환한 결과 LUT-index, 변환 실패시 CHOJUNGJONG_NUL.
+ */
 EXTERN_ BYTE hangeul_2beol_find_code (const CHOJUNGJONG chojungjong,
                                       const BYTE ch);
 
-/** TODO */
-EXTERN_ BYTE hangeul_double_jaeum (const CHOJUNGJONG, const BYTE prev_ch,
+/**
+ * 한글2벌식 이중자음으로 합치기
+ *
+ * 예: ㄱ(r) + ㄱ(r) => ㄲ(rr)
+ *
+ * @param chojungjong 초중종 구분
+ *
+ * @param prev_ch 이전 입력 알파벳 char
+ *
+ * @param ch 이번 입력 알파벳 char
+ *
+ * @return 변환한 결과 LUT-index, 변환 실패시 CHOJUNGJONG_NUL.
+ */
+EXTERN_ BYTE hangeul_double_jaeum (const CHOJUNGJONG chojungjong,
+                                   const BYTE prev_ch,
                                    const BYTE ch);
 
 /**
