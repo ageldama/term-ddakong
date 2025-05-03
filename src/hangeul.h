@@ -274,7 +274,7 @@ EXTERN_ void hangeul_put_unicode (UNICODE_32 *outbuf, const ssize_t outbuf_max,
                                   ssize_t *p_pos, UNICODE_32 ch);
 
 /**
- * 한글2벌식 오토마타: 종성 코드를 쌍자음인 경우, 좌/우 자음으로 분리
+ * 한글2벌식오토마타: 종성 코드를 쌍자음인 경우, 좌/우 자음으로 분리
  *
  * 실은 단자음의 경우에도 처리해줌.
  *
@@ -292,7 +292,24 @@ EXTERN_ void hangeul_put_unicode (UNICODE_32 *outbuf, const ssize_t outbuf_max,
 EXTERN_ int hangeul_decompose_jongseong (const BYTE jongseong, BYTE *pout_left,
                                          BYTE *pout_right);
 
-/** TODO */
+/**
+ * 한글2벌식오토마타 상태구조체의 조합가능한 유니코드가 있다면,
+ * 출력하고, 상태구조체도 비움.
+ *
+ * @see hangeul_flush_automata_status()
+ *
+ * @see hangeul_put_unicode()
+ *
+ * @param p_status (non-null)
+ *
+ * @param outbuf 출력버퍼
+ *
+ * @param outbuf_max 출력버퍼의 크기
+ *
+ * @param p_cur_pos (non-null) [in] 현재 버퍼위치 / [out] 출력후 버퍼위치
+ *
+ * @return 조합해낸 유니코드 코드포인트, 조합+출력하지 않았다면 0x00.
+ */
 EXTERN_ UNICODE_32 hangeul_2beol_commit_1_and_flush (
     hangeul_automata_status *p_status, UNICODE_32 *outbuf,
     const ssize_t outbuf_max, ssize_t *p_cur_pos);
