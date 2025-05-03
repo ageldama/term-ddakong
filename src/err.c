@@ -74,6 +74,8 @@ ERR_warn_and_clear_if (ERR *p_err, FILE *fp_out)
 
   if (ERR_err_p (p_err))
     {
+      FILE *fp = fp_out;
+      if (fp == NULL) fp = stderr;
       fprintf (fp_out, "[WARN] %s\n", p_err->errmsg);
       ERR_clear (p_err);
     }
