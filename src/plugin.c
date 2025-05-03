@@ -17,7 +17,7 @@
 
 
 
-#if (HAVE_DLOPEN && HAVE_DLSYM && HAVE_DLCLOSE)
+#if (HAVE_DLOPEN)
 
 BOOL dll_plugin_load
 (dll_plugin_context_t *p_plugin_ctx, const char *sz_dll_filename)
