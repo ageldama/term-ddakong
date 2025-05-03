@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 # Generated automatically by config.status (rand-phrase-ddakong-plugin) 0.0.01
 # NOTE: Changes made to this file will be lost: look at ltmain.sh.
 
@@ -56,7 +56,7 @@ fast_install=needless
 shared_archive_member_spec=
 
 # Shell to use when invoking shell scripts.
-SHELL="/bin/sh"
+SHELL="/bin/bash"
 
 # An echo program that protects backslashes.
 ECHO="printf %s\\n"
@@ -287,10 +287,10 @@ finish_eval=""
 hardcode_into_libs=yes
 
 # Compile-time system search path for libraries.
-sys_lib_search_path_spec="/usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1 /usr/lib /lib "
+sys_lib_search_path_spec="/usr/lib/gcc/x86_64-linux-gnu/14 /usr/lib/x86_64-linux-gnu /usr/lib /lib/x86_64-linux-gnu /lib "
 
 # Detected run-time system search path for libraries.
-sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib/libfakeroot "
+sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib/x86_64-linux-gnu/libfakeroot /usr/local/lib /usr/local/lib/x86_64-linux-gnu /lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu /lib32 /usr/lib32 "
 
 # Explicit LT_SYS_LIBRARY_PATH set during ./configure time.
 configure_time_lt_sys_library_path=""
