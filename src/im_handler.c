@@ -15,6 +15,34 @@
 #include "im_handler_hangeul.h"
 #include "utf8_.h"
 
+
+handle_input_fn_t current_handle_input_fn =
+  (handle_input_fn_t) handle_stdin;
+
+handle_input_fn_t get_current_handle_input_fn(void)
+{
+  return current_handle_input_fn;
+}
+
+void set_current_handle_input_fn (handle_input_fn_t fn)
+{
+  current_handle_input_fn = fn;
+}
+
+
+void *p_current_handle_input_status = NULL;
+
+void *get_current_handle_input_status(void)
+{
+  return p_current_handle_input_status;
+}
+
+void set_current_handle_input_status(void *p_new_status)
+{
+  p_current_handle_input_status = p_new_status;
+}
+
+
 void
 im_handler_status__empty (im_handler_status *p_status)
 {

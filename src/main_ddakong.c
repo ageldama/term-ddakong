@@ -27,6 +27,8 @@
 #include "termios_.h"
 #include "typedef_.h"
 #include "winsz.h"
+#include "plugin.h"
+
 
 /* globals */
 
@@ -166,6 +168,16 @@ handle_stdin_written (const ssize_t n_written, const BYTE *buf, void *aux)
 int
 main (int argc, char **argv)
 {
+  /* 기본 입력핸들러를 위한 상태 */
+  im_handler_status default_im_hndlr_st;
+  im_handler_status__empty (&default_im_hndlr_st);
+
+  set_current_handle_input_status(&default_im_hndlr_st);
+  set_current_handle_input_fn((handle_input_fn_t) handle_stdin);
+
+  hangeul_clear_automata_status (&_hangeul_avtomat);
+
+  /* getopt: 커맨드라인 파라미터 처리 */
   do_getopt (argc, argv);
 
   if (verbose_flag)
@@ -173,8 +185,20 @@ main (int argc, char **argv)
       print_banner(stderr);
     }
 
-  /* start */
-  hangeul_clear_automata_status (&_hangeul_avtomat);
+  /* dll-plugin: 초기화 */
+  dll_plugin_context_t dll_plugin_ctx;
+  dll_plugin_ctx.p_dll = NULL;
+
+  if (NULL != plugin_dll_filename)
+    {
+      BOOL dll_plugin_loaded = dll_plugin_load(&dll_plugin_ctx,
+                                               plugin_dll_filename);
+      if (verbose_flag)
+        {
+          fprintf(stderr, "# dll-plugin loaded?(%d)\n",
+                  dll_plugin_loaded);
+        }
+    }
 
   /* key-logging output */
   FILE *fp = NULL;
@@ -252,10 +276,10 @@ main (int argc, char **argv)
   const ssize_t buf_max = 1024;
   char buf[buf_max];
 
-  im_handler_status im_hdlr_st;
-  im_handler_status__empty (&im_hdlr_st);
-
   /* mainloop */
+  handle_input_fn_t handle_input = get_current_handle_input_fn();
+  void *p_handle_input_status = get_current_handle_input_status();
+
   while (1)
     {
       int nfds = epoll_wait (epollfd, events, MAX_EVENTS, epoll_timeout_ms);
@@ -275,10 +299,11 @@ main (int argc, char **argv)
             }
           else if (STDIN_FILENO == fd)
             {
-              handle_stdin (&im_hdlr_st, STDIN_FILENO /* fd_keyin */,
-                            child_fd /* fd_child */, buf, buf_max,
-                            handle_stdin_written /* write_cb */,
-                            (void *)fp /* write_cb_aux */
+              handle_input
+                (p_handle_input_status, STDIN_FILENO /* fd_keyin */,
+                 child_fd /* fd_child */, buf, buf_max,
+                 handle_stdin_written /* write_cb */,
+                 (void *)fp /* write_cb_aux */
               );
             }
         }

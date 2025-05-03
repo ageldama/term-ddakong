@@ -43,12 +43,21 @@
   [2025-05-02 Fri]
 
 
-* TODO lua/dll scripting
+* DONE 다른 토글키 : C-h 이외에?
+  CLOSED: [2025-05-03 Sat 19:55]
   [2025-05-02 Fri]
-  - 다른 입력기, 다른 인코딩을 지원할 수 있도록.
+
+  - plugin-system으로 처리.
 
 
-* TODO 다른 토글키 : C-h 이외에?
+* TODO lua/dll scripting [2/6]
   [2025-05-02 Fri]
+  1) 다른 입력기, 다른 인코딩을 지원할 수 있도록.
+  2) [X] DLL-PLUGIN: IMPL
+  3) [X] DLL-PLUGIN: EXAMPLE
+  4) [ ] DLL-PLUGIN: README
+  5) [ ] LUA-PLUGIN: IMPL
+  6) [ ] LUA-PLUGIN: README
+  7) [ ] LUA-PLUGIN: EXAMPLE
 
 

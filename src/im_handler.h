@@ -41,7 +41,7 @@ typedef void handle_write_to_child_cb_t (const ssize_t n_written,
                                          const BYTE *buf, void *cb_aux);
 
 /**
- * 표준입력 처리기 상태
+ * 입력 처리기 상태
  *
  * @field im_mode "input-method"-mode 활성상태인지?
  *
@@ -52,6 +52,54 @@ typedef struct
   BOOL im_mode;
   IM_HANDLER_TOGGLE_STATE toggle;
 } im_handler_status;
+
+
+/**
+ * 입력처리기 함수 타입
+ *
+ * 플러그인 등에서 이 타입의 함수포인터를 제공하여 override 가능.
+ *
+ * @param p_status (non-null) 상태구조체
+ *
+ * @param fd_keyin 입력을 read()-할 file-descriptor
+ *
+ * @param fd_child 입력을 write()-전달할 대상 file-descriptor
+ *
+ * @param buf 입력을 read()/read() 저장/전달할 버퍼
+ *
+ * @param buf_max `buf'-의 최대크기
+ *
+ * @param write_cb write()-이후에 호출할 콜백함수
+ *
+ * @param write_cb_aux 콜백함수 호출시 함께 전달할 데이터 (closure)
+ */
+typedef void (*handle_input_fn_t)
+(void *p_status,
+ const int fd_keyin,
+ const int fd_child,
+ BYTE *buf,
+ const ssize_t buf_max,
+ handle_write_to_child_cb_t write_cb,
+ void *write_cb_aux);
+
+/** 현재 handle_input_fn 함수포인터 */
+EXTERN_ handle_input_fn_t current_handle_input_fn;
+
+/** 현재 handle_input_fn 함수포인터 얻기  */
+EXTERN_ handle_input_fn_t get_current_handle_input_fn(void);
+
+/** handle_input_fn 함수포인터 설정하기  */
+EXTERN_ void set_current_handle_input_fn
+(handle_input_fn_t fn);
+
+/** 현재 handle_input_fn 호출시 전달할 상태값 포인터 */
+EXTERN_ void *p_current_handle_input_status;
+
+/** handle_input_fn 호출시 전달할 상태값 포인터를 얻기 */
+EXTERN_ void *get_current_handle_input_status(void);
+
+/** handle_input_fn 호출시 전달할 상태값 포인터를 설정하기 */
+EXTERN_ void set_current_handle_input_status(void *p_new_status);
 
 
 /**
@@ -69,19 +117,7 @@ void im_handler_status__empty (im_handler_status *p_status);
  *
  * @see write
  *
- * @param p_status (non-null) 상태구조체
- *
- * @param fd_keyin 입력을 read()-할 file-descriptor
- *
- * @param fd_child 입력을 write()-전달할 대상 file-descriptor
- *
- * @param buf 입력을 read()/read() 저장/전달할 버퍼
- *
- * @param buf_max `buf'-의 최대크기
- *
- * @param write_cb write()-이후에 호출할 콜백함수
- *
- * @param write_cb_aux 콜백함수 호출시 함께 전달할 데이터 (closure)
+ * @see handle_input_fn_t
  */
 EXTERN_
 void handle_stdin (im_handler_status *p_status, const int fd_keyin,

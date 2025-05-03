@@ -1,15 +1,25 @@
 * ddakong
 
-  ANSI C99-으로 작성된 가볍고 빠른 2벌식 한글입력기
+  ANSI C99-으로 작성된 가볍고 빠른 Hackable한 터미널 (한글/UTF-8) 입력기
 
   1) 다른 라이브러리 의존성 없음.
-  2) x86_64 / Release 빌드 실행파일 크기: =25 KiB=.
+
+  2) x86_64 / Release 빌드 실행파일 크기: 약 =110 KiB=.
+
   3) X윈도, Wayland 등 의존성 없음.
      - linux console/terminal에서 바로 실행가능.
      - (예: https://gjedeer.github.io/fbterm/ 등과 함께)
 
+  4) Shared-Library DLL을 작성하거나, Lua/Guile 등 스크립팅으로
+     원하는대로 hackable 🧨🪓:
+     - (Lua/Guile 스크립팅은 개발중)
+     - input-method 전환키 변경
+     - UTF-8 인코딩 이외에 입력하도록 변경
+     - 한글 이외 다른 언어 입력기으로 변경
+     - 2벌식 이외에 다른 입력자판으로 변경
 
-  UTF-8, 2벌식 한글키보드를 지원합니다.
+
+  기본내장으로 UTF-8, 2벌식 한글키보드를 지원합니다.
 
 
 * 사용법
@@ -38,12 +48,36 @@
    #+begin_src shell
      # ./ddakong  -h
 
-     Usage: ./build/ddakong [-h] [-q] [-l KEYLOG]
-       Option (-h) : Show help 도움말
-       Option (-q) : Quiet STDERR-에 메시지 쓰지 않기
-       Option (-l FILENAME) : Write keylog to specified file - 지정한 파일에 키로깅
-       Option (-L) : Write keylog to `KEYLOG.txt'
+     # 따콩 입력기 (Ddakong) v0.0.7
+     # Copyright Jonghyouk Yun <ageldama@gmail.com>, 2025. All rights reserved.
+     # Licensed under GPLv3. (see `LICENSE')
+     Usage: ./src/ddakong [-h] [-q] [-l KEYLOG]
+     	Option (-h) : Show help 도움말
+     	Option (-q) : Quiet STDERR-에 메시지 쓰지 않기
+     	Option (-l FILENAME) : Write keylog to specified file
+     	                       지정한 파일에 키로깅
+     	Option (-d FILENAME) : DLL-file to load as plugin
+     	                       플러그인 DLL파일
+     	Option (-L) : Write keylog to `KEYLOG.txt'
    #+end_src
+
+
+  저는 fbterm-와 함께 다음과 같이 사용합니다:
+  (Ctrl-Alt-C 으로 새로운 콘솔을 열 때마다 자동으로 함께 열립니다.)
+
+  #+begin_src shell
+    fbterm -n NeoDunggeunmo\ Code -s 20 --font-width 10 -- ~/local/bin/ddakong
+  #+end_src
+
+
+
+* 주의사항
+  - ~emacs -nw~-와는 잘 동작하지 못합니다. ㅠ.ㅠ
+    (어차피 이맥스에서는 내장한글입력기가 있어서 큰 문제는 없습니다.)
+
+    - ddakong, emacs 모두 termios을 제어하는 프로그램이어서 그런 것 같습니다.
+
+
 
 
 
@@ -70,6 +104,36 @@
      # `src/ddakong` 실행파일 생성됨, 복사하여 사용하거나,
      make install
    #+end_src
+
+
+
+* Plug-in
+
+  Shared Library을 작성하여, 다음의 기능들을 변경할 수 있습니다:
+
+  1. Control-H 토글키
+  2. UTF-8 인코딩 이외의 인코딩 출력
+  3. 한글2벌식 이외의 키보드 지원
+  4. 한글 이외의 입력지 작성
+
+
+  (Lua, Guile 등 스크립팅 플러그인은 개발중입니다)
+
+
+  플러그인 예시를 빌드/실행하는 방법:
+
+  #+begin_src shell
+    cd ./examples/random-phrase-dll/
+    ./configure && make
+
+    # 빌드된 플러그인을 로딩하여 실행:
+    ddakong -d ./src/librand_phrase_ddakong_plugin.la
+  #+end_src
+
+
+  ddakong의 내장된 모든 함수를 플러그인 DLL에 전달하여 호출하여
+  원하는대로 hack할 수 있습니다.🧨(예제 플러그인의 코드 참고)
+
 
 
 * 라이센스 / License
