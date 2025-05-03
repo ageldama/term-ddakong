@@ -1,7 +1,7 @@
 /**
  * ddakong main
  *
- * Copyright 2025 Jonghyouk Yun <ageldama@gmail.com>, 2025. All rights
+ * Copyright Jonghyouk Yun <ageldama@gmail.com>, 2025. All rights
  * reserved. Use of this source code is governed by a GPLv3 license
  * that can be found in the license file.
  */
@@ -167,6 +167,11 @@ int
 main (int argc, char **argv)
 {
   do_getopt (argc, argv);
+
+  if (verbose_flag)
+    {
+      print_banner(stderr);
+    }
 
   /* start */
   hangeul_clear_automata_status (&_hangeul_avtomat);
