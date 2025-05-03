@@ -36,7 +36,7 @@ pid_t child_pid = 0;
 /* internals */
 
 /**
- * exit()-종료시 deinit
+ * exit()-종료시 deinit (atexit())
  *
  * 1) pty-fd, exec-process 정리
  *
@@ -52,10 +52,25 @@ void _exit_cleanup (void);
  */
 void trap_chld (const int signo UNUSED);
 
+/**
+ * termios window-size-change 처리
+ *
+ * 하위-pty에 터미널크기 변동을 반영해줌.
+ */
 void trap_winch (int sig_no UNUSED);
 
+/**
+ * SIGTERM(kill) 종료처리
+ *
+ * atexit 핸들러 동작하도록 연결.
+ */
 void trap_term (int sig_no);
 
+/**
+ * stdin 입력을 처리한 다음 호출되는 콜백함수
+ *
+ * key-logging 파일에 기록.
+ */
 void handle_stdin_written (const ssize_t n_written, const BYTE *buf,
                            void *aux);
 
