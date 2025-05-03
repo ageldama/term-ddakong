@@ -33,12 +33,19 @@ void trap_chld (const int signo UNUSED);
 
 void trap_winch (int sig_no UNUSED);
 
+void trap_term (int sig_no);
+
 void handle_stdin_written (const ssize_t n_written, const BYTE *buf,
                            void *aux);
 
 void
 _exit_cleanup (void)
 {
+  if (verbose_flag)
+    {
+      fprintf(stderr, "# cleanup on exiting...\n");
+    }
+
   termios__reset ();
   kill_forkpty (child_pid, child_fd);
 }
@@ -68,6 +75,17 @@ void
 trap_winch (int sig_no UNUSED)
 {
   winsz_update (child_fd);
+}
+
+void
+trap_term (int sig_no)
+{
+  if (verbose_flag)
+    {
+      fprintf(stderr, "# trapped (%d) : exiting\n", sig_no);
+    }
+
+  exit(EXIT_FAILURE);
 }
 
 void
@@ -121,6 +139,7 @@ main (int argc, char **argv)
   /* signal traps: child-exit, window-change */
   signal_trap_norecover (SIGCHLD, &trap_chld);
   signal_trap_norecover (SIGWINCH, &trap_winch);
+  signal_trap_norecover (SIGTERM, &trap_term);
 
   /* terminal size, echo, control-keys */
   winsz_update (child_fd);

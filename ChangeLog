@@ -1,5 +1,14 @@
 
 
+2025-08-29  윤종혁	<ageldama@gmail.com>
+
+	v0.0.6 : SIGTERM 처리
+
+	* src/main_ddakong.c (proc/cleanup):
+	SIGTERM-trap걸고 atexit적용되도록 추가.
+	SIGTERM에 대해서 verbose-logging 추가.
+
+
 
 2025-08-29  윤종혁	<ageldama@gmail.com>
 
