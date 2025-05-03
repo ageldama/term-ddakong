@@ -22,6 +22,9 @@
   기본내장으로 UTF-8, 2벌식 한글키보드를 지원합니다.
 
 
+  [[file:./doc/KIMCHI-cropped.png]]
+
+
 * 사용법
 
    1) ~./ddakong~ : 실행, ~SHELL~-환경변수의 쉘이 실행됨.
