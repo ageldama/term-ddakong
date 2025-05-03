@@ -37,6 +37,7 @@ typedef struct
  * 에러메시지 구조체가 에러를 담고 있는지, 비어 있는지?
  *
  * @param p_err 에러구조체 (non-null)
+ *
  * @return BOOL
  */
 EXTERN_ BOOL ERR_err_p (const ERR *p_err);
@@ -58,7 +59,9 @@ EXTERN_ void ERR_clear (ERR *p_err);
  * 정리해주지 않습니다.
  *
  * @param p_err
+ *
  * @param errmsg 에러메시지 문자열 (sz, non-null)
+ *
  * @param errmsg_free 에러메시지 해제함수 (nullable)
  */
 EXTERN_ void ERR_set (ERR *p_err, const char *errmsg,
@@ -71,6 +74,7 @@ EXTERN_ void ERR_set (ERR *p_err, const char *errmsg,
  * 정리해주지 않습니다.
  *
  * @param p_err
+ *
  * @param errmsg 에러메시지 문자열 (sz, non-null)
  */
 #define ERR_set_nofree(p_err, errmsg) (ERR_set (p_err, errmsg, NULL))
@@ -82,6 +86,7 @@ EXTERN_ void ERR_set (ERR *p_err, const char *errmsg,
  * 자동으로 설정해줌.
  *
  * @param p_err (non-null)
+ *
  * @param errmsg_fmt `sprintf' 포매팅문자열
  */
 EXTERN_ char *ERR_printf (ERR *p_err, const char *errmsg_fmt, ...);
@@ -97,6 +102,7 @@ EXTERN_ void ERR_dieif (const ERR *p_err);
  * 에러가 있다면(`ERR_err_p'), `fp_out'-에 경고출력.
  *
  * @param p_err (non-null)
+ *
  * @param fp_out 경고를 출력할 `FILE *' (nullable: NULL-이면 stderr에 출력)
  */
 EXTERN_ void ERR_warn_and_clear_if (ERR *p_err, FILE *fp_out);
@@ -106,6 +112,7 @@ EXTERN_ void ERR_warn_and_clear_if (ERR *p_err, FILE *fp_out);
  * 할당.
  *
  * @param p_err (non-null) assertion-평가결과를 세팅할 에러구조체.
+ *
  * @param assertion 평가식 (eg: `xyz != NULL`)
  */
 #define ERR_assert(p_err, assertion)                                          \
