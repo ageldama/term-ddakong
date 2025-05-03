@@ -34,3 +34,20 @@ iwyu:
 
 bear:
 	bear -- make clean all
+
+
+configure-make-host = \
+	-make distclean ; \
+	./configure --host=$(1) \
+	&& make -j`nproc` clean all \
+	&& file ./src/ddakong \
+	&& mv -vf ./src/ddakong ./ddakong-$(1)
+
+
+build-all:
+	$(call configure-make-host,arm-linux-gnueabihf)
+	$(call configure-make-host,aarch64-linux-gnu)
+	$(call configure-make-host,i686-linux-gnu)
+	$(call configure-make-host,x86_64-linux-gnu)
+
+	find . -maxdepth 1 -type f -name 'ddakong*' -print -exec file {} \;

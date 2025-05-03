@@ -84,3 +84,7 @@ ddakong-x86-linux
 ddakong-armhf-linux
 ddakong-aarch64-linux
 
+ddakong-arm-linux-gnueabihf
+/ddakong-aarch64-linux-gnu
+/ddakong-i686-linux-gnu
+/ddakong-x86_64-linux-gnu
