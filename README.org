@@ -48,11 +48,17 @@
    #+begin_src shell
      # ./ddakong  -h
 
-     Usage: ./build/ddakong [-h] [-q] [-l KEYLOG]
-       Option (-h) : Show help 도움말
-       Option (-q) : Quiet STDERR-에 메시지 쓰지 않기
-       Option (-l FILENAME) : Write keylog to specified file - 지정한 파일에 키로깅
-       Option (-L) : Write keylog to `KEYLOG.txt'
+     # 따콩 입력기 (Ddakong) v0.0.7
+     # Copyright Jonghyouk Yun <ageldama@gmail.com>, 2025. All rights reserved.
+     # Licensed under GPLv3. (see `LICENSE')
+     Usage: ./src/ddakong [-h] [-q] [-l KEYLOG]
+     	Option (-h) : Show help 도움말
+     	Option (-q) : Quiet STDERR-에 메시지 쓰지 않기
+     	Option (-l FILENAME) : Write keylog to specified file
+     	                       지정한 파일에 키로깅
+     	Option (-d FILENAME) : DLL-file to load as plugin
+     	                       플러그인 DLL파일
+     	Option (-L) : Write keylog to `KEYLOG.txt'
    #+end_src
 
 
