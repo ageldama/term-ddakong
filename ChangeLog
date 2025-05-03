@@ -1,4 +1,14 @@
 
+2025-05-29  윤종혁	<ageldama@gmail.com>
+
+	v0.0.8 : DLL-Plugin
+	* DLL(Shared Library)으로 플러그인 작성/로딩 가능 기능 추가
+	* DLL 플러그인을 이용하여,
+		- UTF-8 이외에 다른 인코딩 지원
+		- Control-H 이외에 다른 토글키도 지원
+		- 두벌식 이외에 다른 자판도 지원
+		- 한글입력 이외에 다른 언어입력도 가능
+
 
 2025-05-29  윤종혁	<ageldama@gmail.com>
 
