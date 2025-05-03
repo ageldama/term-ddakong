@@ -20,12 +20,6 @@ forkpty_with_exec (int *fd_amaster)
 {
   pid_t pid;
 
-  /*
-   * int *amster,
-   * char *name,
-   * const struct termios *termp,
-   * const struct winsize *winp
-   */
   pid = forkpty (fd_amaster, NULL, NULL, NULL);
   if (!pid)
     {
@@ -37,6 +31,8 @@ forkpty_with_exec (int *fd_amaster)
       execlp (sz_shell, sz_shell, NULL);
     }
 
+  /* NOTE fd_io 모듈에 있는 함수지만, 또 어차피 main()-에서 이미
+     처리해주지만, 그냥 둘까 */
   fcntl (*fd_amaster, F_SETFL, fcntl (*fd_amaster, F_GETFL) | O_NONBLOCK);
 
   return pid;
