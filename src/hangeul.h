@@ -158,6 +158,19 @@ EXTERN_ UNICODE_32 hangeul_full_compose_to_unicode (const BYTE cho,
                                                     const BYTE jung,
                                                     const BYTE jong);
 
+/**
+ * 한글자모 유니코드으로 조합
+ *
+ * @see hangeul_jamo_jaeum_to_unicode()
+ *
+ * @param cho 초성 LUT-index (CHOJUNGJONG_NUL 가능)
+ *
+ * @param jung 중성 LUT-index (CHOJUNGJONG_NUL 가능)
+ *
+ * @param jong 종성 LUT-index (CHOJUNGJONG_NUL 가능)
+ *
+ * @return 변환된 자모한글 유니코드 포인트. 변환실패시 0x00.
+ */
 EXTERN_ UNICODE_32 hangeul_jamo_compose_to_unicode (const BYTE cho,
                                                     const BYTE jung,
                                                     const BYTE jong);
@@ -205,6 +218,28 @@ EXTERN_ void hangeul_2beol_commit_2 (hangeul_automata_status *p_status,
                                      ssize_t *p_cur_pos,
                                      CHOJUNGJONG chojungjong, BYTE ch);
 
+/**
+ * 한글2벌식 초중종에 따른 LUT-index 코드값을 다른 초중종에 매칭되는
+ * 코드값으로 변환
+ *
+ * 원래의 입력 알파벳값을 찾아, 다른 초중종-테이블에서 대응되는
+ * 코드값으로 다시 찾기
+ *
+ * 2중 자음은 대문자변환된 형태로만 지원함.
+ *
+ * (예: 'ㄲ' => R (OK) rr (NO)).
+ *
+ * @see hangeul_2beol_find_code()
+ *
+ * @param from_cjj 입력 from_code 의 초중종 구분
+ *
+ * @param to_cjj 변환될 목표 초중종 구분
+ *
+ * @param from_code 입력 LUT-index 코드
+ *
+ * @return 변환된 to_cjj 에 대응되는 LUT-index 코드. 찾지 못하면
+ * CHOJUNGJONG_NUL.
+ */
 EXTERN_ BYTE hangeul_remap_code (const CHOJUNGJONG from_cjj,
                                  const CHOJUNGJONG to_cjj,
                                  const BYTE from_code);
