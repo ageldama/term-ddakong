@@ -273,7 +273,22 @@ EXTERN_ BYTE hangeul_double_jaeum (const CHOJUNGJONG chojungjong,
 EXTERN_ void hangeul_put_unicode (UNICODE_32 *outbuf, const ssize_t outbuf_max,
                                   ssize_t *p_pos, UNICODE_32 ch);
 
-/** TODO */
+/**
+ * 한글2벌식 오토마타: 종성 코드를 쌍자음인 경우, 좌/우 자음으로 분리
+ *
+ * 실은 단자음의 경우에도 처리해줌.
+ *
+ * @param jongseong 처리할 종성 LUT-index 코드값
+ *
+ * @param pout_left 좌측 출력 (예: "값"/"ㅂㅅ" => "ㅂ") 단자음,
+ * 쌍자음의 경우 왼편자음을 대응. 종성이 없었다면 세팅 않음.
+ *
+ * @param pout_right 우측 출력 (예: "값"/"ㅂㅅ" => "ㅅ") 쌍자음일
+ * 경우에만 세팅. 쌍자음의 오른쪽 부분.
+ *
+ * @return 분해한 출력의 갯수. 처리불가했다면=0, 단자음이었다면=1,
+ * 쌍자음이었다면=2.
+ */
 EXTERN_ int hangeul_decompose_jongseong (const BYTE jongseong, BYTE *pout_left,
                                          BYTE *pout_right);
 
