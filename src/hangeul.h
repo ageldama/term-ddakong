@@ -209,16 +209,62 @@ EXTERN_ BYTE hangeul_remap_code (const CHOJUNGJONG from_cjj,
                                  const CHOJUNGJONG to_cjj,
                                  const BYTE from_code);
 
+/**
+ * 한글2벌식 알파벳 입력 대응 초성 코드표
+ *
+ * @see hangeul_2beol_find_code()
+ */
 EXTERN_ const BYTE _cho_code_to_2beol_lut[];
+
+/**
+ * 한글2벌식 알파벳 입력 대응 초성 코드표의 길이
+ *
+ * @see hangeul_2beol_find_code()
+ */
 EXTERN_ const ssize_t _cho_code_to_2beol_lut_len;
 
+/**
+ * 한글2벌식 초성/쌍자음 입력 코드표
+ *
+ * @see hangeul_double_jaeum()
+ */
 EXTERN_ const BYTE *_cho_chord_to_2beol_lut[];
+
+/**
+ * 한글2벌식 초성/쌍자음 입력 코드표의 길이
+ *
+ * @see hangeul_double_jaeum()
+ */
 EXTERN_ const ssize_t _cho_chord_to_2beol_lut_len;
 
+/**
+ * 한글2벌식 알파벳 입력 대응 중성 코드표
+ *
+ * @see hangeul_2beol_find_code()
+ */
 EXTERN_ const BYTE _jung_code_to_2beol_lut[];
+
+/**
+ * 한글2벌식 알파벳 입력 대응 중성 코드표의 길이
+ *
+ * @see hangeul_2beol_find_code()
+ */
 EXTERN_ const ssize_t _jung_code_to_2beol_lut_len;
 
+/**
+ * 한글2벌식 중성/합성모음 입력 코드표
+ *
+ * 예: ㅗ(h) +ㅣ(l) => ㅚ
+ *
+ * @see hangeul_double_jaeum() 함수이름은 "자음"이지만 모음도 처리, 데헷.
+ */
 EXTERN_ const BYTE *_jung_chord_to_2beol_lut[];
+
+/**
+ * 한글2벌식 중성/합성모음 입력 코드표의 길이
+ *
+ * @see hangeul_double_jaeum() 함수이름은 "자음"이지만 모음도 처리, 데헷.
+ */
 EXTERN_ const ssize_t _jung_chord_to_2beol_lut_len;
 
 EXTERN_ const BYTE _jong_code_to_2beol_lut[];
@@ -227,9 +273,19 @@ EXTERN_ const ssize_t _jong_code_to_2beol_lut_len;
 EXTERN_ const BYTE *_jong_chord_to_2beol_lut[];
 EXTERN_ const ssize_t _jong_chord_to_2beol_lut_len;
 
+/**
+ * 한글 자모/자음의 [입력코드 => 유티코드] 대응표
+ *
+ * @see hangeul_jamo_jaeum_to_unicode()
+ */
 EXTERN_ const hangeul_jamo_jaeum_unicode_2beol_row_t
     _jamo_jaeum_unicode_2beol_lut[];
 
+/**
+ * 한글 자모/자음의 [입력코드 => 유티코드] 대응표 길이
+ *
+ * @see hangeul_jamo_jaeum_to_unicode()
+ */
 EXTERN_ const ssize_t _jamo_jaeum_unicode_2beol_lut_len;
 
 #endif /* ! hangeul__h */

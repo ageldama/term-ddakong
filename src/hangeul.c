@@ -495,6 +495,7 @@ hangeul_double_jaeum (const CHOJUNGJONG chojungjong, const BYTE prev_ch,
       lut_len = _cho_chord_to_2beol_lut_len;
       break;
     case JUNGSEONG:
+      /* NOTE 함수이름은 "자음"-이지만, 모음도 처리 데헷! */
       lut = (BYTE **)_jung_chord_to_2beol_lut;
       lut_len = _jung_chord_to_2beol_lut_len;
       break;
