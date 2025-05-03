@@ -220,7 +220,27 @@ hangeul_empty_automata_status_p (const hangeul_automata_status *p_status);
  */
 EXTERN_ JAMOEUM hangeul_2beol_alpha_as_jamoeum (const BYTE ch);
 
-/** TODO */
+/**
+ * 한글2벌식오토마타 구현 함수
+ *
+ * 입력 문자 ch을 한글으로 조합하여 outbuf에 출력.
+ *
+ * 가능하면, 한글2벌식 키보드에 대응되는 문자(알파벳)만을 전달할 것.
+ *
+ * 다른 입력코드들을 받으면 변환 않고 그대로 passthrough하지만, ANSI
+ * Code Sequence등과 같이 2번째 바이트부터 구분이 어려운 경우엔
+ * 한글코드으로 이해하여 문제가 생길 수 있으므로.
+ *
+ * @param ch 입력 문자 (char)
+ *
+ * @param p_status 한글오토마타 상태구조체
+ *
+ * @param outbuf 출력버퍼
+ *
+ * @param outbuf_max 출력버퍼의 전체크기
+ *
+ * @return 출력버퍼에 출력한 유니코드 코드포인트 갯수
+ */
 EXTERN_ ssize_t hangeul_2beol_fill (const BYTE ch,
                                     hangeul_automata_status *p_status,
                                     UNICODE_32 *outbuf,
