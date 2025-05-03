@@ -47,6 +47,7 @@ isalpha isprint
 ioctl tcgetattr tcsetattr
 getopt abort
 vasprintf
+dlopen dlsym dlclose dlerror
 exit fprintf fcntl],[],[AC_MSG_ERROR([required function cannot be found])])
 
 

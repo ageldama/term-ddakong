@@ -11,6 +11,9 @@
 
 #include "extern_.h"
 
+#include <stdio.h>
+
+
 /**
  * (BOOL) "verbose logging" 할지?
  */
@@ -22,6 +25,13 @@ EXTERN_ int verbose_flag;
 EXTERN_ char *keylog_filename;
 
 EXTERN_ char *default_keylog_filename;
+
+
+/**
+ * (sz, nullable) 플러그인 DLL 파일경로. NULL-이면 로딩하지 않음.
+ */
+EXTERN_ char *plugin_dll_filename;
+
 
 
 void print_banner(FILE *fp);
