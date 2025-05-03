@@ -175,12 +175,39 @@ EXTERN_ UNICODE_32 hangeul_jamo_compose_to_unicode (const BYTE cho,
                                                     const BYTE jung,
                                                     const BYTE jong);
 
+/**
+ * 한글자모 1-개소만 유니코드표 이용하여 변환
+ *
+ * @see _jamo_jaeum_unicode_2beol_lut_len
+ *
+ * @param cjj 초중종 구분
+ *
+ * @param 변환할 초중종 LUT-inedx
+ *
+ * @return 변환된 유니코드 포인트. 변환실패시 0x00.
+ */
 EXTERN_ UNICODE_32 hangeul_jamo_jaeum_to_unicode (const CHOJUNGJONG cjj,
                                                   const BYTE code);
 
+/**
+ * 초중종 조합이 부분자모를 나타내는 상태인지?
+ *
+ * @param cho 초성 LUT-index (CHOJUNGJONG_NUL 가능)
+ *
+ * @param jung 중성 LUT-index (CHOJUNGJONG_NUL 가능)
+ *
+ * @param jong 종성 LUT-index (CHOJUNGJONG_NUL 가능)
+ *
+ * @return BOOL
+ */
 EXTERN_ BOOL hangeul_partial_jamo_p (const BYTE cho, const BYTE jung,
                                      const BYTE jong);
 
+/**
+ * 한글2벌식오토마타 상태구조체가 완전 비어 있는 상태인지?
+ *
+ * @param p_status (nullable) NULL이면 그것도 TRUE
+ */
 EXTERN_ BOOL
 hangeul_empty_automata_status_p (const hangeul_automata_status *p_status);
 
