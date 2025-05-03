@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.72])
-AC_INIT([term-ddakong],[0.0.3],[ageldama@gmail.com])
+AC_INIT([term-ddakong],[0.0.5],[ageldama@gmail.com])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 
 AC_CONFIG_SRCDIR([src/main_ddakong.c])
