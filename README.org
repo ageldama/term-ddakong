@@ -46,6 +46,24 @@
    #+end_src
 
 
+  저는 fbterm-와 함께 다음과 같이 사용합니다:
+  (Ctrl-Alt-C 으로 새로운 콘솔을 열 때마다 자동으로 함께 열립니다.)
+
+  #+begin_src shell
+    fbterm -n NeoDunggeunmo\ Code -s 20 --font-width 10 -- ~/local/bin/ddakong
+  #+end_src
+
+
+
+* 주의사항
+  - ~emacs -nw~-와는 잘 동작하지 못합니다. ㅠ.ㅠ
+    (어차피 이맥스에서는 내장한글입력기가 있어서 큰 문제는 없습니다.)
+
+    - ddakong, emacs 모두 termios을 제어하는 프로그램이어서 그런 것 같습니다.
+
+
+
+
 
 * 설치
 
