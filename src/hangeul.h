@@ -302,7 +302,7 @@ EXTERN_ int hangeul_decompose_jongseong (const BYTE jongseong, BYTE *pout_left,
  *
  * @param p_status (non-null)
  *
- * @param outbuf 출력버퍼
+ * @param outbuf (non-null) 출력버퍼
  *
  * @param outbuf_max 출력버퍼의 크기
  *
@@ -314,7 +314,31 @@ EXTERN_ UNICODE_32 hangeul_2beol_commit_1_and_flush (
     hangeul_automata_status *p_status, UNICODE_32 *outbuf,
     const ssize_t outbuf_max, ssize_t *p_cur_pos);
 
-/** TODO */
+/**
+ * 한글2벌식오토마타 입력 알파벳 코드를 즉시 한글자모 유니코드으로
+ * 변환하여 버퍼에 출력.
+ *
+ * 한글자모 유니코드으로 변환이 성공했을 때에만 출력.
+ *
+ * @see hangeul_2beol_find_code()
+ *
+ * @see hangeul_jamo_compose_to_unicode()
+ *
+ * @see hangeul_put_unicode()
+ *
+ * @param outbuf (non-null) 출력버퍼
+ *
+ * @param outbuf_max 출력버퍼의 크기
+ *
+ * @param p_pos (non-null) [in] 출력버퍼의 현재위치 / [out] 출력버퍼의
+ * 새 위치
+ *
+ * @param cjj 초중종 구분
+ *
+ * @param ch 입력 알파벳 문자
+ *
+ * @return 자모 유니코드 코드포인트값, 변환실패했다면 0x00.
+ */
 EXTERN_ UNICODE_32 hangeul_put_jamo_unicode (UNICODE_32 *outbuf,
                                              const ssize_t outbuf_max,
                                              ssize_t *p_pos, CHOJUNGJONG cjj,
