@@ -1,3 +1,11 @@
+/**
+ * UTF-8 + Unicode 변환
+ *
+ * copyright 2025 <ageldama@gmail.com>, 2025. all rights reserved. use
+ * of this source code is governed by a gplv3 license that can be
+ * found in the license file.
+ */
+
 #ifndef utf8__h
 #define utf8__h 1
 

@@ -1,7 +1,18 @@
+/**
+ * termios init/reset
+ *
+ * copyright 2025 <ageldama@gmail.com>, 2025. all rights reserved. use
+ * of this source code is governed by a gplv3 license that can be
+ * found in the license file.
+ */
+
 #include "termios_.h"
 
 #include <termios.h>
 
+/**
+ * termios__init 이전 상태, 변경후 상태 저장변수. (global, private)
+ */
 static struct termios _termios_old, _termios_cur;
 
 void
