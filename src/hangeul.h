@@ -267,10 +267,32 @@ EXTERN_ const BYTE *_jung_chord_to_2beol_lut[];
  */
 EXTERN_ const ssize_t _jung_chord_to_2beol_lut_len;
 
+/**
+ * 한글2벌식 알파벳 입력 대응 종성 코드표
+ *
+ * @see hangeul_2beol_find_code()
+ */
 EXTERN_ const BYTE _jong_code_to_2beol_lut[];
+
+/**
+ * 한글2벌식 알파벳 입력 대응 종성 코드표의 길이
+ *
+ * @see hangeul_2beol_find_code()
+ */
 EXTERN_ const ssize_t _jong_code_to_2beol_lut_len;
 
+/**
+ * 한글2벌식 종성/쌍자음 입력 코드표
+ *
+ * @see hangeul_double_jaeum()
+ */
 EXTERN_ const BYTE *_jong_chord_to_2beol_lut[];
+
+/**
+ * 한글2벌식 종성/쌍자음 입력 코드표의 길이
+ *
+ * @see hangeul_double_jaeum()
+ */
 EXTERN_ const ssize_t _jong_chord_to_2beol_lut_len;
 
 /**
