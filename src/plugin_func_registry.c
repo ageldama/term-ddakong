@@ -13,6 +13,12 @@
 #include "hangeul.h"
 
 
+#include <assert.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+
 /* SUPPORT: global_flags.h */
 
 int __get_verbose_flag(void) { return verbose_flag; }
@@ -53,18 +59,92 @@ CHOJUNGJONG __hangeul_const_moeum(void)
 CHOJUNGJONG __hangeul_const_jaeum(void)
 { return JAEUM;}
 
-  /* TODO hangeul_automata_status__new */
-  /* TODO hangeul_automata_status__delete */
-  /* TODO hangeul_automata_status__get_stage */
-  /* TODO hangeul_automata_status__set_stage */
-  /* TODO hangeul_automata_status__get_prev_ch */
-  /* TODO hangeul_automata_status__set_prev_ch */
-  /* TODO hangeul_automata_status__get_cho */
-  /* TODO hangeul_automata_status__set_cho */
-  /* TODO hangeul_automata_status__get_jung */
-  /* TODO hangeul_automata_status__set_jung */
-  /* TODO hangeul_automata_status__get_jong */
-  /* TODO hangeul_automata_status__set_jong */
+
+hangeul_automata_status *__hangeul_automata_status__new(void)
+{
+  hangeul_automata_status *p_status = NULL;
+  p_status = (hangeul_automata_status *) malloc(sizeof(hangeul_automata_status));
+  return p_status;
+}
+
+void __hangeul_automata_status__delete
+(hangeul_automata_status *p_status) {
+  if (p_status != NULL) {
+    free(p_status);
+  }
+}
+
+CHOJUNGJONG __hangeul_automata_status__get_stage
+(hangeul_automata_status *p_status)
+{
+  assert(p_status != NULL);
+  return p_status->stage;
+}
+
+void __hangeul_automata_status__set_stage
+(hangeul_automata_status *p_status,
+ const CHOJUNGJONG cjj)
+{
+  assert(p_status != NULL);
+  p_status->stage = cjj;
+}
+
+BYTE __hangeul_automata_status__get_prev_ch
+(hangeul_automata_status *p_status)
+{
+  assert(p_status != NULL);
+  return p_status->prev_ch;
+}
+
+void __hangeul_automata_status__set_prev_ch
+(hangeul_automata_status *p_status, const BYTE ch)
+{
+  assert(p_status != NULL);
+  p_status->prev_ch = ch;
+}
+
+BYTE __hangeul_automata_status__get_cho
+(hangeul_automata_status *p_status)
+{
+  assert(p_status != NULL);
+  return p_status->cho;
+}
+
+void __hangeul_automata_status__set_cho
+(hangeul_automata_status *p_status, const BYTE cho)
+{
+  assert(p_status != NULL);
+  p_status->cho = cho;
+}
+
+BYTE __hangeul_automata_status__get_jung
+(hangeul_automata_status *p_status)
+{
+  assert(p_status != NULL);
+  return p_status->jung;
+}
+
+void __hangeul_automata_status__set_jung
+(hangeul_automata_status *p_status, const BYTE jung)
+{
+  assert(p_status != NULL);
+  p_status->jung = jung;
+}
+
+BYTE __hangeul_automata_status__get_jong
+(hangeul_automata_status *p_status)
+{
+  assert(p_status != NULL);
+  return p_status->jong;
+}
+
+void __hangeul_automata_status__set_jong
+(hangeul_automata_status *p_status, const BYTE jong)
+{
+  assert(p_status != NULL);
+  p_status->jong = jong;
+}
+
 
 
 
@@ -212,18 +292,42 @@ const plugin_func_t plugin_funcs[] = {
     .sz_func_name = "hangeul_const_jaeum",
     .sz_func_doc = "", },
 
-  /* TODO hangeul_automata_status__new */
-  /* TODO hangeul_automata_status__delete */
-  /* TODO hangeul_automata_status__get_stage */
-  /* TODO hangeul_automata_status__set_stage */
-  /* TODO hangeul_automata_status__get_prev_ch */
-  /* TODO hangeul_automata_status__set_prev_ch */
-  /* TODO hangeul_automata_status__get_cho */
-  /* TODO hangeul_automata_status__set_cho */
-  /* TODO hangeul_automata_status__get_jung */
-  /* TODO hangeul_automata_status__set_jung */
-  /* TODO hangeul_automata_status__get_jong */
-  /* TODO hangeul_automata_status__set_jong */
+  { .p_func = __hangeul_automata_status__new,
+    .sz_func_name = "hangeul_automata_status__new",
+    .sz_func_doc = "", },
+  { .p_func = __hangeul_automata_status__delete,
+    .sz_func_name = "hangeul_automata_status__delete",
+    .sz_func_doc = "", },
+  { .p_func = __hangeul_automata_status__get_stage,
+    .sz_func_name = "hangeul_automata_status__get_stage",
+    .sz_func_doc = "", },
+  { .p_func = __hangeul_automata_status__set_stage,
+    .sz_func_name = "hangeul_automata_status__set_stage",
+    .sz_func_doc = "", },
+  { .p_func = __hangeul_automata_status__get_prev_ch,
+    .sz_func_name = "hangeul_automata_status__get_prev_ch",
+    .sz_func_doc = "", },
+  { .p_func = __hangeul_automata_status__set_prev_ch,
+    .sz_func_name = "hangeul_automata_status__set_prev_ch",
+    .sz_func_doc = "", },
+  { .p_func = __hangeul_automata_status__get_cho,
+    .sz_func_name = "hangeul_automata_status__get_cho",
+    .sz_func_doc = "", },
+  { .p_func = __hangeul_automata_status__set_cho,
+    .sz_func_name = "hangeul_automata_status__set_cho",
+    .sz_func_doc = "", },
+  { .p_func = __hangeul_automata_status__get_jung,
+    .sz_func_name = "hangeul_automata_status__get_jung",
+    .sz_func_doc = "", },
+  { .p_func = __hangeul_automata_status__set_jung,
+    .sz_func_name = "hangeul_automata_status__set_jung",
+    .sz_func_doc = "", },
+  { .p_func = __hangeul_automata_status__get_jong,
+    .sz_func_name = "hangeul_automata_status__get_jong",
+    .sz_func_doc = "", },
+  { .p_func = __hangeul_automata_status__set_jong,
+    .sz_func_name = "hangeul_automata_status__set_jong",
+    .sz_func_doc = "", },
 
   { .p_func = hangeul_clear_automata_status,
     .sz_func_name = "hangeul_clear_automata_status",
