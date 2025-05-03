@@ -1,3 +1,11 @@
+/**
+ * 한글/2벌식 => 유니코드 오토마타
+ *
+ * Copyright 2025 Jonghyouk Yun <ageldama@gmail.com>, 2025. All rights
+ * reserved. Use of this source code is governed by a GPLv3 license
+ * that can be found in the license file.
+ */
+
 #ifndef hangeul__h
 #define hangeul__h 1
 

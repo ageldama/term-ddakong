@@ -1,3 +1,11 @@
+/**
+ * 한글 => 유니코드, 2벌식 자판용 매핑 테이블
+ *
+ * Copyright 2025 Jonghyouk Yun <ageldama@gmail.com>, 2025. All rights
+ * reserved. Use of this source code is governed by a GPLv3 license
+ * that can be found in the license file.
+ */
+
 #include <stdint.h>
 #include <stdlib.h>
 
