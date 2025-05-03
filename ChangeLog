@@ -1,0 +1,13 @@
+
+
+
+2025-08-29  윤종혁	<ageldama@gmail.com>
+
+	v0.0.5 : 안정화, 기본기능, 다양한 플랫폼 바이너리 릴리즈.
+
+	* ChangeLog (release): 좀 기록을 해야할거 같아서.
+
+	* m4/ax_check_compile_flag.m4 (build/autotools):
+	`aclocal'-만으로는 좀 부족한거 같아서 아예 같이 배포.
+
+
