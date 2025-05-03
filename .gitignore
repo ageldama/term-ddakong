@@ -80,6 +80,7 @@ autoscan.log
 /term-ddakong-*.tar.gz
 
 ddakong-x86_64-linux
+ddakong-x86-linux
 ddakong-armhf-linux
 ddakong-aarch64-linux
 
