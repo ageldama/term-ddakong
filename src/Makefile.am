@@ -1,7 +1,7 @@
 
 if LUA_ENABLED
 LUA_INCLUDE = -I$(top_srcdir)/lua-5.4.7/src
-LUA_LDFLAGS_ = -L$(top_srcdir)/lua-5.4.7/src/ -llua
+LUA_LDFLAGS_ = -L$(top_srcdir)/lua-5.4.7/src/ -llua -lm
 
 .PHONY: lua
 lua:
