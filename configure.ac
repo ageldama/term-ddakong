@@ -3,6 +3,8 @@
 
 AC_PREREQ([2.72])
 AC_INIT([ddakong],[0.0.9],[Jonghyouk Yun <ageldama@gmail.com>])
+AC_CONFIG_AUX_DIR([./autotools])
+
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 
 AC_CONFIG_SRCDIR([src/main_ddakong.c])
