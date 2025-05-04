@@ -69,6 +69,7 @@ AC_CHECK_LIB(dl, [dlopen],
 [
   LIBS="$LIBS -ldl"
   AC_DEFINE([HAVE_DLOPEN], [1], [have dlopen])
+  AC_SUBST(enable_dlopen, [yes])
 ],
 [
   AC_SUBST(enable_lua, [no])
@@ -97,5 +98,21 @@ AS_IF([test x"$enable_lua" != x"no"],
 
 
 AC_OUTPUT
+
+
+
+AS_ECHO("")
+AS_ECHO("-------------------------------------------------------------")
+
+AS_ECHO_N("Plugin system: ")
+AS_IF([test x"$enable_dlopen" != x"no"], [AS_ECHO([YES])], [AS_ECHO([NO])])
+
+AS_ECHO_N("Example plugin ("random-phrase"): ")
+AS_IF([test x"$enable_random_phrase" != x"no"], [AS_ECHO([YES])], [AS_ECHO([NO])])
+
+AS_ECHO_N("Lua scripting: ")
+AS_IF([test x"$enable_lua" != x"no"], [AS_ECHO([YES])], [AS_ECHO([NO])])
+
+AS_ECHO("")
 
 

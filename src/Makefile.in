@@ -251,6 +251,7 @@ datadir = @datadir@
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
+enable_dlopen = @enable_dlopen@
 enable_lua = @enable_lua@
 enable_random_phrase = @enable_random_phrase@
 exec_prefix = @exec_prefix@

@@ -653,6 +653,7 @@ LUA_FALSE
 LUA_TRUE
 enable_random_phrase
 enable_lua
+enable_dlopen
 ac_ct_AR
 AR
 RANLIB
@@ -5210,6 +5211,8 @@ then :
 
 printf "%s\n" "#define HAVE_DLOPEN 1" >>confdefs.h
 
+  enable_dlopen=yes
+
 
 else case e in #(
   e)
@@ -6886,6 +6889,40 @@ if test -n "$ac_unrecognized_opts" && test "$enable_option_checking" != no; then
 printf "%s\n" "$as_me: WARNING: unrecognized options: $ac_unrecognized_opts" >&2;}
 fi
 
+
+
+
+printf "%s\n" ""
+printf "%s\n" "-------------------------------------------------------------"
+
+printf %s "Plugin system: "
+if test x"$enable_dlopen" != x"no"
+then :
+  printf "%s\n" YES
+else case e in #(
+  e) printf "%s\n" NO ;;
+esac
+fi
+
+printf %s "Example plugin ("random-phrase"): "
+if test x"$enable_random_phrase" != x"no"
+then :
+  printf "%s\n" YES
+else case e in #(
+  e) printf "%s\n" NO ;;
+esac
+fi
+
+printf %s "Lua scripting: "
+if test x"$enable_lua" != x"no"
+then :
+  printf "%s\n" YES
+else case e in #(
+  e) printf "%s\n" NO ;;
+esac
+fi
+
+printf "%s\n" ""
 
 
 
