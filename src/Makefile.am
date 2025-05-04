@@ -1,30 +1,14 @@
 
-if LUA_ENABLED
-LUA_INCLUDE = -I$(top_srcdir)/lua-5.4.7/src
-LUA_LDFLAGS_ = -L$(top_srcdir)/lua-5.4.7/src/ -llua -lm
-
-.PHONY: lua
-lua:
-	cd $(top_srcdir)/lua-5.4.7 && make
-
-main_ddakong.o: lua
-
-else
-LUA_INCLUDE =
-LUA_LDFLAGS_ =
-endif
-
 
 AM_CPPFLAGS = -fPIC \
     -Wall -Wextra -Werror \
     -Wconversion -Wsign-conversion \
     -Wformat-security \
     -Wno-nullability-completeness \
-    -std=c99 -D_POSIX_C_SOURCE -D_GNU_SOURCE \
-		${LUA_INCLUDE}
+    -std=c99 -D_POSIX_C_SOURCE -D_GNU_SOURCE
 
-# TODO -fhardened (gcc)
-# -Wno-c23-extensions 
+## TODO -fhardened (gcc)
+## -Wno-c23-extensions 
 
 
 noinst_LIBRARIES = libddakongs.a
@@ -39,7 +23,7 @@ bin_PROGRAMS = ddakong
 
 ddakong_SOURCES = main_ddakong.c
 ddakong_LDADD = libddakongs.a
-ddakong_LDFLAGS = ${LUA_LDFLAGS_}
+## ddakong_LDFLAGS =
 
 EXTRA_DIST = *.h
 
