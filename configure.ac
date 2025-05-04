@@ -71,9 +71,14 @@ AC_CHECK_LIB(dl, [dlopen],
 
 # TODO disable/lua flag
 
+
+dnl AC_SUBST(PLUGIN_RANDOM_PHRASE_DIR, [plugins/random-phrase])
+dnl AC_SUBST(PLUGIN_LUA_DIR, [plugins/lua])
+
+
 #
 AC_CONFIG_FILES([Makefile src/Makefile])
-AC_CONFIG_SUBDIRS([plugins/random-phrase plugins/lua])
+AC_CONFIG_SUBDIRS([$(PLUGIN_RANDOM_PHRASE_DIR) $(PLUGIN_LUA_DIR)])
 AC_OUTPUT
 
 

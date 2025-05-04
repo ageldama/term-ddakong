@@ -279,6 +279,7 @@ PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
+PLUGIN_RANDOM_PHRASE_DIR = @PLUGIN_RANDOM_PHRASE_DIR@
 RANLIB = @RANLIB@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
@@ -331,7 +332,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-SUBDIRS = src plugins/random-phrase plugins/lua
+SUBDIRS = src $(PLUGIN_RANDOM_PHRASE_DIR) $(PLUGIN_LUA_DIR)
 dist_doc_DATA = README.org TODOs.org LICENSE doc
 EXTRA_DIST = Makefile.util
 all: config.h
