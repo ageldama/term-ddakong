@@ -60,16 +60,16 @@ AC_CHECK_LIB(dl, [dlopen],
 [
   LIBS="$LIBS -ldl"
   AC_DEFINE([HAVE_DLOPEN], [1], [have dlopen])
-], [])
+],
+[
+  AC_MSG_NOTICE(["libdl" cannot be found, Plugin system DISABLED.])
+])
 
 
-# TODO TIOCGWINSZ struct winsize
-# TODO ISTRIP ICANON ECHO ISIG TCSANOW 
-# TODO WEXITSTATUS WNOHANG
-# TODO optarg optopt abort
-# TODO F_SETFL, F_GETFL, O_NONBLOCK
+# TODO disable/random-phrase flag
+# TODO disable/random-phrase <= no dlopen
 
-
+# TODO disable/lua flag
 
 #
 AC_CONFIG_FILES([Makefile src/Makefile])

@@ -4833,7 +4833,6 @@ unknown)
 esac
 
 
-
 case `pwd` in
   *\ * | *\	*)
     { printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: Libtool does not cope well with whitespace in \`pwd\`" >&5
@@ -13782,7 +13781,127 @@ CC=$lt_save_CC
 
 
 
+
 # Checks for libraries.
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for pow in -lm" >&5
+printf %s "checking for pow in -lm... " >&6; }
+if test ${ac_cv_lib_m_pow+y}
+then :
+  printf %s "(cached) " >&6
+else case e in #(
+  e) ac_check_lib_save_LIBS=$LIBS
+LIBS="-lm  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.
+   The 'extern "C"' is for builds by C++ compilers;
+   although this is not generally supported in C code supporting it here
+   has little cost and some practical benefit (sr 110532).  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char pow (void);
+int
+main (void)
+{
+return pow ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"
+then :
+  ac_cv_lib_m_pow=yes
+else case e in #(
+  e) ac_cv_lib_m_pow=no ;;
+esac
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.beam \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS ;;
+esac
+fi
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_m_pow" >&5
+printf "%s\n" "$ac_cv_lib_m_pow" >&6; }
+if test "x$ac_cv_lib_m_pow" = xyes
+then :
+
+  LIBS="$LIBS -lm"
+
+printf "%s\n" "#define HAVE_M 1" >>confdefs.h
+
+
+else case e in #(
+  e)
+  as_fn_error $? "\"libm\" cannot be found, needed to build Lua" "$LINENO" 5
+ ;;
+esac
+fi
+
+
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for dlopen in -ldl" >&5
+printf %s "checking for dlopen in -ldl... " >&6; }
+if test ${ac_cv_lib_dl_dlopen+y}
+then :
+  printf %s "(cached) " >&6
+else case e in #(
+  e) ac_check_lib_save_LIBS=$LIBS
+LIBS="-ldl  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.
+   The 'extern "C"' is for builds by C++ compilers;
+   although this is not generally supported in C code supporting it here
+   has little cost and some practical benefit (sr 110532).  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char dlopen (void);
+int
+main (void)
+{
+return dlopen ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"
+then :
+  ac_cv_lib_dl_dlopen=yes
+else case e in #(
+  e) ac_cv_lib_dl_dlopen=no ;;
+esac
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.beam \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS ;;
+esac
+fi
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_dl_dlopen" >&5
+printf "%s\n" "$ac_cv_lib_dl_dlopen" >&6; }
+if test "x$ac_cv_lib_dl_dlopen" = xyes
+then :
+
+  LIBS="$LIBS -ldl"
+
+printf "%s\n" "#define HAVE_DLOPEN 1" >>confdefs.h
+
+
+else case e in #(
+  e)
+  as_fn_error $? "\"libdl\" cannot be found, needed to build Lua" "$LINENO" 5
+ ;;
+esac
+fi
+
+
+
 
 # Checks for header files.
 

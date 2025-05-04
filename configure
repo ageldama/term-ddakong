@@ -5185,17 +5185,20 @@ then :
 printf "%s\n" "#define HAVE_DLOPEN 1" >>confdefs.h
 
 
+else case e in #(
+  e)
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \"libdl\" cannot be found, Plugin system DISABLED." >&5
+printf "%s\n" "$as_me: \"libdl\" cannot be found, Plugin system DISABLED." >&6;}
+ ;;
+esac
 fi
 
 
 
-# TODO TIOCGWINSZ struct winsize
-# TODO ISTRIP ICANON ECHO ISIG TCSANOW
-# TODO WEXITSTATUS WNOHANG
-# TODO optarg optopt abort
-# TODO F_SETFL, F_GETFL, O_NONBLOCK
+# TODO disable/random-phrase flag
+# TODO disable/random-phrase <= no dlopen
 
-
+# TODO disable/lua flag
 
 #
 ac_config_files="$ac_config_files Makefile src/Makefile"

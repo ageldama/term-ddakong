@@ -3,8 +3,14 @@
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #undef HAVE_DLFCN_H
 
+/* have dlopen */
+#undef HAVE_DLOPEN
+
 /* Define to 1 if you have the <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H
+
+/* have m */
+#undef HAVE_M
 
 /* Define to 1 if you have the <stdint.h> header file. */
 #undef HAVE_STDINT_H

@@ -17,10 +17,29 @@ AC_CONFIG_MACRO_DIR([m4])
 AC_PROG_CC
 AM_PROG_AR
 
-
 LT_INIT()
 
+
 # Checks for libraries.
+AC_CHECK_LIB(m, [pow],
+[
+  LIBS="$LIBS -lm"
+  AC_DEFINE([HAVE_M], [1], [have m])
+],
+[
+  AC_MSG_ERROR(["libm" cannot be found, needed to build Lua])
+])
+
+AC_CHECK_LIB(dl, [dlopen],
+[
+  LIBS="$LIBS -ldl"
+  AC_DEFINE([HAVE_DLOPEN], [1], [have dlopen])
+],
+[
+  AC_MSG_ERROR(["libdl" cannot be found, needed to build Lua])
+])
+
+
 
 # Checks for header files.
 
