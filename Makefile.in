@@ -331,7 +331,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-SUBDIRS = src plugins/random-phrase
+SUBDIRS = src plugins/random-phrase plugins/lua
 dist_doc_DATA = README.org TODOs.org LICENSE doc
 EXTRA_DIST = Makefile.util
 all: config.h

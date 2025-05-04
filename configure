@@ -753,7 +753,7 @@ CFLAGS
 LDFLAGS
 LIBS
 CPPFLAGS'
-ac_subdirs_all='plugins/random-phrase'
+ac_subdirs_all='plugins/random-phrase plugins/lua'
 
 # Initialize some variables set by options.
 ac_init_help=
@@ -5205,7 +5205,7 @@ ac_config_files="$ac_config_files Makefile src/Makefile"
 
 
 
-subdirs="$subdirs plugins/random-phrase"
+subdirs="$subdirs plugins/random-phrase plugins/lua"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure

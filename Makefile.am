@@ -1,6 +1,6 @@
 
 
-SUBDIRS = src plugins/random-phrase
+SUBDIRS = src plugins/random-phrase plugins/lua
 
 
 dist_doc_DATA = README.org TODOs.org LICENSE doc

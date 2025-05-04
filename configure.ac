@@ -73,7 +73,7 @@ AC_CHECK_LIB(dl, [dlopen],
 
 #
 AC_CONFIG_FILES([Makefile src/Makefile])
-AC_CONFIG_SUBDIRS([plugins/random-phrase])
+AC_CONFIG_SUBDIRS([plugins/random-phrase plugins/lua])
 AC_OUTPUT
 
 
