@@ -122,6 +122,8 @@ libddakongs_a_OBJECTS = $(am_libddakongs_a_OBJECTS)
 am_ddakong_OBJECTS = main_ddakong.$(OBJEXT)
 ddakong_OBJECTS = $(am_ddakong_OBJECTS)
 ddakong_DEPENDENCIES = libddakongs.a
+ddakong_LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(ddakong_LDFLAGS) \
+	$(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -276,12 +278,15 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+LUA_INCLUDE = -I$(top_srcdir)/lua-5.4.7/src
+LUA_LDFLAGS_ = -L$(top_srcdir)/lua-5.4.7/src/ -llua
 AM_CPPFLAGS = -fPIC \
     -Wall -Wextra -Werror \
     -Wconversion -Wsign-conversion \
     -Wformat-security \
     -Wno-nullability-completeness \
-    -std=c99 -D_POSIX_C_SOURCE -D_GNU_SOURCE
+    -std=c99 -D_POSIX_C_SOURCE -D_GNU_SOURCE \
+		${LUA_INCLUDE}
 
 
 # TODO -fhardened (gcc)
@@ -295,6 +300,7 @@ libddakongs_a_SOURCES = err.c fd_io.c getopt_.c \
 
 ddakong_SOURCES = main_ddakong.c
 ddakong_LDADD = libddakongs.a
+ddakong_LDFLAGS = ${LUA_LDFLAGS_}
 EXTRA_DIST = *.h
 all: all-am
 
@@ -382,7 +388,7 @@ libddakongs.a: $(libddakongs_a_OBJECTS) $(libddakongs_a_DEPENDENCIES) $(EXTRA_li
 
 ddakong$(EXEEXT): $(ddakong_OBJECTS) $(ddakong_DEPENDENCIES) $(EXTRA_ddakong_DEPENDENCIES) 
 	@rm -f ddakong$(EXEEXT)
-	$(AM_V_CCLD)$(LINK) $(ddakong_OBJECTS) $(ddakong_LDADD) $(LIBS)
+	$(AM_V_CCLD)$(ddakong_LINK) $(ddakong_OBJECTS) $(ddakong_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

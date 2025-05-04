@@ -91,3 +91,5 @@ TAGS
 /examples/random-phrase-dll/config.status
 /examples/random-phrase-dll/config.h
 
+lua-*/src/lua
+lua-*/src/luac

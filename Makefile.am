@@ -1,5 +1,8 @@
 
-SUBDIRS = src
+SUBDIRS = src lua-5.4.7
+
+
+
 dist_doc_DATA = README.org TODOs.org LICENSE doc
 EXTRA_DIST = examples Makefile.util
 
@@ -16,3 +19,4 @@ dist-hook:
 	-find $(dist) -name '*.o' -exec rm {} \;
 	-find $(dist) -name '*.la' -exec rm {} \;
 	-find $(dist) -name '*.lo' -exec rm {} \;
+
