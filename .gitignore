@@ -69,6 +69,7 @@ autoscan.log
 /stamp-h1
 /src/Makefile
 /term-ddakong-*.tar.gz
+/ddakong-*.tar.gz
 
 ddakong-x86_64-linux
 ddakong-x86-linux
@@ -89,3 +90,4 @@ TAGS
 /examples/random-phrase-dll/config.log
 /examples/random-phrase-dll/config.status
 /examples/random-phrase-dll/config.h
+

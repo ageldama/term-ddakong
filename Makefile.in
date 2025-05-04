@@ -327,7 +327,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 SUBDIRS = src
-dist_doc_DATA = README.org TODOs.org LICENSE
+dist_doc_DATA = README.org TODOs.org LICENSE doc
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
