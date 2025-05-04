@@ -672,6 +672,12 @@ uninstall-am: uninstall-binPROGRAMS
 .PRECIOUS: Makefile
 
 
+@LUA_ENABLED_TRUE@.PHONY: lua
+@LUA_ENABLED_TRUE@lua:
+@LUA_ENABLED_TRUE@	cd $(top_srcdir)/lua-5.4.7 && make
+
+@LUA_ENABLED_TRUE@main_ddakong.o: lua
+
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
