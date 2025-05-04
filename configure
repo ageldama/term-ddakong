@@ -647,7 +647,12 @@ am__EXEEXT_TRUE
 LTLIBOBJS
 LIBOBJS
 subdirs
-PLUGIN_RANDOM_PHRASE_DIR
+RANDOM_PHRASE_FALSE
+RANDOM_PHRASE_TRUE
+LUA_FALSE
+LUA_TRUE
+enable_random_phrase
+enable_lua
 ac_ct_AR
 AR
 RANLIB
@@ -743,6 +748,8 @@ ac_subst_files=''
 ac_user_opts='
 enable_option_checking
 enable_silent_rules
+enable_lua
+enable_random_phrase
 enable_dependency_tracking
 enable_assert
 '
@@ -754,7 +761,8 @@ CFLAGS
 LDFLAGS
 LIBS
 CPPFLAGS'
-ac_subdirs_all='$(PLUGIN_RANDOM_PHRASE_DIR) $(PLUGIN_LUA_DIR)'
+ac_subdirs_all='plugins/random-phrase
+plugins/lua'
 
 # Initialize some variables set by options.
 ac_init_help=
@@ -1379,6 +1387,8 @@ Optional Features:
   --enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
   --enable-silent-rules   less verbose build output (undo: "make V=1")
   --disable-silent-rules  verbose build output (undo: "make V=0")
+  --disable-lua           Disable Lua scripting plugin
+  --disable-random-phrase Disable Random phrase (example) plugin
   --enable-dependency-tracking
                           do not reject slow dependency extractors
   --disable-dependency-tracking
@@ -3294,6 +3304,21 @@ ac_config_headers="$ac_config_headers config.h"
 
 # Features
 
+# Check whether --enable-lua was given.
+if test ${enable_lua+y}
+then :
+  enableval=$enable_lua;
+fi
+
+
+# Check whether --enable-random-phrase was given.
+if test ${enable_random_phrase+y}
+then :
+  enableval=$enable_random_phrase;
+fi
+
+
+
 
 # Checks for programs.
 
@@ -5188,6 +5213,11 @@ printf "%s\n" "#define HAVE_DLOPEN 1" >>confdefs.h
 
 else case e in #(
   e)
+  enable_lua=no
+
+  enable_random_phrase=no
+
+
   { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \"libdl\" cannot be found, Plugin system DISABLED." >&5
 printf "%s\n" "$as_me: \"libdl\" cannot be found, Plugin system DISABLED." >&6;}
  ;;
@@ -5196,12 +5226,25 @@ fi
 
 
 
-# TODO disable/random-phrase flag
-# TODO disable/random-phrase <= no dlopen
 
-# TODO disable/lua flag
+#
+ if test x"$enable_lua" != x"no"; then
+  LUA_TRUE=
+  LUA_FALSE='#'
+else
+  LUA_TRUE='#'
+  LUA_FALSE=
+fi
 
-PLUGIN_RANDOM_PHRASE_DIR=plugins/random-phrase
+
+ if test x"$enable_random_phrase" != x"no"; then
+  RANDOM_PHRASE_TRUE=
+  RANDOM_PHRASE_FALSE='#'
+else
+  RANDOM_PHRASE_TRUE='#'
+  RANDOM_PHRASE_FALSE=
+fi
+
 
 
 #
@@ -5209,7 +5252,20 @@ ac_config_files="$ac_config_files Makefile src/Makefile"
 
 
 
-subdirs="$subdirs $(PLUGIN_RANDOM_PHRASE_DIR) $(PLUGIN_LUA_DIR)"
+
+
+if test x"$enable_random_phrase" != x"no"
+then :
+  subdirs="$subdirs plugins/random-phrase"
+
+fi
+
+if test x"$enable_lua" != x"no"
+then :
+  subdirs="$subdirs plugins/lua"
+
+fi
+
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -5354,6 +5410,14 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${am__fastdepCC_TRUE}" && test -z "${am__fastdepCC_FALSE}"; then
   as_fn_error $? "conditional \"am__fastdepCC\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${LUA_TRUE}" && test -z "${LUA_FALSE}"; then
+  as_fn_error $? "conditional \"LUA\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${RANDOM_PHRASE_TRUE}" && test -z "${RANDOM_PHRASE_FALSE}"; then
+  as_fn_error $? "conditional \"RANDOM_PHRASE\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 

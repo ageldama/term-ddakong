@@ -15,6 +15,15 @@ AC_CONFIG_MACRO_DIR([m4])
 
 # Features
 
+AC_ARG_ENABLE([lua],
+              AS_HELP_STRING([--disable-lua],
+                             [Disable Lua scripting plugin]))
+
+AC_ARG_ENABLE([random-phrase],
+              AS_HELP_STRING([--disable-random-phrase],
+                             [Disable Random phrase (example) plugin]))
+
+
 
 # Checks for programs.
 AC_PROG_CC
@@ -62,23 +71,31 @@ AC_CHECK_LIB(dl, [dlopen],
   AC_DEFINE([HAVE_DLOPEN], [1], [have dlopen])
 ],
 [
+  AC_SUBST(enable_lua, [no])
+  AC_SUBST(enable_random_phrase, [no])
+
   AC_MSG_NOTICE(["libdl" cannot be found, Plugin system DISABLED.])
 ])
 
 
-# TODO disable/random-phrase flag
-# TODO disable/random-phrase <= no dlopen
 
-# TODO disable/lua flag
+#
+AM_CONDITIONAL([LUA], [test x"$enable_lua" != x"no"])
 
-
-dnl AC_SUBST(PLUGIN_RANDOM_PHRASE_DIR, [plugins/random-phrase])
-dnl AC_SUBST(PLUGIN_LUA_DIR, [plugins/lua])
+AM_CONDITIONAL([RANDOM_PHRASE], [test x"$enable_random_phrase" != x"no"])
 
 
 #
 AC_CONFIG_FILES([Makefile src/Makefile])
-AC_CONFIG_SUBDIRS([$(PLUGIN_RANDOM_PHRASE_DIR) $(PLUGIN_LUA_DIR)])
+
+
+AS_IF([test x"$enable_random_phrase" != x"no"],
+    [AC_CONFIG_SUBDIRS([plugins/random-phrase])])
+
+AS_IF([test x"$enable_lua" != x"no"],
+    [AC_CONFIG_SUBDIRS([plugins/lua])])
+
+
 AC_OUTPUT
 
 
