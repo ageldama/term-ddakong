@@ -131,10 +131,10 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
-librand_phrase_ddakong_plugin_la_LIBADD =
-am_librand_phrase_ddakong_plugin_la_OBJECTS = dllmain.lo im_handler.lo
-librand_phrase_ddakong_plugin_la_OBJECTS =  \
-	$(am_librand_phrase_ddakong_plugin_la_OBJECTS)
+librandom_phrase_ddakong_la_LIBADD =
+am_librandom_phrase_ddakong_la_OBJECTS = dllmain.lo im_handler.lo
+librandom_phrase_ddakong_la_OBJECTS =  \
+	$(am_librandom_phrase_ddakong_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
@@ -175,8 +175,8 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(librand_phrase_ddakong_plugin_la_SOURCES)
-DIST_SOURCES = $(librand_phrase_ddakong_plugin_la_SOURCES)
+SOURCES = $(librandom_phrase_ddakong_la_SOURCES)
+DIST_SOURCES = $(librandom_phrase_ddakong_la_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -322,8 +322,8 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-lib_LTLIBRARIES = librand_phrase_ddakong_plugin.la
-librand_phrase_ddakong_plugin_la_SOURCES = dllmain.c im_handler.c
+lib_LTLIBRARIES = librandom_phrase_ddakong.la
+librandom_phrase_ddakong_la_SOURCES = dllmain.c im_handler.c
 all: all-am
 
 .SUFFIXES:
@@ -391,8 +391,8 @@ clean-libLTLIBRARIES:
 	echo rm -f $${locs}; \
 	$(am__rm_f) $${locs}
 
-librand_phrase_ddakong_plugin.la: $(librand_phrase_ddakong_plugin_la_OBJECTS) $(librand_phrase_ddakong_plugin_la_DEPENDENCIES) $(EXTRA_librand_phrase_ddakong_plugin_la_DEPENDENCIES) 
-	$(AM_V_CCLD)$(LINK) -rpath $(libdir) $(librand_phrase_ddakong_plugin_la_OBJECTS) $(librand_phrase_ddakong_plugin_la_LIBADD) $(LIBS)
+librandom_phrase_ddakong.la: $(librandom_phrase_ddakong_la_OBJECTS) $(librandom_phrase_ddakong_la_DEPENDENCIES) $(EXTRA_librandom_phrase_ddakong_la_DEPENDENCIES) 
+	$(AM_V_CCLD)$(LINK) -rpath $(libdir) $(librandom_phrase_ddakong_la_OBJECTS) $(librandom_phrase_ddakong_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -522,7 +522,7 @@ distdir-am: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(LTLIBRARIES)
+all-am: Makefile $(LTLIBRARIES) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(libdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
@@ -559,7 +559,7 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 clean: clean-am
 
-clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
+clean-am: clean-generic clean-libLTLIBRARIES clean-libtool clean-local \
 	mostlyclean-am
 
 distclean: distclean-am
@@ -632,9 +632,10 @@ uninstall-am: uninstall-libLTLIBRARIES
 
 .MAKE: install-am install-strip
 
-.PHONY: CTAGS GTAGS TAGS all all-am am--depfiles check check-am clean \
-	clean-generic clean-libLTLIBRARIES clean-libtool cscopelist-am \
-	ctags ctags-am distclean distclean-compile distclean-generic \
+.PHONY: CTAGS GTAGS TAGS all all-am all-local am--depfiles check \
+	check-am clean clean-generic clean-libLTLIBRARIES \
+	clean-libtool clean-local cscopelist-am ctags ctags-am \
+	distclean distclean-compile distclean-generic \
 	distclean-libtool distclean-tags distdir dvi dvi-am html \
 	html-am info info-am install install-am install-data \
 	install-data-am install-dvi install-dvi-am install-exec \
@@ -648,6 +649,12 @@ uninstall-am: uninstall-libLTLIBRARIES
 
 .PRECIOUS: Makefile
 
+
+all-local:
+	-cp -fv .libs/librandom_phrase_ddakong.so $(top_srcdir)
+
+clean-local:
+	-rm -fv $(top_srcdir)/librandom_phrase_ddakong.so
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

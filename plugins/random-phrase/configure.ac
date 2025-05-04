@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.72])
-AC_INIT([rand-phrase-ddakong-plugin], [0.0.01], [Jonghyouk Yun <ageldama@gmail.com>])
+AC_INIT([ddakong-plugin-random-phrase], [0.0.01], [Jonghyouk Yun <ageldama@gmail.com>])
 
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 

@@ -126,11 +126,11 @@
   플러그인 예시를 빌드/실행하는 방법:
 
   #+begin_src shell
-    cd ./examples/random-phrase-dll/
+    cd ./plugins/random-phrase/
     ./configure && make
 
     # 빌드된 플러그인을 로딩하여 실행:
-    ddakong -d ./src/librand_phrase_ddakong_plugin.la
+    ddakong -d ./librandom_phrase_ddakong.so
   #+end_src
 
 
