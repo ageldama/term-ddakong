@@ -746,9 +746,10 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+@LUA_ENABLED_FALSE@clean-local:
 clean: clean-recursive
 
-clean-am: clean-generic mostlyclean-am
+clean-am: clean-generic clean-local mostlyclean-am
 
 distclean: distclean-recursive
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
@@ -819,12 +820,12 @@ uninstall-am: uninstall-dist_docDATA
 
 .PHONY: $(am__recursive_targets) CTAGS GTAGS TAGS all all-am \
 	am--refresh check check-am clean clean-cscope clean-generic \
-	cscope cscopelist-am ctags ctags-am dist dist-all dist-bzip2 \
-	dist-gzip dist-hook dist-lzip dist-shar dist-tarZ dist-xz \
-	dist-zip dist-zstd distcheck distclean distclean-generic \
-	distclean-hdr distclean-tags distcleancheck distdir \
-	distuninstallcheck dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am \
+	clean-local cscope cscopelist-am ctags ctags-am dist dist-all \
+	dist-bzip2 dist-gzip dist-hook dist-lzip dist-shar dist-tarZ \
+	dist-xz dist-zip dist-zstd distcheck distclean \
+	distclean-generic distclean-hdr distclean-tags distcleancheck \
+	distdir distuninstallcheck dvi dvi-am html html-am info \
+	info-am install install-am install-data install-data-am \
 	install-dist_docDATA install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am install-info \
 	install-info-am install-man install-pdf install-pdf-am \
@@ -838,6 +839,12 @@ uninstall-am: uninstall-dist_docDATA
 
 
 @LUA_ENABLED_TRUE@	LUA_OPT = lua-5.4.7
+
+@LUA_ENABLED_TRUE@clean-local:
+@LUA_ENABLED_TRUE@	-rm -f lua-5.4.7/src/*.o
+@LUA_ENABLED_TRUE@	-rm -f lua-5.4.7/src/*.a
+@LUA_ENABLED_TRUE@	-rm -f lua-5.4.7/src/lua
+@LUA_ENABLED_TRUE@	-rm -f lua-5.4.7/src/luac
 
 dist-hook:
 	-rm -rf examples/random-phrase-dll/src/.libs

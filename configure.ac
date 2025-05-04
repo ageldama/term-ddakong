@@ -76,7 +76,9 @@ AC_CHECK_LIB(dl, [dlopen],
 
 
 # feature overview
-AC_MSG_RESULT([Lua Scriping feature: $enable_lua])
+AM_COND_IF([LUA_ENABLED],
+  [AC_MSG_RESULT([Lua Scriping feature: YES])],
+  [AC_MSG_RESULT([Lua Scriping feature: NO])])
 
 
 #

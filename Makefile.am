@@ -2,6 +2,13 @@
 
 if LUA_ENABLED
 	LUA_OPT = lua-5.4.7
+
+clean-local:
+	-rm -f lua-5.4.7/src/*.o
+	-rm -f lua-5.4.7/src/*.a
+	-rm -f lua-5.4.7/src/lua
+	-rm -f lua-5.4.7/src/luac
+
 endif
 
 
