@@ -9,3 +9,4 @@ dist-hook:
 	-find $(dist) -name '*.o' -exec rm {} \;
 	-rm -f $(dist)/lua-5.4.7/src/lua
 	-rm -f $(dist)/lua-5.4.7/src/luac
+	-rm -f $(dist)/src/__lua_built__.c
