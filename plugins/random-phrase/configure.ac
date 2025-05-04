@@ -4,6 +4,8 @@
 AC_PREREQ([2.72])
 AC_INIT([ddakong-plugin-random-phrase], [0.0.01], [Jonghyouk Yun <ageldama@gmail.com>])
 
+AC_CONFIG_AUX_DIR([./autotools])
+
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 
 AC_CONFIG_SRCDIR([src/dllmain.c])
