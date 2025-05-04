@@ -1,10 +1,10 @@
 
 
-SUBDIRS = src
+SUBDIRS = src plugins/random-phrase
 
 
 dist_doc_DATA = README.org TODOs.org LICENSE doc
-EXTRA_DIST = plugins Makefile.util
+EXTRA_DIST = Makefile.util
 
 dist-hook:
 	-find $(dist) -name '*~' -exec rm {} \;
