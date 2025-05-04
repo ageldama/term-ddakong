@@ -1,6 +1,11 @@
 
-SUBDIRS = src lua-5.4.7
 
+if LUA_ENABLED
+	LUA_OPT = lua-5.4.7
+endif
+
+
+SUBDIRS = $(LUA_OPT) src
 
 
 dist_doc_DATA = README.org TODOs.org LICENSE doc
@@ -19,4 +24,5 @@ dist-hook:
 	-find $(dist) -name '*.o' -exec rm {} \;
 	-find $(dist) -name '*.la' -exec rm {} \;
 	-find $(dist) -name '*.lo' -exec rm {} \;
+
 

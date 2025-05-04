@@ -326,7 +326,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-SUBDIRS = src lua-5.4.7
+SUBDIRS = $(LUA_OPT) src
 dist_doc_DATA = README.org TODOs.org LICENSE doc
 EXTRA_DIST = examples Makefile.util
 all: config.h
@@ -836,6 +836,8 @@ uninstall-am: uninstall-dist_docDATA
 
 .PRECIOUS: Makefile
 
+
+@LUA_ENABLED_TRUE@	LUA_OPT = lua-5.4.7
 
 dist-hook:
 	-rm -rf examples/random-phrase-dll/src/.libs

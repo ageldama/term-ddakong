@@ -664,6 +664,8 @@ CPPFLAGS
 LDFLAGS
 CFLAGS
 CC
+LUA_ENABLED_FALSE
+LUA_ENABLED_TRUE
 am__xargs_n
 am__rm_f_notfound
 AM_BACKSLASH
@@ -740,6 +742,7 @@ ac_subst_files=''
 ac_user_opts='
 enable_option_checking
 enable_silent_rules
+enable_lua
 enable_dependency_tracking
 enable_assert
 '
@@ -1376,6 +1379,7 @@ Optional Features:
   --enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
   --enable-silent-rules   less verbose build output (undo: "make V=1")
   --disable-silent-rules  verbose build output (undo: "make V=0")
+  --disable-lua           Disable Lua scripting support
   --enable-dependency-tracking
                           do not reject slow dependency extractors
   --disable-dependency-tracking
@@ -3286,6 +3290,27 @@ ac_config_headers="$ac_config_headers config.h"
 
 
 
+
+# Features
+
+# Check whether --enable-lua was given.
+if test ${enable_lua+y}
+then :
+  enableval=$enable_lua;
+fi
+
+
+ if test x"$enable_lua" != x"no"; then
+  LUA_ENABLED_TRUE=
+  LUA_ENABLED_FALSE='#'
+else
+  LUA_ENABLED_TRUE='#'
+  LUA_ENABLED_FALSE=
+fi
+
+
+
+
 # Checks for programs.
 
 
@@ -5188,6 +5213,11 @@ fi
 # TODO F_SETFL, F_GETFL, O_NONBLOCK
 
 
+# feature overview
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: Lua Scriping feature: $enable_lua" >&5
+printf "%s\n" "Lua Scriping feature: $enable_lua" >&6; }
+
+
 #
 ac_config_files="$ac_config_files Makefile src/Makefile"
 
@@ -5328,6 +5358,10 @@ else
   am__EXEEXT_FALSE=
 fi
 
+if test -z "${LUA_ENABLED_TRUE}" && test -z "${LUA_ENABLED_FALSE}"; then
+  as_fn_error $? "conditional \"LUA_ENABLED\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
 if test -z "${AMDEP_TRUE}" && test -z "${AMDEP_FALSE}"; then
   as_fn_error $? "conditional \"AMDEP\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
@@ -6658,5 +6692,7 @@ if test -n "$ac_unrecognized_opts" && test "$enable_option_checking" != no; then
   { printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: unrecognized options: $ac_unrecognized_opts" >&5
 printf "%s\n" "$as_me: WARNING: unrecognized options: $ac_unrecognized_opts" >&2;}
 fi
+
+
 
 

@@ -278,8 +278,10 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-LUA_INCLUDE = -I$(top_srcdir)/lua-5.4.7/src
-LUA_LDFLAGS_ = -L$(top_srcdir)/lua-5.4.7/src/ -llua
+@LUA_ENABLED_FALSE@LUA_INCLUDE = 
+@LUA_ENABLED_TRUE@LUA_INCLUDE = -I$(top_srcdir)/lua-5.4.7/src
+@LUA_ENABLED_FALSE@LUA_LDFLAGS_ = 
+@LUA_ENABLED_TRUE@LUA_LDFLAGS_ = -L$(top_srcdir)/lua-5.4.7/src/ -llua
 AM_CPPFLAGS = -fPIC \
     -Wall -Wextra -Werror \
     -Wconversion -Wsign-conversion \

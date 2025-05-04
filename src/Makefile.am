@@ -1,6 +1,11 @@
 
+if LUA_ENABLED
 LUA_INCLUDE = -I$(top_srcdir)/lua-5.4.7/src
 LUA_LDFLAGS_ = -L$(top_srcdir)/lua-5.4.7/src/ -llua
+else
+LUA_INCLUDE =
+LUA_LDFLAGS_ =
+endif
 
 
 AM_CPPFLAGS = -fPIC \
