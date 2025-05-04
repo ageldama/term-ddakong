@@ -133,9 +133,10 @@ am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 liblua_ddakong_la_DEPENDENCIES =
 am_liblua_ddakong_la_OBJECTS = liblua_ddakong_la-dllmain.lo \
-	liblua_ddakong_la-im_handler.lo \
-	liblua_ddakong_la-__lua_built__.lo
-liblua_ddakong_la_OBJECTS = $(am_liblua_ddakong_la_OBJECTS)
+	liblua_ddakong_la-im_handler.lo
+nodist_liblua_ddakong_la_OBJECTS = liblua_ddakong_la-__lua_built__.lo
+liblua_ddakong_la_OBJECTS = $(am_liblua_ddakong_la_OBJECTS) \
+	$(nodist_liblua_ddakong_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
@@ -181,7 +182,8 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(liblua_ddakong_la_SOURCES)
+SOURCES = $(liblua_ddakong_la_SOURCES) \
+	$(nodist_liblua_ddakong_la_SOURCES)
 DIST_SOURCES = $(liblua_ddakong_la_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
@@ -251,6 +253,7 @@ LIPO = @LIPO@
 LN_S = @LN_S@
 LTLIBOBJS = @LTLIBOBJS@
 LT_SYS_LIBRARY_PATH = @LT_SYS_LIBRARY_PATH@
+LUA_SRC = @LUA_SRC@
 MAKEINFO = @MAKEINFO@
 MANIFEST_TOOL = @MANIFEST_TOOL@
 MKDIR_P = @MKDIR_P@
@@ -330,9 +333,10 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 lib_LTLIBRARIES = liblua_ddakong.la
-liblua_ddakong_la_SOURCES = dllmain.c im_handler.c __lua_built__.c
-liblua_ddakong_la_LIBADD = -L$(top_srcdir)/lua-5.4.7/src -llua
-liblua_ddakong_la_CFLAGS = -I$(top_srcdir)/lua-5.4.7/src
+liblua_ddakong_la_SOURCES = dllmain.c im_handler.c
+liblua_ddakong_la_LIBADD = -L$(top_srcdir)/$(LUA_SRC)/src -llua
+liblua_ddakong_la_CFLAGS = -I$(top_srcdir)/$(LUA_SRC)/src
+nodist_liblua_ddakong_la_SOURCES = __lua_built__.c
 all: all-am
 
 .SUFFIXES:
@@ -684,7 +688,7 @@ uninstall-am: uninstall-libLTLIBRARIES
 
 
 __lua_built__.c:
-	make -C $(top_srcdir)/lua-5.4.7
+	make -C $(top_srcdir)/$(LUA_SRC)
 	touch $(srcdir)/__lua_built__.c
 
 all-local:
@@ -692,7 +696,7 @@ all-local:
 
 clean-local:
 	-rm -fv $(top_srcdir)/liblua_ddakong.so
-	-make -C $(top_srcdir)/lua-5.4.7 clean
+	-make -C $(top_srcdir)/$(LUA_SRC) clean
 	-rm -fv $(srcdir)/__lua_built__.c
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

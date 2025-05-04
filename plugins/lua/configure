@@ -656,6 +656,7 @@ ac_subst_vars='am__EXEEXT_FALSE
 am__EXEEXT_TRUE
 LTLIBOBJS
 LIBOBJS
+LUA_SRC
 LT_SYS_LIBRARY_PATH
 OTOOL64
 OTOOL
@@ -13900,6 +13901,10 @@ else case e in #(
 esac
 fi
 
+
+
+#
+LUA_SRC=lua-5.4.7
 
 
 

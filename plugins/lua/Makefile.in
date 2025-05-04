@@ -259,6 +259,7 @@ LIPO = @LIPO@
 LN_S = @LN_S@
 LTLIBOBJS = @LTLIBOBJS@
 LT_SYS_LIBRARY_PATH = @LT_SYS_LIBRARY_PATH@
+LUA_SRC = @LUA_SRC@
 MAKEINFO = @MAKEINFO@
 MANIFEST_TOOL = @MANIFEST_TOOL@
 MKDIR_P = @MKDIR_P@
@@ -338,7 +339,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 SUBDIRS = src
-EXTRA_DIST = lua-5.4.7
+EXTRA_DIST = $(LUA_SRC)
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
@@ -834,11 +835,11 @@ uninstall-am:
 
 
 dist-hook:
-	-find $(dist) -name '*~' -exec rm {} \;
-	-find $(dist) -name '*.a' -exec rm {} \;
-	-find $(dist) -name '*.o' -exec rm {} \;
-	-rm -f $(dist)/lua-5.4.7/src/lua
-	-rm -f $(dist)/lua-5.4.7/src/luac
+	-find $(distdir) -name '*~' -exec rm {} \;
+	-find $(distdir) -name '*.a' -exec rm {} \;
+	-find $(distdir) -name '*.o' -exec rm {} \;
+	-rm -f $(distdir)/$(LUA_SRC)/src/lua
+	-rm -f $(distdir)/$(LUA_SRC)/src/luac
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

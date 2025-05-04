@@ -40,6 +40,9 @@ AC_CHECK_LIB(dl, [dlopen],
 ])
 
 
+#
+AC_SUBST(LUA_SRC, [lua-5.4.7])
+
 
 # Checks for header files.
 

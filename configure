@@ -5187,7 +5187,7 @@ printf "%s\n" "#define HAVE_DLOPEN 1" >>confdefs.h
 
 else case e in #(
   e)
-    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \"libdl\" cannot be found, Plugin system DISABLED." >&5
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \"libdl\" cannot be found, Plugin system DISABLED." >&5
 printf "%s\n" "$as_me: \"libdl\" cannot be found, Plugin system DISABLED." >&6;}
  ;;
 esac

@@ -843,11 +843,11 @@ uninstall-am: uninstall-dist_docDATA
 
 
 dist-hook:
-	-find $(dist) -name '*~' -exec rm {} \;
-	-find $(dist) -name '*.a' -exec rm {} \;
-	-find $(dist) -name '*.o' -exec rm {} \;
-	-find $(dist) -name '*.la' -exec rm {} \;
-	-find $(dist) -name '*.lo' -exec rm {} \;
+	-find $(distdir) -name '*~' -exec rm {} \;
+	-find $(distdir) -name '*.a' -exec rm {} \;
+	-find $(distdir) -name '*.o' -exec rm {} \;
+	-find $(distdir) -name '*.la' -exec rm {} \;
+	-find $(distdir) -name '*.lo' -exec rm {} \;
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
