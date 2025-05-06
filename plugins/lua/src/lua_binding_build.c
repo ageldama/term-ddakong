@@ -2,6 +2,7 @@
 
 #include "lua_binding.h"
 #include "lua_binding__err.h"
+#include "lua_binding__g.h"
 
 #include <stdlib.h>
 
@@ -61,25 +62,31 @@ lua_binding_row_t __lua_bindings[] = {
     .pfn_wrap = luab__ERR_get_errmsg,
     .ppfn = NULL, },
 
-  /* lua_binding__global */
+  /* lua_binding__g */
   { .sz_lua_func_name = "print_banner",
-    .pfn_wrap = NULL, },
+    .pfn_wrap = luab__g_print_banner,
+    .ppfn = &luab__g_print_banner_pfn, },
   { .sz_lua_func_name = "get_verbose_flag",
-    .pfn_wrap = NULL, },
+    .pfn_wrap = luab__g_get_verbose_flag,
+    .ppfn = &luab__g_get_verbose_flag_pfn, },
   { .sz_lua_func_name = "set_verbose_flag",
-    .pfn_wrap = NULL, },
+    .pfn_wrap = luab__g_set_verbose_flag,
+    .ppfn = &luab__g_set_verbose_flag_pfn, },
   { .sz_lua_func_name = "get_keylog_filename",
-    .pfn_wrap = NULL, },
-  { .sz_lua_func_name = "set_keylog_filename",
-    .pfn_wrap = NULL, },
+    .pfn_wrap = luab__g_get_keylog_filename,
+    .ppfn = &luab__g_get_keylog_filename_pfn, },
   { .sz_lua_func_name = "get_default_keylog_filename",
-    .pfn_wrap = NULL, },
+    .pfn_wrap = luab__g_get_default_keylog_filename,
+    .ppfn = &luab__g_get_default_keylog_filename_pfn, },
   { .sz_lua_func_name = "get_plugin_dll_filename",
-    .pfn_wrap = NULL, },
+    .pfn_wrap = luab__g_get_plugin_dll_filename,
+    .ppfn = &luab__g_get_plugin_dll_filename_pfn, },
   { .sz_lua_func_name = "get_child_pid",
-    .pfn_wrap = NULL, },
+    .pfn_wrap = luab__g_get_child_pid,
+    .ppfn = &luab__g_get_child_pid_pfn, },
   { .sz_lua_func_name = "get_child_fd",
-    .pfn_wrap = NULL, },
+    .pfn_wrap = luab__g_get_child_fd,
+    .ppfn = &luab__g_get_child_fd_pfn, },
 
   /* lua_binding__utf8 */
   { .sz_lua_func_name = "unicode_to_utf8",

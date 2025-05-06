@@ -160,8 +160,6 @@ void __set_verbose_flag(const int verbose)
 { verbose_flag = verbose; }
 
 char *__get_keylog_filename(void) { return keylog_filename; }
-void __set_keylog_filename(char *sz_filename)
-{ keylog_filename = sz_filename; }
 
 char *__get_default_keylog_filename(void)
 { return default_keylog_filename; }
@@ -251,9 +249,6 @@ const plugin_func_t plugin_funcs[] = {
     .sz_func_doc = "", },
   { .p_func = __get_keylog_filename,
     .sz_func_name = "get_keylog_filename",
-    .sz_func_doc = "", },
-  { .p_func = __set_keylog_filename,
-    .sz_func_name = "set_keylog_filename",
     .sz_func_doc = "", },
   { .p_func = __get_default_keylog_filename,
     .sz_func_name = "get_default_keylog_filename",
