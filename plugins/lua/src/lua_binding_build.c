@@ -1,6 +1,7 @@
 #include "config.h"
 
 #include "lua_binding.h"
+#include "lua_binding__err.h"
 
 #include <stdlib.h>
 
@@ -40,17 +41,23 @@ lua_binding_row_t __lua_bindings[] = {
     .pfn_wrap = NULL, },
 
   { .sz_lua_func_name = "ERR_err_p",
-    .pfn_wrap = NULL, },
+    .pfn_wrap = luab__ERR_err_p,
+    .ppfn = &luab__ERR_err_p_pfn, },
   { .sz_lua_func_name = "ERR_clear",
-    .pfn_wrap = NULL, },
+    .pfn_wrap = luab__ERR_clear,
+    .ppfn = &luab__ERR_clear_pfn, },
   { .sz_lua_func_name = "ERR_set",
-    .pfn_wrap = NULL, },
-  { .sz_lua_func_name = "ERR_set_nofree",
-    .pfn_wrap = NULL, },
+    .pfn_wrap = luab__ERR_set,
+    .ppfn = &luab__ERR_set_pfn, },
   { .sz_lua_func_name = "ERR_dieif",
-    .pfn_wrap = NULL, },
+    .pfn_wrap = luab__ERR_dieif,
+    .ppfn = &luab__ERR_dieif_pfn, },
   { .sz_lua_func_name = "ERR_warn_and_clear_if",
-    .pfn_wrap = NULL, },
+    .pfn_wrap = luab__ERR_warn_and_clear_if,
+    .ppfn = &luab__ERR_warn_and_clear_if_pfn, },
+  { .sz_lua_func_name = "ERR_get_errmsg",
+    .pfn_wrap = luab__ERR_get_errmsg,
+    .ppfn = NULL, },
 
   { .sz_lua_func_name = "cp_fd",
     .pfn_wrap = NULL, },
