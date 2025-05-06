@@ -103,14 +103,15 @@ const BYTE _jong_code_to_2beol_lut[] = {
 const ssize_t _jong_code_to_2beol_lut_len = 28;
 
 const BYTE *_jong_chord_to_2beol_lut[] = {
-  NULL /* 0 */,     NULL /* ㄱ 1 */,  NULL /* ㄲ 2 */,  "rt" /* ㄳ 3  */,
+  NULL /* 0 */,     NULL /* ㄱ 1 */,  "rr" /* ㄲ 2 */,  "rt" /* ㄳ 3  */,
   NULL /* ㄴ 4 */,  "sw" /* ㄵ 5 */,  "sg" /* ㄶ 6 */,  NULL /* ㄷ 7 */,
   NULL /* ㄹ 8 */,  "fr" /* ㄺ 9 */,  "fa" /* ㄻ 10 */, "fq" /* ㄼ 11 */,
   "ft" /* ㄽ 12 */, "fx" /* ㄾ 13 */, "fv" /* ㄿ 14 */, "fg" /* ㅀ 15 */,
-  NULL /* ㅁ 16 */, NULL /* ㅂ 17 */, "qt" /* ㅄ 18 */,
+  NULL /* ㅁ 16 */, NULL /* ㅂ 17 */, "qt" /* ㅄ 18 */, NULL /* ㅅ 19 */,
+  "tt" /* ㅆ 20 */,
 };
 
-const ssize_t _jong_chord_to_2beol_lut_len = 19;
+const ssize_t _jong_chord_to_2beol_lut_len = 21;
 
 const hangeul_jamo_jaeum_unicode_2beol_row_t _jamo_jaeum_unicode_2beol_lut[]
     = {
