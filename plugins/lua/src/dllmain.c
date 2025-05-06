@@ -9,8 +9,10 @@
 
 #include "lua.h"
 #include "lauxlib.h"
+#include "lualib.h"
 
 
+int verbose_flag = 1; /* TODO */
 
 lua_State *L = NULL;
 
@@ -29,16 +31,15 @@ void ddakong_plugin_entry
       return;
     }
 
+  luaL_openlibs(L);
+
+  /* TODO bind func-ptr => lua-mod */
   for (int i = 0 ; i < funcs_len ; i ++)
     {
       plugin_func_t *p_func_row = (plugin_func_t *) &funcs[i];
-      fprintf(stderr, "# fn: %s @ %p\n",
-              p_func_row->sz_func_name, p_func_row->p_func);
-
-      /* TODO bind func-ptr => lua-mod */
     }
 
-  /* load init.lua */
+  /* dofile: init.lua */
   memset(sz_ddakong_lua, 0, sz_ddakong_lua_len);
 
   char *sz_ddakong_lua_ = getenv("DDAKONG_LUA");
@@ -52,13 +53,30 @@ void ddakong_plugin_entry
                               sz_ddakong_lua_len);
   if (0 != n_wordexp)
     {
-      fprintf(stderr, "# wordexp failed (%s)\n",
+      fprintf(stderr, "# wordexp failed (%s) (%s)\n",
+              sz_ddakong_lua_,
               wordexp__errmsg(n_wordexp));
       return;
     }
 
-  // TODO
+  if (verbose_flag) fprintf(stderr, "# lua dofile: %s ...\n", sz_ddakong_lua);
 
+  int n_dofile = luaL_dofile(L, sz_ddakong_lua);
+  if(n_dofile != 0)
+    {
+      fprintf(stderr, "# lua-dofile err(%xh) %s\n",
+              n_dofile, lua_tostring(L, -1));
+    }
+  else
+    {
+      if (verbose_flag)
+        {
+          fprintf(stderr, "# lua-dofile result (OK-ish) = %s\n",
+                  lua_tostring(L, -1));
+        }
+    }
+
+  return;
 }
 
 

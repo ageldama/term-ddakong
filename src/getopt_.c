@@ -83,7 +83,7 @@ do_getopt (int argc, char **argv)
 
   if (verbose_flag)
     {
-      fprintf (stderr, "getopt: verbose:%d keylog:%s plugin_dll(%s)\n",
+      fprintf (stderr, "# getopt: verbose:%d keylog:%s plugin_dll(%s)\n",
                verbose_flag,
                keylog_filename,
                plugin_dll_filename);
