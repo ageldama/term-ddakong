@@ -66,7 +66,7 @@ void ddakong_plugin_entry
   int n_dofile = luaL_dofile(L, sz_ddakong_lua);
   if(n_dofile != 0)
     {
-      fprintf(stderr, "# lua-dofile err(%xh) %s\n",
+      fprintf(stderr, "# lua-dofile err(0x%x) %s\n",
               n_dofile, lua_tostring(L, -1));
     }
   else
