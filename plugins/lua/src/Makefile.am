@@ -2,7 +2,9 @@ lib_LTLIBRARIES = liblua_ddakong.la
 
 
 liblua_ddakong_la_SOURCES = dllmain.c wordexp_.c \
-	lua_binding_build.c
+    lua_binding_build.c \
+    lua_binding__err.c
+
 
 if EXTERNAL_LUA
 liblua_ddakong_la_LIBADD = $(EXTERNAL_LUA_LIBS)

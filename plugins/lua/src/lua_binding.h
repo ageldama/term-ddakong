@@ -10,7 +10,8 @@
 
 typedef struct {
   char *sz_lua_func_name;
-  plugin_func_t *p_plugin_func;
+  lua_CFunction pfn_wrap;
+  void **ppfn;
 } lua_binding_row_t;
 
 
