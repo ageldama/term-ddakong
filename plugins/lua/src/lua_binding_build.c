@@ -4,6 +4,7 @@
 #include "lua_binding__err.h"
 #include "lua_binding__g.h"
 #include "lua_binding__utf8.h"
+#include "lua_binding__posix.h"
 
 #include <stdlib.h>
 #include <string.h>
