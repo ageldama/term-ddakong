@@ -62,7 +62,7 @@ handle_input (im_handler_status *p_status, const int fd_keyin,
     ;
   else if (n_read == 1 && isalpha(buf[0]))
     {
-      char *phrase = _random_phrases[ rand() % _random_phrases_len ];
+      const char *phrase = _random_phrases[ rand() % _random_phrases_len ];
       ssize_t n_written = write(fd_child, phrase, strlen(phrase));
       if (write_cb != NULL)
         {

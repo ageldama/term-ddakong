@@ -43,3 +43,6 @@ void ddakong_plugin_entry
 
   fprintf(stderr, "\n\n# CUSTOM PLUGIN HAS LOADED: PRESS ANY ALPHABET KEY...\n\n");
 }
+
+
+void ddakong_plugin_deinit() {}

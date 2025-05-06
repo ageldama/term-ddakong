@@ -67,6 +67,8 @@ typedef struct {
 EXTERN_ void ddakong_plugin_entry
 (const plugin_func_t *, const ssize_t);
 
+EXTERN_ void ddakong_plugin_deinit();
+
 
 typedef struct
 {
