@@ -42,6 +42,8 @@ void lua_binding_build
             }
         }
     }
+
+  lua_binding_build__posix(L);
 }
 
 
@@ -118,24 +120,30 @@ lua_binding_row_t __lua_bindings[] = {
     .ppfn = &luab__utf8_unicode_to_utf8_pfn, },
 
   /* lua_binding__posix */
-#if 0 /* TODO */
   { .sz_lua_func_name = "cp_fd",
-    .pfn_wrap = NULL, },
+    .pfn_wrap = luab__posix_cp_fd,
+    .ppfn = &luab__posix_cp_fd_pfn, },
   { .sz_lua_func_name = "fcntl_nb",
-    .pfn_wrap = NULL, },
+    .pfn_wrap = luab__posix_fcntl_nb,
+    .ppfn = &luab__posix_fcntl_nb_pfn, },
   { .sz_lua_func_name = "winsz_update",
-    .pfn_wrap = NULL, },
+    .pfn_wrap = luab__posix_winsz_update,
+    .ppfn = &luab__posix_winsz_update_pfn, },
   { .sz_lua_func_name = "termios__init",
-    .pfn_wrap = NULL, },
+    .pfn_wrap = luab__posix_termios__init,
+    .ppfn = &luab__posix_termios__init_pfn, },
   { .sz_lua_func_name = "termios__reset",
-    .pfn_wrap = NULL, },
+    .pfn_wrap = luab__posix_termios__reset,
+    .ppfn = &luab__posix_termios__reset_pfn, },
   { .sz_lua_func_name = "signal_trap_norecover",
-    .pfn_wrap = NULL, },
+    .pfn_wrap = luab__posix_signal_trap_norecover,
+    .ppfn = &luab__posix_signal_trap_norecover_pfn, },
   { .sz_lua_func_name = "forkpty_with_exec",
-    .pfn_wrap = NULL, },
+    .pfn_wrap = luab__posix_forkpty_with_exec,
+    .ppfn = &luab__posix_forkpty_with_exec_pfn, },
   { .sz_lua_func_name = "kill_forkpty",
-    .pfn_wrap = NULL, },
-#endif
+    .pfn_wrap = luab__posix_kill_forkpty,
+    .ppfn = &luab__posix_kill_forkpty_pfn, },
 
   /* lua_binding__hangeul_common */
 #if 0 /* TODO */

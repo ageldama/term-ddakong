@@ -291,8 +291,9 @@ main (int argc, char **argv)
       int nfds = epoll_wait (epollfd, events, MAX_EVENTS, epoll_timeout_ms);
       if (nfds == -1)
         {
-          perror ("epoll_wait");
-          exit (EXIT_FAILURE);
+          /* perror ("epoll_wait"); */
+          /* exit (EXIT_FAILURE); */
+          continue;
         }
 
       for (int n = 0; n < nfds; ++n)

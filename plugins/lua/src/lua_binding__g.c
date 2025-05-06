@@ -26,6 +26,7 @@ void *luab__g_get_child_fd_pfn = NULL;
 
 int luab__g_print_banner(lua_State *L)
 {
+  /* () => () */
   assert(luab__g_print_banner_pfn != NULL);
   typedef void (*pfn_t)(void *);
   ((pfn_t) luab__g_print_banner_pfn)(stderr);
@@ -35,6 +36,7 @@ int luab__g_print_banner(lua_State *L)
 
 int luab__g_get_verbose_flag(lua_State *L)
 {
+  /* () => (b_verbose) */
   assert(luab__g_get_verbose_flag_pfn != NULL);
   typedef int (*pfn_t)(void);
   const int n_bool =
@@ -46,6 +48,7 @@ int luab__g_get_verbose_flag(lua_State *L)
 
 int luab__g_set_verbose_flag(lua_State *L)
 {
+  /* (b_verbose) => () */
   int n_flag = lua_tointeger(L, -1);
   lua_remove(L, 1);
 
@@ -61,6 +64,7 @@ int luab__g_set_verbose_flag(lua_State *L)
 
 int luab__g_get_keylog_filename(lua_State *L)
 {
+  /* () => (sz_keylog_filename) */
   assert(luab__g_get_keylog_filename_pfn);
   typedef char *(*pfn_t)(void);
 
@@ -72,6 +76,7 @@ int luab__g_get_keylog_filename(lua_State *L)
 
 int luab__g_get_default_keylog_filename(lua_State *L)
 {
+  /* () => (sz_default_keylog_filename) */
   assert(luab__g_get_default_keylog_filename_pfn);
   typedef char *(*pfn_t)(void);
 
@@ -84,6 +89,7 @@ int luab__g_get_default_keylog_filename(lua_State *L)
 
 int luab__g_get_plugin_dll_filename(lua_State *L)
 {
+  /* () => (sz_plugin_dll_filename) */
   assert(luab__g_get_plugin_dll_filename_pfn);
   typedef char *(*pfn_t)(void);
 
@@ -95,6 +101,7 @@ int luab__g_get_plugin_dll_filename(lua_State *L)
 
 int luab__g_get_child_pid(lua_State *L)
 {
+  /* () => (pid) */
   assert(luab__g_get_child_pid_pfn);
   typedef pid_t (*pfn_t)(void);
 
@@ -106,6 +113,7 @@ int luab__g_get_child_pid(lua_State *L)
 
 int luab__g_get_child_fd(lua_State *L)
 {
+  /* () => (fd) */
   assert(luab__g_get_child_fd_pfn);
   typedef int (*pfn_t)(void);
 

@@ -14,9 +14,16 @@
 
 
 void *luab__ERR_err_p_pfn = NULL;
+void *luab__ERR_clear_pfn = NULL;
+void *luab__ERR_set_pfn = NULL;
+void *luab__ERR_dieif_pfn = NULL;
+void *luab__ERR_warn_and_clear_if_pfn = NULL;
+
+
 
 int luab__ERR_err_p(lua_State *L)
 {
+  /* (p_err) => (b) */
   void *p_err = lua_touserdata(L, -1);
   assert(p_err != NULL);
   lua_remove(L, 1);
@@ -31,10 +38,9 @@ int luab__ERR_err_p(lua_State *L)
 }
 
 
-void *luab__ERR_clear_pfn = NULL;
-
 int luab__ERR_clear(lua_State *L)
 {
+  /* (p_err) => () */
   void *p_err = lua_touserdata(L, -1);
   assert(p_err != NULL);
   lua_remove(L, 1);
@@ -48,12 +54,10 @@ int luab__ERR_clear(lua_State *L)
 }
 
 
-
-void *luab__ERR_set_pfn = NULL;
-
 int luab__ERR_set(lua_State *L)
 {
-  const char *sz_errmsg = lua_tostring(L, -1);
+  /* (p_err, sz_errmsg) => () */
+  const char *sz_errmsg = lua_tostring(L, -2);
   assert(sz_errmsg != NULL);
   void *p_err = lua_touserdata(L, -1);
   assert(p_err != NULL);
@@ -72,11 +76,9 @@ int luab__ERR_set(lua_State *L)
 }
 
 
-
-void *luab__ERR_dieif_pfn = NULL;
-
 int luab__ERR_dieif(lua_State *L)
 {
+  /* (p_err) => () */
   void *p_err = lua_touserdata(L, -1);
   assert(p_err != NULL);
   lua_remove(L, 1);
@@ -90,10 +92,9 @@ int luab__ERR_dieif(lua_State *L)
 }
 
 
-void *luab__ERR_warn_and_clear_if_pfn = NULL;
-
 int luab__ERR_warn_and_clear_if(lua_State *L)
 {
+  /* (p_err) => () */
   void *p_err = lua_touserdata(L, -1);
   assert(p_err != NULL);
   lua_remove(L, 1);
@@ -107,9 +108,9 @@ int luab__ERR_warn_and_clear_if(lua_State *L)
 }
 
 
-
 int luab__ERR_get_errmsg(lua_State *L)
 {
+  /* (p_err) => (errmsg) */
   void *p_err = lua_touserdata(L, -1);
   assert(p_err != NULL);
   lua_remove(L, 1);

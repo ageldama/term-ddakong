@@ -18,9 +18,10 @@ void *luab__utf8_unicode_to_utf8_pfn = NULL;
 
 int luab__utf8_unicode_to_utf8(lua_State *L)
 {
+  /* (n_unicode) => (sz_utf8) */
   uint32_t unicode = (uint32_t) lua_tointeger(L, -1);
   lua_remove(L, 1);
-  
+
   char buf[10];
   /* const ssize_t buf_max = 10; */
 

@@ -25,5 +25,6 @@ EXTERN_ int luab__posix_forkpty_with_exec(lua_State *L);
 EXTERN_ int luab__posix_kill_forkpty(lua_State *L);
 
 
+EXTERN_ void lua_binding_build__posix(lua_State *L);
 
 #endif /* ! lua_binding__posix_h */
