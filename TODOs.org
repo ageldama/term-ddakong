@@ -57,6 +57,8 @@
   3) [X] DLL-PLUGIN: EXAMPLE
   4) [X] DLL-PLUGIN: README
 
+  2) [ ] DLL-PLUGIN: CLOSE, EXAMPLE
+
   5) [X] configure + sub-pkg (lua)
   6) [X] configure + disable-[lua, random-phrase]
 
