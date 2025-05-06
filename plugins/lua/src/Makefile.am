@@ -1,7 +1,7 @@
 lib_LTLIBRARIES = liblua_ddakong.la
 
 
-liblua_ddakong_la_SOURCES = dllmain.c im_handler.c
+liblua_ddakong_la_SOURCES = dllmain.c
 
 if EXTERNAL_LUA
 liblua_ddakong_la_LIBADD = $(EXTERNAL_LUA_LIBS)

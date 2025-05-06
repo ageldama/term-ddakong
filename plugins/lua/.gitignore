@@ -1,3 +1,4 @@
 lua-*/src/lua
 lua-*/src/luac
 src/__lua_built__.c
+!lua-*/**/Makefile
