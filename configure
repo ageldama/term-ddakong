@@ -751,6 +751,10 @@ enable_option_checking
 enable_silent_rules
 enable_lua
 enable_random_phrase
+with_lua
+with_lua_cflags
+with_lua_libs
+with_lua_pkg_config
 enable_dependency_tracking
 enable_assert
 '
@@ -1395,6 +1399,14 @@ Optional Features:
   --disable-dependency-tracking
                           speeds up one-time build
   --disable-assert        turn off assertions
+
+Optional Packages:
+  --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
+  --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
+  --with-lua              With external Lua [default=builtin-lua]
+  --with-lua-cflags       With external Lua cflags [default=builtin-lua]
+  --with-lua-libs         With external Lua libs [default=builtin-lua]
+  --with-lua-pkg-config   With Lua pkg-config [default=builtin-lua]
 
 Some influential environment variables:
   CC          C compiler command
@@ -3317,6 +3329,41 @@ if test ${enable_random_phrase+y}
 then :
   enableval=$enable_random_phrase;
 fi
+
+
+
+
+# Check whether --with-lua was given.
+if test ${with_lua+y}
+then :
+  withval=$with_lua;
+fi
+
+
+
+# Check whether --with-lua-cflags was given.
+if test ${with_lua_cflags+y}
+then :
+  withval=$with_lua_cflags;
+fi
+
+
+
+# Check whether --with-lua-libs was given.
+if test ${with_lua_libs+y}
+then :
+  withval=$with_lua_libs;
+fi
+
+
+
+
+# Check whether --with-lua-pkg-config was given.
+if test ${with_lua_pkg_config+y}
+then :
+  withval=$with_lua_pkg_config;
+fi
+
 
 
 
@@ -6893,7 +6940,7 @@ fi
 
 
 printf "%s\n" ""
-printf "%s\n" "-------------------------------------------------------------"
+printf "%s\n" "- FEATURE RECAP ---------------------------------------------"
 
 printf %s "Plugin system: "
 if test x"$enable_dlopen" != x"no"
@@ -6916,11 +6963,21 @@ fi
 printf %s "Lua scripting: "
 if test x"$enable_lua" != x"no"
 then :
-  printf "%s\n" YES
+  if test x"$with_lua" != x""
+then :
+  printf "%s\n" "YES external [$with_lua]"
+elif test x"$with_lua_pkg_config" != x""
+then :
+  printf "%s\n" "YES pkg-config [$with_lua_pkg_config]"
+else case e in #(
+  e) printf "%s\n" "YES [--INTERNAL--]" ;;
+esac
+fi
 else case e in #(
   e) printf "%s\n" NO ;;
 esac
 fi
+
 
 printf "%s\n" ""
 

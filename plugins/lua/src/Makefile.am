@@ -2,15 +2,25 @@ lib_LTLIBRARIES = liblua_ddakong.la
 
 
 liblua_ddakong_la_SOURCES = dllmain.c im_handler.c
+
+if EXTERNAL_LUA
+liblua_ddakong_la_LIBADD = $(EXTERNAL_LUA_LIBS)
+liblua_ddakong_la_CFLAGS = $(EXTERNAL_LUA_CFLAGS)
+else
 liblua_ddakong_la_LIBADD = -L$(top_srcdir)/$(LUA_SRC)/src -llua
 liblua_ddakong_la_CFLAGS = -I$(top_srcdir)/$(LUA_SRC)/src
+endif
+
 
 nodist_liblua_ddakong_la_SOURCES = __lua_built__.c
 
 
 
 __lua_built__.c:
+if EXTERNAL_LUA
+else
 	make -C $(top_srcdir)/$(LUA_SRC)
+endif
 	touch $(srcdir)/__lua_built__.c
 
 

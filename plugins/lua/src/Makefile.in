@@ -131,7 +131,9 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
-liblua_ddakong_la_DEPENDENCIES =
+am__DEPENDENCIES_1 =
+@EXTERNAL_LUA_TRUE@liblua_ddakong_la_DEPENDENCIES =  \
+@EXTERNAL_LUA_TRUE@	$(am__DEPENDENCIES_1)
 am_liblua_ddakong_la_OBJECTS = liblua_ddakong_la-dllmain.lo \
 	liblua_ddakong_la-im_handler.lo
 nodist_liblua_ddakong_la_OBJECTS = liblua_ddakong_la-__lua_built__.lo
@@ -236,6 +238,8 @@ ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 ETAGS = @ETAGS@
 EXEEXT = @EXEEXT@
+EXTERNAL_LUA_CFLAGS = @EXTERNAL_LUA_CFLAGS@
+EXTERNAL_LUA_LIBS = @EXTERNAL_LUA_LIBS@
 FGREP = @FGREP@
 FILECMD = @FILECMD@
 GREP = @GREP@
@@ -334,8 +338,10 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 lib_LTLIBRARIES = liblua_ddakong.la
 liblua_ddakong_la_SOURCES = dllmain.c im_handler.c
-liblua_ddakong_la_LIBADD = -L$(top_srcdir)/$(LUA_SRC)/src -llua
-liblua_ddakong_la_CFLAGS = -I$(top_srcdir)/$(LUA_SRC)/src
+@EXTERNAL_LUA_FALSE@liblua_ddakong_la_LIBADD = -L$(top_srcdir)/$(LUA_SRC)/src -llua
+@EXTERNAL_LUA_TRUE@liblua_ddakong_la_LIBADD = $(EXTERNAL_LUA_LIBS)
+@EXTERNAL_LUA_FALSE@liblua_ddakong_la_CFLAGS = -I$(top_srcdir)/$(LUA_SRC)/src
+@EXTERNAL_LUA_TRUE@liblua_ddakong_la_CFLAGS = $(EXTERNAL_LUA_CFLAGS)
 nodist_liblua_ddakong_la_SOURCES = __lua_built__.c
 all: all-am
 
@@ -688,7 +694,7 @@ uninstall-am: uninstall-libLTLIBRARIES
 
 
 __lua_built__.c:
-	make -C $(top_srcdir)/$(LUA_SRC)
+@EXTERNAL_LUA_FALSE@	make -C $(top_srcdir)/$(LUA_SRC)
 	touch $(srcdir)/__lua_built__.c
 
 all-local:

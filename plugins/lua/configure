@@ -704,6 +704,10 @@ CPPFLAGS
 LDFLAGS
 CFLAGS
 CC
+EXTERNAL_LUA_LIBS
+EXTERNAL_LUA_CFLAGS
+EXTERNAL_LUA_FALSE
+EXTERNAL_LUA_TRUE
 am__xargs_n
 am__rm_f_notfound
 AM_BACKSLASH
@@ -780,6 +784,10 @@ ac_subst_files=''
 ac_user_opts='
 enable_option_checking
 enable_silent_rules
+with_lua
+with_lua_cflags
+with_lua_libs
+with_lua_pkg_config
 enable_dependency_tracking
 enable_shared
 enable_static
@@ -1449,6 +1457,10 @@ Optional Features:
 Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
+  --with-lua              With external Lua [default=builtin-lua]
+  --with-lua-cflags       With external Lua cflags [default=builtin-lua]
+  --with-lua-libs         With external Lua libs [default=builtin-lua]
+  --with-lua-pkg-config   With Lua pkg-config [default=builtin-lua]
   --with-gnu-ld           assume the C compiler uses GNU ld [default=no]
   --with-sysroot[=DIR]    Search for dependent libraries within DIR (or the
                           compiler's sysroot if not specified).
@@ -3360,6 +3372,83 @@ fi
 ac_config_headers="$ac_config_headers config.h"
 
 
+
+
+# Features
+
+
+# Check whether --with-lua was given.
+if test ${with_lua+y}
+then :
+  withval=$with_lua;
+fi
+
+
+
+# Check whether --with-lua-cflags was given.
+if test ${with_lua_cflags+y}
+then :
+  withval=$with_lua_cflags;
+fi
+
+
+
+# Check whether --with-lua-libs was given.
+if test ${with_lua_libs+y}
+then :
+  withval=$with_lua_libs;
+fi
+
+
+
+# Check whether --with-lua-pkg-config was given.
+if test ${with_lua_pkg_config+y}
+then :
+  withval=$with_lua_pkg_config;
+fi
+
+
+
+ if test x"$with_lua" != x"" -o x"$with_lua_pkg_config" != x""; then
+  EXTERNAL_LUA_TRUE=
+  EXTERNAL_LUA_FALSE='#'
+else
+  EXTERNAL_LUA_TRUE='#'
+  EXTERNAL_LUA_FALSE=
+fi
+
+
+if test x"$with_lua" != x""
+then :
+
+    if test x"$with_lua_cflags" != x""
+then :
+  EXTERNAL_LUA_CFLAGS="$with_lua_cflags"
+
+else case e in #(
+  e) EXTERNAL_LUA_CFLAGS="-I$with_lua/include"
+ ;;
+esac
+fi
+    if test x"$with_lua_libs" != x""
+then :
+  EXTERNAL_LUA_LIBS="$with_lua_libs"
+
+else case e in #(
+  e) EXTERNAL_LUA_LIBS="-L$with_lua/lib -llua"
+ ;;
+esac
+fi
+
+elif test x"$with_lua_pkg_config" != x""
+then :
+
+    EXTERNAL_LUA_CFLAGS=`pkg-config --cflags $with_lua_pkg_config`
+
+    EXTERNAL_LUA_LIBS=`pkg-config --libs $with_lua_pkg_config`
+
+
+fi
 
 
 # Checks for programs.
@@ -14064,6 +14153,10 @@ else
   am__EXEEXT_FALSE=
 fi
 
+if test -z "${EXTERNAL_LUA_TRUE}" && test -z "${EXTERNAL_LUA_FALSE}"; then
+  as_fn_error $? "conditional \"EXTERNAL_LUA\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
 if test -z "${AMDEP_TRUE}" && test -z "${AMDEP_FALSE}"; then
   as_fn_error $? "conditional \"AMDEP\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
@@ -16229,5 +16322,7 @@ if test -n "$ac_unrecognized_opts" && test "$enable_option_checking" != no; then
   { printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: unrecognized options: $ac_unrecognized_opts" >&5
 printf "%s\n" "$as_me: WARNING: unrecognized options: $ac_unrecognized_opts" >&2;}
 fi
+
+
 
 

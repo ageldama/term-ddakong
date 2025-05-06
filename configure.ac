@@ -24,6 +24,29 @@ AC_ARG_ENABLE([random-phrase],
                              [Disable Random phrase (example) plugin]))
 
 
+AC_ARG_WITH([lua],
+            [AS_HELP_STRING([--with-lua],
+                [With external Lua @<:@default=builtin-lua@:>@])],
+            [], [])
+
+AC_ARG_WITH([lua-cflags],
+            [AS_HELP_STRING([--with-lua-cflags],
+                [With external Lua cflags @<:@default=builtin-lua@:>@])],
+            [], [])
+
+AC_ARG_WITH([lua-libs],
+            [AS_HELP_STRING([--with-lua-libs],
+                [With external Lua libs @<:@default=builtin-lua@:>@])],
+            [], [])
+
+
+AC_ARG_WITH([lua-pkg-config],
+            [AS_HELP_STRING([--with-lua-pkg-config],
+                [With Lua pkg-config @<:@default=builtin-lua@:>@])],
+            [], [])
+
+
+
 
 # Checks for programs.
 AC_PROG_CC
@@ -102,7 +125,7 @@ AC_OUTPUT
 
 
 AS_ECHO("")
-AS_ECHO("-------------------------------------------------------------")
+AS_ECHO("- FEATURE RECAP ---------------------------------------------")
 
 AS_ECHO_N("Plugin system: ")
 AS_IF([test x"$enable_dlopen" != x"no"], [AS_ECHO([YES])], [AS_ECHO([NO])])
@@ -111,7 +134,12 @@ AS_ECHO_N("Example plugin ("random-phrase"): ")
 AS_IF([test x"$enable_random_phrase" != x"no"], [AS_ECHO([YES])], [AS_ECHO([NO])])
 
 AS_ECHO_N("Lua scripting: ")
-AS_IF([test x"$enable_lua" != x"no"], [AS_ECHO([YES])], [AS_ECHO([NO])])
+AS_IF([test x"$enable_lua" != x"no"],
+    [AS_IF([test x"$with_lua" != x""], [AS_ECHO("YES external @<:@$with_lua@:>@")],
+           [test x"$with_lua_pkg_config" != x""], [AS_ECHO("YES pkg-config @<:@$with_lua_pkg_config@:>@")],
+           [AS_ECHO("YES @<:@--INTERNAL--@:>@")])],
+    [AS_ECHO([NO])])
+
 
 AS_ECHO("")
 
