@@ -17,10 +17,16 @@
 
 
 #ifndef DDAKONG_PLUGIN_ENTRY_NAME
+
 /**
  * 플러그인 DLL 로딩한 다음 호출할 초기화 함수 이름
  */
 #define DDAKONG_PLUGIN_ENTRY_NAME "ddakong_plugin_entry"
+
+/**
+ * 플러그인 DLL 해제/정리시 호출할 deinitialization 함수 이름
+ */
+#define DDAKONG_PLUGIN_DEINIT_NAME "ddakong_plugin_deinit"
 #endif
 
 
@@ -65,6 +71,11 @@ EXTERN_ const ssize_t plugin_funcs_len;
  */
 typedef void (*ddakong_plugin_entry_fn_t)
 (const plugin_func_t *, const ssize_t);
+
+/**
+ * DLL-PLUGIN에서 deinitialization시 호출할 함수의 타입
+ */
+typedef void (*ddakong_plugin_deinit_fn_t)();
 
 
 /**
