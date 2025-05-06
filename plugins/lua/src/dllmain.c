@@ -11,9 +11,10 @@
 #include "lua.h"
 #include "lauxlib.h"
 #include "lualib.h"
+#include "lua_binding__g.h"
 
 
-int verbose_flag = 1; /* TODO */
+int verbose_flag = 1;
 
 lua_State *L = NULL;
 
@@ -39,7 +40,8 @@ void ddakong_plugin_entry
   lua_binding_build(L, funcs, funcs_len);
   lua_setglobal(L, "ddakong");
 
-  /* TODO verbose_flag <= get_verbose_flag */
+  /* verbose_flag <= get_verbose_flag */
+  verbose_flag = ((int (*)())luab__g_get_verbose_flag_pfn)();
 
   /* dofile: init.lua */
   memset(sz_ddakong_lua, 0, sz_ddakong_lua_len);

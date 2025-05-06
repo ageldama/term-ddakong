@@ -6,6 +6,7 @@
 #include "lua_binding__utf8.h"
 
 #include <stdlib.h>
+#include <string.h>
 
 #include "lua.h"
 
@@ -20,6 +21,25 @@ void lua_binding_build
   for (int i = 0 ; i < funcs_len ; i ++)
     {
       plugin_func_t *p_func_row = (plugin_func_t *) &funcs[i];
+
+      /* NOTE i know it's O(n^2) */
+      for (int j = 0; j < __lua_bindings_len; j ++)
+        {
+          lua_binding_row_t b_row = __lua_bindings[j];
+
+          if (strcmp(p_func_row->sz_func_name,
+                     b_row.sz_lua_func_name) == 0)
+            {
+              if (b_row.ppfn != NULL)
+                {
+                  *b_row.ppfn = p_func_row->p_func;
+                }
+
+              lua_pushstring(L, b_row.sz_lua_func_name);
+              lua_pushcfunction(L, b_row.pfn_wrap);
+              lua_settable(L, -3);
+            }
+        }
     }
 }
 
@@ -28,6 +48,7 @@ void lua_binding_build
 
 lua_binding_row_t __lua_bindings[] = {
   /* lua_binding__input_handler */
+#if 0 /* TODO */
   { .sz_lua_func_name = "get_current_handle_input_fn",
     .pfn_wrap = NULL, .ppfn = NULL, },
   { .sz_lua_func_name = "set_current_handle_input_fn",
@@ -42,6 +63,7 @@ lua_binding_row_t __lua_bindings[] = {
     .pfn_wrap = NULL, },
   { .sz_lua_func_name = "get_current_hangeul_automata_status",
     .pfn_wrap = NULL, },
+#endif
 
   /* lua_biding__err */
   { .sz_lua_func_name = "ERR_err_p",
@@ -95,6 +117,7 @@ lua_binding_row_t __lua_bindings[] = {
     .ppfn = &luab__utf8_unicode_to_utf8_pfn, },
 
   /* lua_binding__posix */
+#if 0 /* TODO */
   { .sz_lua_func_name = "cp_fd",
     .pfn_wrap = NULL, },
   { .sz_lua_func_name = "fcntl_nb",
@@ -111,8 +134,10 @@ lua_binding_row_t __lua_bindings[] = {
     .pfn_wrap = NULL, },
   { .sz_lua_func_name = "kill_forkpty",
     .pfn_wrap = NULL, },
+#endif
 
   /* lua_binding__hangeul_common */
+#if 0 /* TODO */
   { .sz_lua_func_name = "hangeul_const_chojungjong_nul",
     .pfn_wrap = NULL, },
   { .sz_lua_func_name = "hangeul_const_choseong",
@@ -125,8 +150,10 @@ lua_binding_row_t __lua_bindings[] = {
     .pfn_wrap = NULL, },
   { .sz_lua_func_name = "hangeul_const_jaeum",
     .pfn_wrap = NULL, },
+#endif
 
   /* lua_binding__hangeul_2beol */
+#if 0 /* TODO */
   { .sz_lua_func_name = "hangeul_automata_status__new",
     .pfn_wrap = NULL, },
   { .sz_lua_func_name = "hangeul_automata_status__delete",
@@ -189,6 +216,7 @@ lua_binding_row_t __lua_bindings[] = {
     .pfn_wrap = NULL, },
   { .sz_lua_func_name = "hangeul_remap_code",
     .pfn_wrap = NULL, },
+#endif
 
 };
 
