@@ -90,3 +90,4 @@ TAGS
 
 lua-*/src/lua
 lua-*/src/luac
+*.rej

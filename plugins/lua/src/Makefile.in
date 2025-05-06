@@ -682,6 +682,7 @@ uninstall-am: uninstall-libLTLIBRARIES
 
 
 __lua_built__.c:
+@EXTERNAL_LUA_FALSE@	-patch -N $(top_srcdir)/$(LUA_SRC)/src/Makefile $(top_srcdir)/lua-5.4.7-src-Makefile.patch
 @EXTERNAL_LUA_FALSE@	make -C $(top_srcdir)/$(LUA_SRC)
 	touch $(srcdir)/__lua_built__.c
 
