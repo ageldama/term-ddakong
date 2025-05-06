@@ -17,6 +17,9 @@
 
 	* plugins "deinit"-인터페이스 추가
 
+	* epoll "epoll_wait interrupted"-에 종료되는 버그 수정.
+	(터미널 크기변경시에)
+
 
 2025-05-03  윤종혁	<ageldama@gmail.com>
 
