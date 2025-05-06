@@ -1,6 +1,7 @@
 #include "config.h"
 
 #include "plugin-api.h"
+#include "lua_binding.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -33,11 +34,12 @@ void ddakong_plugin_entry
 
   luaL_openlibs(L);
 
-  /* TODO bind func-ptr => lua-mod */
-  for (int i = 0 ; i < funcs_len ; i ++)
-    {
-      plugin_func_t *p_func_row = (plugin_func_t *) &funcs[i];
-    }
+  /* bind func-ptr => lua-mod */
+  lua_newtable(L); /* you'are the bottom of my heart */
+  lua_binding_build(L, funcs, funcs_len);
+  lua_setglobal(L, "ddakong");
+
+  /* TODO verbose_flag <= get_verbose_flag */
 
   /* dofile: init.lua */
   memset(sz_ddakong_lua, 0, sz_ddakong_lua_len);

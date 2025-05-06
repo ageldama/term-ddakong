@@ -135,7 +135,8 @@ am__DEPENDENCIES_1 =
 @EXTERNAL_LUA_TRUE@liblua_ddakong_la_DEPENDENCIES =  \
 @EXTERNAL_LUA_TRUE@	$(am__DEPENDENCIES_1)
 am_liblua_ddakong_la_OBJECTS = liblua_ddakong_la-dllmain.lo \
-	liblua_ddakong_la-wordexp_.lo
+	liblua_ddakong_la-wordexp_.lo \
+	liblua_ddakong_la-lua_binding_build.lo
 nodist_liblua_ddakong_la_OBJECTS = liblua_ddakong_la-__lua_built__.lo
 liblua_ddakong_la_OBJECTS = $(am_liblua_ddakong_la_OBJECTS) \
 	$(nodist_liblua_ddakong_la_OBJECTS)
@@ -164,6 +165,7 @@ depcomp = $(SHELL) $(top_srcdir)/./autotools/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/liblua_ddakong_la-__lua_built__.Plo \
 	./$(DEPDIR)/liblua_ddakong_la-dllmain.Plo \
+	./$(DEPDIR)/liblua_ddakong_la-lua_binding_build.Plo \
 	./$(DEPDIR)/liblua_ddakong_la-wordexp_.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
@@ -337,7 +339,9 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 lib_LTLIBRARIES = liblua_ddakong.la
-liblua_ddakong_la_SOURCES = dllmain.c wordexp_.c
+liblua_ddakong_la_SOURCES = dllmain.c wordexp_.c \
+	lua_binding_build.c
+
 @EXTERNAL_LUA_FALSE@liblua_ddakong_la_LIBADD = -L$(top_srcdir)/$(LUA_SRC)/src -llua
 @EXTERNAL_LUA_TRUE@liblua_ddakong_la_LIBADD = $(EXTERNAL_LUA_LIBS)
 @EXTERNAL_LUA_FALSE@liblua_ddakong_la_CFLAGS = -I$(top_srcdir)/$(LUA_SRC)/src
@@ -421,6 +425,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblua_ddakong_la-__lua_built__.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblua_ddakong_la-dllmain.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblua_ddakong_la-lua_binding_build.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblua_ddakong_la-wordexp_.Plo@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
@@ -463,6 +468,13 @@ liblua_ddakong_la-wordexp_.lo: wordexp_.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='wordexp_.c' object='liblua_ddakong_la-wordexp_.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(liblua_ddakong_la_CFLAGS) $(CFLAGS) -c -o liblua_ddakong_la-wordexp_.lo `test -f 'wordexp_.c' || echo '$(srcdir)/'`wordexp_.c
+
+liblua_ddakong_la-lua_binding_build.lo: lua_binding_build.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(liblua_ddakong_la_CFLAGS) $(CFLAGS) -MT liblua_ddakong_la-lua_binding_build.lo -MD -MP -MF $(DEPDIR)/liblua_ddakong_la-lua_binding_build.Tpo -c -o liblua_ddakong_la-lua_binding_build.lo `test -f 'lua_binding_build.c' || echo '$(srcdir)/'`lua_binding_build.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/liblua_ddakong_la-lua_binding_build.Tpo $(DEPDIR)/liblua_ddakong_la-lua_binding_build.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lua_binding_build.c' object='liblua_ddakong_la-lua_binding_build.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(liblua_ddakong_la_CFLAGS) $(CFLAGS) -c -o liblua_ddakong_la-lua_binding_build.lo `test -f 'lua_binding_build.c' || echo '$(srcdir)/'`lua_binding_build.c
 
 liblua_ddakong_la-__lua_built__.lo: __lua_built__.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(liblua_ddakong_la_CFLAGS) $(CFLAGS) -MT liblua_ddakong_la-__lua_built__.lo -MD -MP -MF $(DEPDIR)/liblua_ddakong_la-__lua_built__.Tpo -c -o liblua_ddakong_la-__lua_built__.lo `test -f '__lua_built__.c' || echo '$(srcdir)/'`__lua_built__.c
@@ -606,6 +618,7 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool clean-local \
 distclean: distclean-am
 	-rm -f ./$(DEPDIR)/liblua_ddakong_la-__lua_built__.Plo
 	-rm -f ./$(DEPDIR)/liblua_ddakong_la-dllmain.Plo
+	-rm -f ./$(DEPDIR)/liblua_ddakong_la-lua_binding_build.Plo
 	-rm -f ./$(DEPDIR)/liblua_ddakong_la-wordexp_.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
@@ -654,6 +667,7 @@ installcheck-am:
 maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/liblua_ddakong_la-__lua_built__.Plo
 	-rm -f ./$(DEPDIR)/liblua_ddakong_la-dllmain.Plo
+	-rm -f ./$(DEPDIR)/liblua_ddakong_la-lua_binding_build.Plo
 	-rm -f ./$(DEPDIR)/liblua_ddakong_la-wordexp_.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
