@@ -3,6 +3,7 @@
 #include "lua_binding.h"
 #include "lua_binding__err.h"
 #include "lua_binding__g.h"
+#include "lua_binding__utf8.h"
 
 #include <stdlib.h>
 
@@ -90,7 +91,8 @@ lua_binding_row_t __lua_bindings[] = {
 
   /* lua_binding__utf8 */
   { .sz_lua_func_name = "unicode_to_utf8",
-    .pfn_wrap = NULL, },
+    .pfn_wrap = luab__utf8_unicode_to_utf8,
+    .ppfn = &luab__utf8_unicode_to_utf8_pfn, },
 
   /* lua_binding__posix */
   { .sz_lua_func_name = "cp_fd",
