@@ -6,11 +6,20 @@
 /* have dlopen */
 #undef HAVE_DLOPEN
 
+/* Define to 1 if you have the 'fprintf' function. */
+#undef HAVE_FPRINTF
+
+/* Define to 1 if you have the 'getenv' function. */
+#undef HAVE_GETENV
+
 /* Define to 1 if you have the <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H
 
 /* have m */
 #undef HAVE_M
+
+/* Define to 1 if you have the 'memset' function. */
+#undef HAVE_MEMSET
 
 /* Define to 1 if you have the <stdint.h> header file. */
 #undef HAVE_STDINT_H
@@ -27,6 +36,9 @@
 /* Define to 1 if you have the <string.h> header file. */
 #undef HAVE_STRING_H
 
+/* Define to 1 if you have the 'strncpy' function. */
+#undef HAVE_STRNCPY
+
 /* Define to 1 if you have the <sys/stat.h> header file. */
 #undef HAVE_SYS_STAT_H
 
@@ -35,6 +47,12 @@
 
 /* Define to 1 if you have the <unistd.h> header file. */
 #undef HAVE_UNISTD_H
+
+/* Define to 1 if you have the 'wordexp' function. */
+#undef HAVE_WORDEXP
+
+/* Define to 1 if you have the 'wordfree' function. */
+#undef HAVE_WORDFREE
 
 /* Define to the sub-directory where libtool stores uninstalled libraries. */
 #undef LT_OBJDIR

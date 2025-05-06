@@ -79,6 +79,16 @@ AC_CHECK_LIB(dl, [dlopen],
   AC_MSG_ERROR(["libdl" cannot be found, needed to build Lua])
 ])
 
+AC_CHECK_FUNCS([
+    fprintf
+    wordexp wordfree
+    memset
+    getenv
+    strncpy
+],[],
+[AC_MSG_ERROR([required function cannot be found])])
+
+
 
 #
 AC_SUBST(LUA_SRC, [lua-5.4.7])

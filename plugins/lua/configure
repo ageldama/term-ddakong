@@ -13992,6 +13992,25 @@ fi
 
 
 
+  for ac_func in fprintf wordexp wordfree memset getenv strncpy
+do :
+  as_ac_var=`printf "%s\n" "ac_cv_func_$ac_func" | sed "$as_sed_sh"`
+ac_fn_c_check_func "$LINENO" "$ac_func" "$as_ac_var"
+if eval test \"x\$"$as_ac_var"\" = x"yes"
+then :
+  cat >>confdefs.h <<_ACEOF
+#define `printf "%s\n" "HAVE_$ac_func" | sed "$as_sed_cpp"` 1
+_ACEOF
+
+else case e in #(
+  e) as_fn_error $? "required function cannot be found" "$LINENO" 5 ;;
+esac
+fi
+
+done
+
+
+
 #
 LUA_SRC=lua-5.4.7
 

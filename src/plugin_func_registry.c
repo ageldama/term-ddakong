@@ -164,6 +164,24 @@ plugin_func_t *get_plugin_funcs(void)
 ssize_t get_plugin_funcs_len(void)
 { return plugin_funcs_len; }
 
+int get_verbose_flag(void)
+{ return verbose_flag; }
+
+char *get_keylog_filename(void)
+{ return keylog_filename; }
+
+char *get_default_keylog_filename(void)
+{ return default_keylog_filename; }
+
+pid_t get_child_pid(void)
+{ return child_pid; }
+
+int get_child_fd(void)
+{ return child_fd; }
+
+char *get_plugin_dll_filename(void)
+{ return plugin_dll_filename; }
+
 
 /* function regitry */
 
@@ -173,6 +191,24 @@ const plugin_func_t plugin_funcs[] = {
     .sz_func_doc = "", },
   { .p_func = get_plugin_funcs_len,
     .sz_func_name = "get_plugin_funcs_len",
+    .sz_func_doc = "", },
+  { .p_func = get_verbose_flag,
+    .sz_func_name = "get_verbose_flag",
+    .sz_func_doc = "", },
+  { .p_func = get_keylog_filename,
+    .sz_func_name = "get_keylog_filename",
+    .sz_func_doc = "", },
+  { .p_func = get_default_keylog_filename,
+    .sz_func_name = "get_default_keylog_filename",
+    .sz_func_doc = "", },
+  { .p_func = get_plugin_dll_filename,
+    .sz_func_name = "get_plugin_dll_filename",
+    .sz_func_doc = "", },
+  { .p_func = get_child_pid,
+    .sz_func_name = "get_child_pid",
+    .sz_func_doc = "", },
+  { .p_func = get_child_fd,
+    .sz_func_name = "get_child_fd",
     .sz_func_doc = "", },
 
   /* im_handler.h */

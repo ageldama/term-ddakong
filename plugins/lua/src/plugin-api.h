@@ -1,12 +1,9 @@
 #ifndef __plugin_api_h__
 #define __plugin_api_h__ 1
 
-#if defined(__cplusplus)
-#define EXTERN_ extern "c"
-#else
-#define EXTERN_ extern
-#endif
+#include "config.h"
 
+#include "extern_.h"
 
 #include <stdlib.h>
 
