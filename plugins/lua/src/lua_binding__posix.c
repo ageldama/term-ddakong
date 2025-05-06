@@ -156,9 +156,6 @@ int luab__posix_kill_forkpty(lua_State *L)
 }
 
 
-#include "lobject.h"
-
-
 lua_State *_sig_hdlr_L = NULL; /* NOTE dirty, limited */
 
 void _sig_hdlr(int signo)
@@ -177,19 +174,23 @@ void _sig_hdlr(int signo)
       return;
     }
 
+  int cb_ref = lua_tointeger(L, -1); lua_remove(L, 1);
+  lua_rawgeti(L, LUA_REGISTRYINDEX, cb_ref);
+
   lua_pushnumber(L, signo);
   lua_call(L, 1, 0);
-  lua_remove(L, 1);
+  /* lua_remove(L, 1); */
 }
 
+#include "lauxlib.h"
 
 int luab__posix_signal_trap_norecover(lua_State *L)
 {
   /* (n_sig, fn_action) => () */
-  const int n_sig = lua_tointeger(L, -2);
-  TValue *fn_action = lua_touserdata(L, -1);
+  int fn_action = luaL_ref(L, LUA_REGISTRYINDEX);
+  const int n_sig = lua_tointeger(L, -1);
 
-  lua_remove(L, 2);
+  lua_remove(L, 1);
 
   assert(luab__posix_signal_trap_norecover_pfn);
   typedef void (*pfn_t)(const int /*signo*/,
@@ -205,7 +206,7 @@ int luab__posix_signal_trap_norecover(lua_State *L)
   lua_getfield(L, -1, "__posix_signal_trap_norecover_actions");
 
   lua_pushnumber(L, n_sig);
-  lua_pushlightuserdata(L, fn_action);
+  lua_pushnumber(L, fn_action);
 
   lua_settable(L, -3);
 
