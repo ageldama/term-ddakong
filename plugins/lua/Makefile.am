@@ -9,3 +9,4 @@ dist-hook:
 	-find $(distdir) -name '*.o' -exec rm {} \;
 	-rm -f $(distdir)/$(LUA_SRC)/src/lua
 	-rm -f $(distdir)/$(LUA_SRC)/src/luac
+

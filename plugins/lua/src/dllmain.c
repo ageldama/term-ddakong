@@ -18,15 +18,29 @@ void ddakong_plugin_entry
 (const plugin_func_t *funcs, const ssize_t funcs_len)
 {
   L = luaL_newstate();
-  
+  if (L == NULL)
+    {
+      fprintf(stderr, "# luaL_newstate has failed, aborting plugin\n");
+      return;
+    }
+
   for (int i = 0 ; i < funcs_len ; i ++)
     {
       plugin_func_t *p_func_row = (plugin_func_t *) &funcs[i];
       fprintf(stderr, "# fn: %s @ %p\n",
               p_func_row->sz_func_name, p_func_row->p_func);
+
+      /* TODO bind func-ptr => lua-mod */
     }
 
 }
 
 
-void ddakong_plugin_deinit() {}
+void ddakong_plugin_deinit()
+{
+  if (L != NULL)
+    {
+      lua_close(L);
+      L = NULL;
+    }
+}
