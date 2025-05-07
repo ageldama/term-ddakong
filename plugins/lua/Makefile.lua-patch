@@ -5,5 +5,5 @@ LUA_SRC ?= lua-5.4.7
 
 .PHONY: patch
 patch:
-	-patch -N $(LUA_SRC)/src/Makefile ./lua-5.4.7-src-Makefile.patch
+	-patch -N $(LUA_SRC)/src/Makefile ./01-lua-5.4.7-src-Makefile.patch
 

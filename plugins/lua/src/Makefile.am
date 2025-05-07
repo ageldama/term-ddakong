@@ -24,7 +24,7 @@ nodist_liblua_ddakong_la_SOURCES = __lua_built__.c
 __lua_built__.c:
 if EXTERNAL_LUA
 else
-	make -C $(top_srcdir)/$(LUA_SRC)
+	CC="$(CC)" AR="$(AR)" RANLIB="$(RANLIB)" make -C $(top_srcdir)/$(LUA_SRC)
 endif
 	touch $(srcdir)/__lua_built__.c
 
