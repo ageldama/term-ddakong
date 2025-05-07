@@ -1,7 +1,11 @@
 #include "pollfd.h"
 
 
-
-#ifdef HAVE_SYS_EPOLL_H
+#if (ENABLE_SELECT)
+#include "pollfd__select.c"
+#elif (HAVE_SYS_EPOLL_H)
 #include "pollfd__linux_epoll.c"
-#endif /* HAVE_SYS_EPOLL_H */
+#else
+/* fallback */
+#include "pollfd__select.h"
+#endif

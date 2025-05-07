@@ -8,9 +8,14 @@
 #include <stdint.h>
 
 
-#ifdef HAVE_SYS_EPOLL_H /* Linux/epoll */
+#if (ENABLE_SELECT)
+#include "pollfd__select.h"
+#elif (HAVE_SYS_EPOLL_H)
 #include "pollfd__linux_epoll.h"
-#endif /* HAVE_SYS_EPOLL_H */
+#else
+/* fallback */
+#include "pollfd__select.h"
+#endif
 
 
 typedef enum {

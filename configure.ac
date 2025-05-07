@@ -15,9 +15,15 @@ AC_CONFIG_MACRO_DIR([m4])
 
 # Features
 
+AC_ARG_ENABLE([select],
+              AS_HELP_STRING([--enable-select],
+                             [Enable select(2) instead of epoll/kqueue]))
+
+
 AC_ARG_ENABLE([lua],
               AS_HELP_STRING([--disable-lua],
                              [Disable Lua scripting plugin]))
+
 
 AC_ARG_ENABLE([random-phrase],
               AS_HELP_STRING([--disable-random-phrase],
@@ -122,6 +128,9 @@ AS_IF([test x"$enable_random_phrase" != x"no"],
 
 AS_IF([test x"$enable_lua" != x"no"],
     [AC_CONFIG_SUBDIRS([plugins/lua])])
+
+AS_IF([test x"$enable_select" == x"yes"],
+    [AC_DEFINE([ENABLE_SELECT], [1], [use select(1)])])
 
 
 AC_OUTPUT

@@ -749,6 +749,7 @@ ac_subst_files=''
 ac_user_opts='
 enable_option_checking
 enable_silent_rules
+enable_select
 enable_lua
 enable_random_phrase
 with_lua
@@ -1392,6 +1393,7 @@ Optional Features:
   --enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
   --enable-silent-rules   less verbose build output (undo: "make V=1")
   --disable-silent-rules  verbose build output (undo: "make V=0")
+  --enable-select         Enable select(2) instead of epoll/kqueue
   --disable-lua           Disable Lua scripting plugin
   --disable-random-phrase Disable Random phrase (example) plugin
   --enable-dependency-tracking
@@ -3317,11 +3319,20 @@ ac_config_headers="$ac_config_headers config.h"
 
 # Features
 
+# Check whether --enable-select was given.
+if test ${enable_select+y}
+then :
+  enableval=$enable_select;
+fi
+
+
+
 # Check whether --enable-lua was given.
 if test ${enable_lua+y}
 then :
   enableval=$enable_lua;
 fi
+
 
 
 # Check whether --enable-random-phrase was given.
@@ -5329,6 +5340,13 @@ fi
 if test x"$enable_lua" != x"no"
 then :
   subdirs="$subdirs plugins/lua"
+
+fi
+
+if test x"$enable_select" == x"yes"
+then :
+
+printf "%s\n" "#define ENABLE_SELECT 1" >>confdefs.h
 
 fi
 
