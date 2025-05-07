@@ -147,8 +147,40 @@ typedef struct {
 
 
 * C API =get_current_handle_input_fn=
+  입력처리기 handle_input_fn 함수포인터 설정하기
+
+  #+begin_src c
+    handle_input_fn_t get_current_handle_input_fn(void);
+  #+end_src
+
+
+* Lua API =get_current_handle_input_fn=
+  1. 현재 설정된 입력처리기 함수객체
+     1. C-function 포인터이거나
+     2. Lua-function값
+
 
 * C API =set_current_handle_input_fn=
+  입력처리기 handle_input_fn 함수포인터 얻기
+
+  #+begin_src c
+    handle_input_fn_t get_current_handle_input_fn(void);
+  #+end_src
+
+
+* Lua API =set_current_handle_input_fn=
+  입력처리기 함수를 설정:
+
+  #+begin_src lua
+    -- set_current_handle_input_fn 예시:
+    ddakong.set_current_handle_input_fn(
+       function(fd_keyin, fd_child)
+          -- 입력을 읽어서:
+          local buf = ddakong.fdread(fd_keyin, 1)
+          -- 그대로 전달:
+          ddakong.fdwrite(fd_child, buf)
+       end)
+  #+end_src
 
 
 * C TYPE =handle_input_fn_t=
