@@ -179,7 +179,6 @@ void _sig_hdlr(int signo)
 
   lua_pushnumber(L, signo);
   lua_call(L, 1, 0);
-  /* lua_remove(L, 1); */
 }
 
 #include "lauxlib.h"
