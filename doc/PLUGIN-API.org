@@ -1,0 +1,11 @@
+* ddakong / Plugin APIs
+
+  | DLL API                | Lua API    |
+  |------------------------+------------|
+  | =get_plugin_funcs=     | N/A [fn:1] |
+  | =get_plugin_funcs_len= |            |
+
+* Footnotes
+
+[fn:1] ~ddakong~ lua module이 어차피 모든 API함수들을 노출하고
+있으므로 불필요.
