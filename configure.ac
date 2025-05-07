@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.72])
-AC_INIT([ddakong],[0.0.9],[Jonghyouk Yun <ageldama@gmail.com>])
+AC_INIT([ddakong],[1.0],[Jonghyouk Yun <ageldama@gmail.com>])
 AC_CONFIG_AUX_DIR([./autotools])
 
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])

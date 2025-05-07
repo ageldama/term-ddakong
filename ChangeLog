@@ -1,3 +1,9 @@
+
+2025-05-04  윤종혁	<ageldama@gmail.com>
+	v1.0 : 버전스킴 변경
+	* Lua 스크립팅, DLL 플러그인 API 문서 추가
+
+
 2025-05-04  윤종혁	<ageldama@gmail.com>
 
 	v0.0.9 : Lua Scripting
