@@ -10,7 +10,6 @@
 #define typedef__h 1
 
 #include <stdint.h>
-
 #include "extern_.h"
 
 /**

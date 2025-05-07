@@ -8,9 +8,10 @@
 
 #include "fd_io.h"
 
-#include <fcntl.h>
-#include <sys/epoll.h>
-#include <unistd.h>
+#include <fcntl.h>      /* for fcntl, F_GETFL, F_SETFL, O_NONBLOCK */
+#include <stddef.h>     /* for size_t, NULL */
+#include <sys/epoll.h>  /* for epoll_event, epoll_ctl, EPOLLIN, EPOLL_CTL_ADD */
+#include <unistd.h>     /* for read, write */
 
 ssize_t
 cp_fd (const int src_fd, const int dst_fd, char *buf, const ssize_t buf_max)

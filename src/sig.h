@@ -9,8 +9,6 @@
 #ifndef sig_h
 #define sig_h 1
 
-#include <sys/types.h>
-
 #include "extern_.h"
 
 /**
