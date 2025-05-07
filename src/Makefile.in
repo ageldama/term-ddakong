@@ -117,7 +117,7 @@ am_libddakongs_a_OBJECTS = err.$(OBJEXT) fd_io.$(OBJEXT) \
 	im_handler.$(OBJEXT) im_handler_hangeul.$(OBJEXT) \
 	pty_.$(OBJEXT) sig.$(OBJEXT) termios_.$(OBJEXT) \
 	utf8_.$(OBJEXT) winsz.$(OBJEXT) plugin.$(OBJEXT) \
-	plugin_func_registry.$(OBJEXT)
+	plugin_func_registry.$(OBJEXT) pollfd.$(OBJEXT)
 libddakongs_a_OBJECTS = $(am_libddakongs_a_OBJECTS)
 am_ddakong_OBJECTS = main_ddakong.$(OBJEXT)
 ddakong_OBJECTS = $(am_ddakong_OBJECTS)
@@ -142,8 +142,9 @@ am__depfiles_remade = ./$(DEPDIR)/err.Po ./$(DEPDIR)/fd_io.Po \
 	./$(DEPDIR)/hangeul_tables.Po ./$(DEPDIR)/im_handler.Po \
 	./$(DEPDIR)/im_handler_hangeul.Po ./$(DEPDIR)/main_ddakong.Po \
 	./$(DEPDIR)/plugin.Po ./$(DEPDIR)/plugin_func_registry.Po \
-	./$(DEPDIR)/pty_.Po ./$(DEPDIR)/sig.Po ./$(DEPDIR)/termios_.Po \
-	./$(DEPDIR)/utf8_.Po ./$(DEPDIR)/winsz.Po
+	./$(DEPDIR)/pollfd.Po ./$(DEPDIR)/pty_.Po ./$(DEPDIR)/sig.Po \
+	./$(DEPDIR)/termios_.Po ./$(DEPDIR)/utf8_.Po \
+	./$(DEPDIR)/winsz.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -293,7 +294,8 @@ libddakongs_a_SOURCES = err.c fd_io.c getopt_.c \
     hangeul.c hangeul_tables.c \
     im_handler.c im_handler_hangeul.c \
     pty_.c sig.c termios_.c utf8_.c winsz.c \
-    plugin.c plugin_func_registry.c
+    plugin.c plugin_func_registry.c \
+    pollfd.c
 
 ddakong_SOURCES = main_ddakong.c
 ddakong_LDADD = libddakongs.a
@@ -402,6 +404,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main_ddakong.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/plugin.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/plugin_func_registry.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pollfd.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pty_.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sig.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/termios_.Po@am__quote@ # am--include-marker
@@ -565,6 +568,7 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/main_ddakong.Po
 	-rm -f ./$(DEPDIR)/plugin.Po
 	-rm -f ./$(DEPDIR)/plugin_func_registry.Po
+	-rm -f ./$(DEPDIR)/pollfd.Po
 	-rm -f ./$(DEPDIR)/pty_.Po
 	-rm -f ./$(DEPDIR)/sig.Po
 	-rm -f ./$(DEPDIR)/termios_.Po
@@ -625,6 +629,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/main_ddakong.Po
 	-rm -f ./$(DEPDIR)/plugin.Po
 	-rm -f ./$(DEPDIR)/plugin_func_registry.Po
+	-rm -f ./$(DEPDIR)/pollfd.Po
 	-rm -f ./$(DEPDIR)/pty_.Po
 	-rm -f ./$(DEPDIR)/sig.Po
 	-rm -f ./$(DEPDIR)/termios_.Po

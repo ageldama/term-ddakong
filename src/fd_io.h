@@ -51,18 +51,5 @@ EXTERN_ ssize_t cp_fd (const int src_fd, const int dst_fd, char *buf,
  */
 EXTERN_ int fcntl_nb (const int fd, int *p_old_fl);
 
-/**
- * file-descriptor을 epoll-file-descriptor에 추가하기
- *
- * @param epoll_ctl
- *
- * @param epollfd target epoll-fd
- *
- * @param fd 추가할 file-descriptor
- *
- * @return epoll_ctl()-함수의 리턴값 그대로.
- */
-EXTERN_
-int epoll__add (const int epollfd, const int fd);
 
 #endif /* ! fd_io_h */

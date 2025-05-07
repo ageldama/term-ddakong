@@ -59,8 +59,10 @@ AM_PROG_AR
 # Checks for libraries.
 
 # Checks for header files.
+AC_CHECK_HEADERS([sys/epoll.h])
+
 AC_CHECK_HEADERS([stdint.h fcntl.h stdint.h
-sys/epoll.h sys/ioctl.h pty.h
+sys/ioctl.h pty.h
 sys/types.h stddef.h
 signal.h sys/wait.h
 stdarg.h ctype.h
@@ -77,7 +79,9 @@ AC_TYPE_SSIZE_T
 # Checks for library functions.
 
 
-AC_CHECK_FUNCS([atexit forkpty epoll_create1
+AC_CHECK_FUNCS([epoll_create1])
+
+AC_CHECK_FUNCS([atexit forkpty
 getenv execlp kill close read write
 sigemptyset sigaction waitpid
 snprintf perror

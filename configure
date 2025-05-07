@@ -5019,7 +5019,15 @@ then :
 printf "%s\n" "#define STDC_HEADERS 1" >>confdefs.h
 
 fi
-       for ac_header in stdint.h fcntl.h stdint.h sys/epoll.h sys/ioctl.h pty.h sys/types.h stddef.h signal.h sys/wait.h stdarg.h ctype.h termios.h unistd.h
+ac_fn_c_check_header_compile "$LINENO" "sys/epoll.h" "ac_cv_header_sys_epoll_h" "$ac_includes_default"
+if test "x$ac_cv_header_sys_epoll_h" = xyes
+then :
+  printf "%s\n" "#define HAVE_SYS_EPOLL_H 1" >>confdefs.h
+
+fi
+
+
+       for ac_header in stdint.h fcntl.h stdint.h sys/ioctl.h pty.h sys/types.h stddef.h signal.h sys/wait.h stdarg.h ctype.h termios.h unistd.h
 do :
   as_ac_Header=`printf "%s\n" "ac_cv_header_$ac_header" | sed "$as_sed_sh"`
 ac_fn_c_check_header_compile "$LINENO" "$ac_header" "$as_ac_Header" "$ac_includes_default"
@@ -5189,8 +5197,16 @@ fi
 # Checks for library functions.
 
 
+ac_fn_c_check_func "$LINENO" "epoll_create1" "ac_cv_func_epoll_create1"
+if test "x$ac_cv_func_epoll_create1" = xyes
+then :
+  printf "%s\n" "#define HAVE_EPOLL_CREATE1 1" >>confdefs.h
 
-  for ac_func in atexit forkpty epoll_create1 getenv execlp kill close read write sigemptyset sigaction waitpid snprintf perror isalpha isprint ioctl tcgetattr tcsetattr getopt abort vasprintf exit fprintf fcntl
+fi
+
+
+
+  for ac_func in atexit forkpty getenv execlp kill close read write sigemptyset sigaction waitpid snprintf perror isalpha isprint ioctl tcgetattr tcsetattr getopt abort vasprintf exit fprintf fcntl
 do :
   as_ac_var=`printf "%s\n" "ac_cv_func_$ac_func" | sed "$as_sed_sh"`
 ac_fn_c_check_func "$LINENO" "$ac_func" "$as_ac_var"
