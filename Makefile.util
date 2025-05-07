@@ -37,7 +37,6 @@ bear:
 
 
 configure-make-host = \
-	-rm -v ddakong-* liblua_ddakong*.so librandom_phrase_ddakong*.so ; \
 	-make distclean ; \
 	./configure --host=$(1) \
 	&& make -C plugins/lua/lua-5.4.7 clean \
@@ -50,10 +49,12 @@ configure-make-host = \
 	&& mv -vf ./plugins/lua/liblua_ddakong.so ./liblua_ddakong-$(1).so
 
 build-all:
+	-rm -v ddakong-* liblua_ddakong*.so librandom_phrase_ddakong*.so ; \
+
 	$(call configure-make-host,arm-linux-gnueabihf)
-	# $(call configure-make-host,aarch64-linux-gnu)
-	# $(call configure-make-host,i686-linux-gnu)
-	# $(call configure-make-host,x86_64-linux-gnu)
+	$(call configure-make-host,aarch64-linux-gnu)
+	$(call configure-make-host,i686-linux-gnu)
+	$(call configure-make-host,x86_64-linux-gnu)
 
 	find . -maxdepth 1 -type f -name 'ddakong*' -print -exec file {} \;
 	find . -maxdepth 1 -type f -name 'librandom_phrase_ddakong*.so' -print -exec file {} \;
