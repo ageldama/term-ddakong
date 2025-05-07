@@ -6,13 +6,14 @@
 # Your platform. See PLATS for possible values.
 PLAT= guess
 
-CC= gcc -std=gnu99
+CC ?= gcc -std=gnu99
 CFLAGS= -O2 -Wall -Wextra -DLUA_COMPAT_5_3 $(SYSCFLAGS) $(MYCFLAGS)
 LDFLAGS= $(SYSLDFLAGS) $(MYLDFLAGS)
 LIBS= -lm $(SYSLIBS) $(MYLIBS)
 
-AR= ar rcu
-RANLIB= ranlib
+AR ?= ar
+AR_ ?= $(AR) rcu
+RANLIB ?= ranlib
 RM= rm -f
 UNAME= uname
 
@@ -57,7 +58,7 @@ o:	$(ALL_O)
 a:	$(ALL_A)
 
 $(LUA_A): $(BASE_O)
-	$(AR) $@ $(BASE_O)
+	$(AR_) $@ $(BASE_O)
 	$(RANLIB) $@
 
 $(LUA_T): $(LUA_O) $(LUA_A)
@@ -81,7 +82,7 @@ echo:
 	@echo "CFLAGS= $(CFLAGS)"
 	@echo "LDFLAGS= $(LDFLAGS)"
 	@echo "LIBS= $(LIBS)"
-	@echo "AR= $(AR)"
+	@echo "AR= $(AR_)"
 	@echo "RANLIB= $(RANLIB)"
 	@echo "RM= $(RM)"
 	@echo "UNAME= $(UNAME)"

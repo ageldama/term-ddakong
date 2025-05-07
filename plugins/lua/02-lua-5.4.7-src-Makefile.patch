@@ -1,0 +1,19 @@
+9c9
+< CC= gcc -std=gnu99
+---
+> CC ?= gcc -std=gnu99
+14,15c14,16
+< AR= ar rcu
+< RANLIB= ranlib
+---
+> AR ?= ar
+> AR_ ?= $(AR) rcu
+> RANLIB ?= ranlib
+60c61
+< 	$(AR) $@ $(BASE_O)
+---
+> 	$(AR_) $@ $(BASE_O)
+84c85
+< 	@echo "AR= $(AR)"
+---
+> 	@echo "AR= $(AR_)"
