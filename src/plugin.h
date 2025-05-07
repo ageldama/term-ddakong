@@ -42,11 +42,11 @@ typedef struct {
  * 로딩한 DLL 파일의 * ddakong_plugin_entry() 함수에 전달할 함수포인터
  * 배열의 행타입.
  *
- * @param p_func 함수포인터
+ * @field p_func 함수포인터
  *
- * @param sz_func_name 함수의 이름 (예: "printf")
+ * @field sz_func_name 함수의 이름 (예: "printf")
  *
- * @param sz_func_doc 함수설명 (예: "prints somethign")
+ * @field sz_func_doc 함수설명 (예: "prints somethign")
  */
 typedef struct {
   void *p_func;

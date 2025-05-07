@@ -84,6 +84,67 @@
   | =hangeul_remap_code=                   | N/A [fn:2]       |
 
 
+
+* DLL Entry: =ddakong_plugin_entry=
+
+  PLUGIN DLL에서 찾아 실행할 ddakong_plugin_entry() 함수의 타입
+
+  - 반드시 이 함수를 구현/노출하여 ddakong와 플러그인을 연결합니다.
+  - 최초에 플러그인이 사용할 수 있는 함수포인터의 목록을 전달 받는 역할.
+
+
+#+begin_src c
+typedef void (*ddakong_plugin_entry_fn_t)
+(const plugin_func_t *funcs, const ssize_t funcs_len);
+#+end_src
+
+
+* DLL Exit: =ddakong_plugin_deinit=
+ PLUGIN DLL에서 deinitialization시 호출할 함수의 타입
+
+ - 해제할 자원이 있는 경우, 이 함수를 구현/노출하여 플러그인의
+   deinitialization을 수행합니다.
+
+
+ #+begin_src c
+typedef void (*ddakong_plugin_deinit_fn_t)();
+ #+end_src
+
+
+* API =get_plugin_funcs=
+
+  - ddakong이 노출하는 플러그인이 호출할 수 있는 함수포인터의 목록.
+
+  #+begin_src c
+    plugin_func_t *get_plugin_funcs(void)
+  #+end_src
+
+* API =get_plugin_funcs=
+
+  - ddakong이 노출하는 플러그인이 호출할 수 있는 함수포인터의 목록의 길이.
+
+  #+begin_src c
+    ssize_t get_plugin_funcs_len(void);
+  #+end_src
+
+
+* C TYPE =plugin_func_t=
+  로딩한 DLL 파일의 * ddakong_plugin_entry() 함수에 전달할 함수포인터
+  배열의 행타입.
+
+  - @field =p_func= 함수포인터
+  - @field =sz_func_name= 함수의 이름 (예: "printf")
+  - @field =sz_func_doc= 함수설명 (예: "prints somethign")
+
+#+begin_src c
+typedef struct {
+  void *p_func;
+  char *sz_func_name;
+  char *sz_func_doc;
+} plugin_func_t;
+#+end_src
+
+
 * Footnotes
 [fn:4] 루아에는 없는 Unix file-descriptor read/write 지원.
 
