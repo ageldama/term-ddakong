@@ -55,14 +55,18 @@ dkms.conf
 compile_commands.json
 *~
 
+/src/ddakong
+KEYLOG.txt
+
 autoscan.log
 
 /build
-
 /KEYLOG.txt
 
 autom4te.cache/
 /src/ddakong
+autom4te.cache/
+
 config.h
 config.log
 config.status
@@ -74,6 +78,10 @@ Makefile
 
 /term-ddakong-*.tar.gz
 /ddakong-*.tar.gz
+libtool
+
+term-ddakong-*.tar.gz
+ddakong-*.tar.gz
 
 ddakong-x86_64-linux
 ddakong-x86-linux
@@ -87,3 +95,6 @@ ddakong-x86_64-linux-gnu
 
 TAGS
 
+lua-*/src/lua
+lua-*/src/luac
+*.rej

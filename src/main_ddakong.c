@@ -34,6 +34,8 @@
 
 int child_fd = -1;
 pid_t child_pid = 0;
+dll_plugin_context_t dll_plugin_ctx;
+
 
 /* internals */
 
@@ -110,6 +112,11 @@ _exit_cleanup (void)
 
   termios__reset ();
   kill_forkpty (child_pid, child_fd);
+
+  if (dll_plugin_ctx.p_dll != NULL)
+    {
+      dll_plugin_unload(&dll_plugin_ctx);
+    }
 }
 
 void
@@ -186,7 +193,6 @@ main (int argc, char **argv)
     }
 
   /* dll-plugin: 초기화 */
-  dll_plugin_context_t dll_plugin_ctx;
   dll_plugin_ctx.p_dll = NULL;
 
   if (NULL != plugin_dll_filename)
@@ -285,8 +291,9 @@ main (int argc, char **argv)
       int nfds = epoll_wait (epollfd, events, MAX_EVENTS, epoll_timeout_ms);
       if (nfds == -1)
         {
-          perror ("epoll_wait");
-          exit (EXIT_FAILURE);
+          /* perror ("epoll_wait"); */
+          /* exit (EXIT_FAILURE); */
+          continue;
         }
 
       for (int n = 0; n < nfds; ++n)

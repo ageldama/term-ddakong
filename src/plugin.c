@@ -80,6 +80,21 @@ void dll_plugin_unload
   assert(p_plugin_ctx != NULL);
   assert(p_plugin_ctx->p_dll != NULL);
 
+  /* deinit */
+  ddakong_plugin_deinit_fn_t deinit_fn =
+    (ddakong_plugin_deinit_fn_t) dlsym(p_plugin_ctx->p_dll,
+                    DDAKONG_PLUGIN_DEINIT_NAME);
+  if (NULL == deinit_fn)
+    {
+      perror(dlerror());
+    }
+  else
+    {
+      deinit_fn();
+    }
+
+
+  /* dlclose */
   dlclose(p_plugin_ctx->p_dll);
   p_plugin_ctx->p_dll = NULL;
 }

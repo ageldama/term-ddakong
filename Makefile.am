@@ -1,18 +1,27 @@
 
+
 SUBDIRS = src
+
+if RANDOM_PHRASE
+    SUBDIRS += plugins/random-phrase
+endif
+
+if LUA
+    SUBDIRS += plugins/lua
+endif
+
+
+
 dist_doc_DATA = README.org TODOs.org LICENSE doc
-EXTRA_DIST = examples Makefile.util
+EXTRA_DIST = Makefile.util
 
 dist-hook:
-	-rm -rf examples/random-phrase-dll/src/.libs
-	-rm -rf examples/random-phrase-dll/src/.deps
-	-rm -rf examples/random-phrase-dll/src/Makefile
-	-rm -rf examples/random-phrase-dll/Makefile
-	-rm -rf examples/random-phrase-dll/config.log
-	-rm -rf examples/random-phrase-dll/stamp-h1
-	-rm -rf examples/random-phrase-dll/autom4te.cache
+	-find $(distdir) -name '*~' -exec rm {} \;
+	-find $(distdir) -name '*.a' -exec rm {} \;
+	-find $(distdir) -name '*.o' -exec rm {} \;
+	-find $(distdir) -name '*.la' -exec rm {} \;
+	-find $(distdir) -name '*.lo' -exec rm {} \;
 
-	-find $(dist) -name '*~' -exec rm {} \;
-	-find $(dist) -name '*.o' -exec rm {} \;
-	-find $(dist) -name '*.la' -exec rm {} \;
-	-find $(dist) -name '*.lo' -exec rm {} \;
+
+
+

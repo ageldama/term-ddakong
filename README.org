@@ -10,9 +10,8 @@
      - linux console/terminal에서 바로 실행가능.
      - (예: https://gjedeer.github.io/fbterm/ 등과 함께)
 
-  4) Shared-Library DLL을 작성하거나, Lua/Guile 등 스크립팅으로
+  4) Shared-Library DLL을 작성하거나, Lua 스크립팅으로
      원하는대로 hackable 🧨🪓:
-     - (Lua/Guile 스크립팅은 개발중)
      - input-method 전환키 변경
      - UTF-8 인코딩 이외에 입력하도록 변경
      - 한글 이외 다른 언어 입력기으로 변경
@@ -110,7 +109,7 @@
 
 
 
-* Plug-in
+* Plug-in: DLL
 
   Shared Library을 작성하여, 다음의 기능들을 변경할 수 있습니다:
 
@@ -119,24 +118,50 @@
   3. 한글2벌식 이외의 키보드 지원
   4. 한글 이외의 입력지 작성
 
-
-  (Lua, Guile 등 스크립팅 플러그인은 개발중입니다)
-
-
   플러그인 예시를 빌드/실행하는 방법:
 
   #+begin_src shell
-    cd ./examples/random-phrase-dll/
+    cd ./plugins/random-phrase/
     ./configure && make
 
     # 빌드된 플러그인을 로딩하여 실행:
-    ddakong -d ./src/librand_phrase_ddakong_plugin.la
+    ddakong -d ./librandom_phrase_ddakong.so
   #+end_src
 
 
   ddakong의 내장된 모든 함수를 플러그인 DLL에 전달하여 호출하여
   원하는대로 hack할 수 있습니다.🧨(예제 플러그인의 코드 참고)
 
+  ➡️ [[./doc/PLUGIN-API.org]] 문서에 자세한 플러그인 API을 설명
+
+
+* Plug-in: Lua scripting
+  자동으로 ~plugins/lua~-에 내장된 Lua 5.4.7 코드를 이용하여
+  빌드됩니다.
+
+  LuaJIT등 별도 Lua을 사용하려면,
+
+  1) ~./configure --with-lua=yes --with-lua-cflags=...
+     --with-lua-libs=...~
+  2) 혹은 더 단순히 ~./configure --with-lua-pkg-config=lua~
+     - ~pkg-config --list-all |grep lua~-하여 검색된 설치된 lua을
+       사용합니다. (예: ~--with-lua-pkg-config=lua5.4~)
+
+
+  Lua 스크립팅으로 원하는대로 수정이 가능합니다. 간단한 예시는 다음과
+  같이 ~make~-이후에 실행해 볼 수 있습니다:
+
+  #+begin_src shell
+    $ DDAKONG_LUA=$PWD/plugins/lua/examples/passthru.lua ./src/ddakong -d ./plugins/lua/liblua_ddakong.so
+  #+end_src
+
+  위에서 보는 것과 같이 ~-d ...~ 옵션으로 lua-plugin DLL을 로딩하도록 하고,
+  ~DDAKONG_LUA=~ 환경변수에 로딩할 루아 스크립트를 지정합니다.
+
+  이 환경변수를 지정하지 않으면 ~$HOME/.ddakong/init.lua~-파일을
+  로딩합니다.
+
+  ➡️ [[./doc/PLUGIN-API.org]] 문서에 자세한 플러그인 API을 설명
 
 
 * 라이센스 / License

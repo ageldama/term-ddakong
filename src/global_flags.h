@@ -26,6 +26,11 @@ EXTERN_ char *keylog_filename;
 
 EXTERN_ char *default_keylog_filename;
 
+EXTERN_ int child_fd;
+
+EXTERN_ pid_t child_pid;
+
+
 
 /**
  * (sz, nullable) 플러그인 DLL 파일경로. NULL-이면 로딩하지 않음.

@@ -17,10 +17,16 @@
 
 
 #ifndef DDAKONG_PLUGIN_ENTRY_NAME
+
 /**
  * 플러그인 DLL 로딩한 다음 호출할 초기화 함수 이름
  */
 #define DDAKONG_PLUGIN_ENTRY_NAME "ddakong_plugin_entry"
+
+/**
+ * 플러그인 DLL 해제/정리시 호출할 deinitialization 함수 이름
+ */
+#define DDAKONG_PLUGIN_DEINIT_NAME "ddakong_plugin_deinit"
 #endif
 
 
@@ -36,11 +42,11 @@ typedef struct {
  * 로딩한 DLL 파일의 * ddakong_plugin_entry() 함수에 전달할 함수포인터
  * 배열의 행타입.
  *
- * @param p_func 함수포인터
+ * @field p_func 함수포인터
  *
- * @param sz_func_name 함수의 이름 (예: "printf")
+ * @field sz_func_name 함수의 이름 (예: "printf")
  *
- * @param sz_func_doc 함수설명 (예: "prints somethign")
+ * @field sz_func_doc 함수설명 (예: "prints somethign")
  */
 typedef struct {
   void *p_func;
@@ -65,6 +71,11 @@ EXTERN_ const ssize_t plugin_funcs_len;
  */
 typedef void (*ddakong_plugin_entry_fn_t)
 (const plugin_func_t *, const ssize_t);
+
+/**
+ * DLL-PLUGIN에서 deinitialization시 호출할 함수의 타입
+ */
+typedef void (*ddakong_plugin_deinit_fn_t)();
 
 
 /**

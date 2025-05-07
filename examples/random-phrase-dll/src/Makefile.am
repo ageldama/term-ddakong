@@ -1,2 +1,0 @@
-lib_LTLIBRARIES = librand_phrase_ddakong_plugin.la
-librand_phrase_ddakong_plugin_la_SOURCES = dllmain.c im_handler.c
