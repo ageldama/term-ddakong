@@ -5,6 +5,7 @@
 #include "lua.h"
 
 #include <stdint.h>
+#include <unistd.h>
 
 typedef void handle_write_to_child_cb_t (const ssize_t n_written,
                                          const char *buf, void *cb_aux);

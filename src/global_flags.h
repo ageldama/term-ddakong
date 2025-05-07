@@ -12,6 +12,7 @@
 #include "extern_.h"
 
 #include <stdio.h>
+#include <sys/types.h>
 
 /**
  * (BOOL) "verbose logging" 할지?
