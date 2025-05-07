@@ -162,7 +162,7 @@
   로딩합니다.
 
 
--> ref: plugin-api.md
+  [[file:doc/PLUGIN-API.org 문서에 자세한 플러그인 API을 설명]]
 
 
 * 라이센스 / License

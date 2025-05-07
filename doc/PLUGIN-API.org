@@ -211,24 +211,32 @@ typedef void (*handle_input_fn_t)
 
 
 * Lua API =get_verbose_flag= / =set_verbose_flag=
+  ddakong verbosity flag (boolean).
 
 
 * Lua API =get_keylog_filename=
+  현재 keylog 파일이름. (없으면 nil)
 
 
 * Lua API =get_default_keylog_filename=
+  기본 keylog 파일이름 상수.
 
 
 * Lua API =get_plugin_dll_filename=
+  현재 로딩하고 있는 플러그인DLL 파일이름 문자열.
 
 
 * Lua API =get_child_pid=
+  ddakong의 하위 쉘 프로세스id (int)
 
 
 * Lua API =get_child_fd=
+  ddakong의 하위 쉘 file-descriptor (int)
 
 
 * Lua API =winsz_update=
+  하위 쉘 file-descriptor의 터미널 창크기를 현재 ddakong 프로세스의
+  크기와 같게 조정: ~ddakong.winsz_update(child_fd)~
 
 
 * Lua API =unicode_to_utf8=
@@ -244,7 +252,15 @@ typedef void (*handle_input_fn_t)
 
 
 * Lua API =fdread= / =fdwrite=
+  Unix file-descriptor read/write:
 
+  #+begin_src lua
+    -- fd_src => 1바이트 읽어서:
+    local buf = ddakong.fdread(fd_src, 1)
+
+    -- fd_dst <= 출력:
+    ddakong.fdwrite(fd_dst, buf)
+  #+end_src
 
 
 

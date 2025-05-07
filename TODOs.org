@@ -50,7 +50,8 @@
   - plugin-system으로 처리.
 
 
-* TODO lua/dll scripting [7/9]
+* DONE lua/dll scripting [9/9]
+  CLOSED: [2025-05-07 Wed 15:14]
   [2025-05-02 Fri]
   1) 다른 입력기, 다른 인코딩을 지원할 수 있도록.
   2) [X] DLL-PLUGIN: IMPL
@@ -63,7 +64,8 @@
   7) [X] configure + disable-[lua, random-phrase]
 
   8) [X] LUA-PLUGIN: IMPL
-  9) [ ] LUA-PLUGIN: README
-  10) [ ] LUA-PLUGIN: EXAMPLE
+  9) [X] LUA-PLUGIN: README
+  10) [X] LUA-PLUGIN: EXAMPLE
 
 
+* TODO xbuild: lua

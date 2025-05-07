@@ -68,7 +68,10 @@ int luab__g_get_keylog_filename(lua_State *L)
   assert(luab__g_get_keylog_filename_pfn);
   typedef char *(*pfn_t)(void);
 
-  lua_pushstring(L, ((pfn_t) luab__g_get_keylog_filename_pfn)());
+  void *fn = ((pfn_t) luab__g_get_keylog_filename_pfn)();
+
+  if (NULL == fn) lua_pushnil(L);
+  else lua_pushstring(L, fn);
 
   return 1;
 }
