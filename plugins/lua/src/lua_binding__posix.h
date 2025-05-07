@@ -24,6 +24,9 @@ EXTERN_ int luab__posix_signal_trap_norecover(lua_State *L);
 EXTERN_ int luab__posix_forkpty_with_exec(lua_State *L);
 EXTERN_ int luab__posix_kill_forkpty(lua_State *L);
 
+EXTERN_ int luab__posix_fdread(lua_State *L);
+EXTERN_ int luab__posix_fdwrite(lua_State *L);
+
 
 EXTERN_ void lua_binding_build__posix(lua_State *L);
 

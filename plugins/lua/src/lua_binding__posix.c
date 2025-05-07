@@ -9,8 +9,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/types.h> /* pid_t */
+#include <unistd.h>
 
 #include "lua.h"
+#include "lauxlib.h"
 
 
 void *luab__posix_cp_fd_pfn = NULL;
@@ -181,7 +183,6 @@ void _sig_hdlr(int signo)
   lua_call(L, 1, 0);
 }
 
-#include "lauxlib.h"
 
 int luab__posix_signal_trap_norecover(lua_State *L)
 {
@@ -219,4 +220,40 @@ void lua_binding_build__posix(lua_State *L)
   lua_newtable(L);
   lua_settable(L, -3);
 }
+
+
+
+int luab__posix_fdread(lua_State *L)
+{
+  /* (fd, max_len) => (buf) */
+  int fd = lua_tointeger(L, -2);
+  ssize_t max_len = lua_tointeger(L, -1);
+  lua_remove(L, 2);
+
+  void *buf = malloc(max_len);
+  memset(buf, 0, max_len);
+
+  ssize_t n_read = read(fd, buf, max_len);
+
+  lua_pushlstring(L, buf, n_read);
+  free(buf);
+
+  return 1;
+}
+
+
+int luab__posix_fdwrite(lua_State *L)
+{
+  /* (fd, buf) => (n_written) */
+  int fd = lua_tointeger(L, -2);
+  ssize_t buf_len = 0;
+  const char *buf = lua_tolstring(L, -1, &buf_len);
+  lua_remove(L, 2);
+
+  ssize_t n_written = write(fd, buf, buf_len);
+
+  lua_pushnumber(L, n_written);
+  return 1;
+}
+
 

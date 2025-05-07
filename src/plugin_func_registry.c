@@ -197,14 +197,13 @@ const plugin_func_t plugin_funcs[] = {
   { .p_func = set_current_handle_input_status,
     .sz_func_name = "set_current_handle_input_status",
     .sz_func_doc = "", },
+
   { .p_func = im_handler_status__empty,
     .sz_func_name = "hangeul2_im_handler_status_empty",
     .sz_func_doc = "", },
   { .p_func = handle_stdin,
     .sz_func_name = "hangeul2_handle_stdin",
     .sz_func_doc = "", },
-
-  /* im_handler_hangeul.h */
   { .p_func = get_current_hangeul_automata_status,
     .sz_func_name = "get_current_hangeul_automata_status",
     .sz_func_doc = "", },

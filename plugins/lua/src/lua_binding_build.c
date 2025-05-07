@@ -5,6 +5,7 @@
 #include "lua_binding__g.h"
 #include "lua_binding__utf8.h"
 #include "lua_binding__posix.h"
+#include "lua_binding__input_handler.h"
 
 #include <stdlib.h>
 #include <string.h>
@@ -51,22 +52,12 @@ void lua_binding_build
 
 lua_binding_row_t __lua_bindings[] = {
   /* lua_binding__input_handler */
-#if 0 /* TODO */
   { .sz_lua_func_name = "get_current_handle_input_fn",
-    .pfn_wrap = NULL, .ppfn = NULL, },
+    .pfn_wrap = luab__input_handler_get_current_handle_input_fn,
+    .ppfn = &luab__input_handler_get_current_handle_input_fn_pfn, },
   { .sz_lua_func_name = "set_current_handle_input_fn",
-    .pfn_wrap = NULL, },
-  { .sz_lua_func_name = "get_current_handle_input_status",
-    .pfn_wrap = NULL, },
-  { .sz_lua_func_name = "set_current_handle_input_status",
-    .pfn_wrap = NULL, },
-  { .sz_lua_func_name = "hangeul2_im_handler_status_empty",
-    .pfn_wrap = NULL, },
-  { .sz_lua_func_name = "hangeul2_handle_stdin",
-    .pfn_wrap = NULL, },
-  { .sz_lua_func_name = "get_current_hangeul_automata_status",
-    .pfn_wrap = NULL, },
-#endif
+    .pfn_wrap = luab__input_handler_set_current_handle_input_fn,
+    .ppfn = &luab__input_handler_set_current_handle_input_fn_pfn, },
 
   /* lua_biding__err */
   { .sz_lua_func_name = "ERR_err_p",
@@ -144,9 +135,15 @@ lua_binding_row_t __lua_bindings[] = {
   { .sz_lua_func_name = "kill_forkpty",
     .pfn_wrap = luab__posix_kill_forkpty,
     .ppfn = &luab__posix_kill_forkpty_pfn, },
+  { .sz_lua_func_name = "fdread",
+    .pfn_wrap = luab__posix_fdread,
+    .ppfn = NULL, },
+  { .sz_lua_func_name = "fdwrite",
+    .pfn_wrap = luab__posix_fdwrite,
+    .ppfn = NULL, },
 
   /* lua_binding__hangeul_common */
-#if 0 /* TODO */
+#if 0 /* TODO? */
   { .sz_lua_func_name = "hangeul_const_chojungjong_nul",
     .pfn_wrap = NULL, },
   { .sz_lua_func_name = "hangeul_const_choseong",
@@ -162,7 +159,7 @@ lua_binding_row_t __lua_bindings[] = {
 #endif
 
   /* lua_binding__hangeul_2beol */
-#if 0 /* TODO */
+#if 0 /* TODO? */
   { .sz_lua_func_name = "hangeul_automata_status__new",
     .pfn_wrap = NULL, },
   { .sz_lua_func_name = "hangeul_automata_status__delete",
