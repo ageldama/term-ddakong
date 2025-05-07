@@ -68,4 +68,5 @@
   10) [X] LUA-PLUGIN: EXAMPLE
 
 
-* TODO xbuild: lua
+* DONE xbuild: lua
+  CLOSED: [2025-05-07 Wed 15:43]

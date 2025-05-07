@@ -37,17 +37,24 @@ bear:
 
 
 configure-make-host = \
+	-rm -v ddakong-* liblua_ddakong*.so librandom_phrase_ddakong*.so ; \
 	-make distclean ; \
 	./configure --host=$(1) \
+	&& make -C plugins/lua/lua-5.4.7 clean \
 	&& make -j`nproc` clean all \
+	&& make -j`nproc` -C plugins/random-phrase \
+	&& make -j`nproc` -C plugins/lua \
 	&& file ./src/ddakong \
-	&& mv -vf ./src/ddakong ./ddakong-$(1)
-
+	&& mv -vf ./src/ddakong ./ddakong-$(1) \
+	&& mv -vf ./plugins/random-phrase/librandom_phrase_ddakong.so ./librandom_phrase_ddakong-$(1).so \
+	&& mv -vf ./plugins/lua/liblua_ddakong.so ./liblua_ddakong-$(1).so
 
 build-all:
 	$(call configure-make-host,arm-linux-gnueabihf)
-	$(call configure-make-host,aarch64-linux-gnu)
-	$(call configure-make-host,i686-linux-gnu)
-	$(call configure-make-host,x86_64-linux-gnu)
+	# $(call configure-make-host,aarch64-linux-gnu)
+	# $(call configure-make-host,i686-linux-gnu)
+	# $(call configure-make-host,x86_64-linux-gnu)
 
 	find . -maxdepth 1 -type f -name 'ddakong*' -print -exec file {} \;
+	find . -maxdepth 1 -type f -name 'librandom_phrase_ddakong*.so' -print -exec file {} \;
+	find . -maxdepth 1 -type f -name 'liblua_ddakong*.so' -print -exec file {} \;
