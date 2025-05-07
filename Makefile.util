@@ -34,6 +34,7 @@ iwyu:
 	$(call find-src-inc,iwyu -I./include {})
 
 
+.PHONY: bear
 bear:
 	bear -- make clean all
 
@@ -50,6 +51,7 @@ configure-make-host = \
 	&& mv -vf ./plugins/random-phrase/librandom_phrase_ddakong.so ./librandom_phrase_ddakong-$(1).so \
 	&& mv -vf ./plugins/lua/liblua_ddakong.so ./liblua_ddakong-$(1).so
 
+.PHONY: build-all
 build-all:
 	-rm -v ddakong-* liblua_ddakong*.so librandom_phrase_ddakong*.so ; \
 
@@ -61,3 +63,12 @@ build-all:
 	find . -maxdepth 1 -type f -name 'ddakong*' -print -exec file {} \;
 	find . -maxdepth 1 -type f -name 'librandom_phrase_ddakong*.so' -print -exec file {} \;
 	find . -maxdepth 1 -type f -name 'liblua_ddakong*.so' -print -exec file {} \;
+
+
+
+.PHONY: cppcheck
+cppcheck:
+	cppcheck --enable=all --disable=missingInclude \
+	    --library=posix --safety --std=c99 \
+	    -i ./plugins/lua/lua-5.4.7/ \
+	    .

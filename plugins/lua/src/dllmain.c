@@ -43,7 +43,7 @@ ddakong_plugin_entry (const plugin_func_t *funcs, const ssize_t funcs_len)
   /* dofile: init.lua */
   memset (sz_ddakong_lua, 0, sz_ddakong_lua_len);
 
-  char *sz_ddakong_lua_ = getenv ("DDAKONG_LUA");
+  const char *sz_ddakong_lua_ = getenv ("DDAKONG_LUA");
   if (NULL == sz_ddakong_lua_)
     {
       sz_ddakong_lua_ = "~/.ddakong/init.lua";
