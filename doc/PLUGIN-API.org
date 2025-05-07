@@ -1,87 +1,94 @@
 * ddakong / Plugin APIs
 
-  | DLL API                                | Lua API    |
-  |----------------------------------------+------------|
-  | =get_plugin_funcs=                     | N/A [fn:1] |
-  | =get_plugin_funcs_len=                 | N/A [fn:1] |
-  |----------------------------------------+------------|
-  | =get_current_handle_input_fn=          |            |
-  | =set_current_handle_input_fn=          |            |
-  |----------------------------------------+------------|
-  | =get_current_handle_input_status=      |            |
-  | =set_current_handle_input_status=      |            |
-  |----------------------------------------+------------|
-  | =hangeul2_im_handler_status_empty=     |            |
-  | =hangeul2_handle_stdin=                |            |
-  | =get_current_hangeul_automata_status=  |            |
-  |----------------------------------------+------------|
-  | =ERR_err_p=                            |            |
-  | =ERR_clear=                            |            |
-  | =ERR_set=                              |            |
-  | =ERR_set_nofree=                       |            |
-  | =ERR_dieif=                            |            |
-  | =ERR_warn_and_clear_if=                |            |
-  |----------------------------------------+------------|
-  | =cp_fd=                                |            |
-  | =fcntl_nb=                             |            |
-  |----------------------------------------+------------|
-  | =print_banner=                         |            |
-  | =get_verbose_flag=                     |            |
-  | =set_verbose_flag=                     |            |
-  | =get_keylog_filename=                  |            |
-  | =get_default_keylog_filename=          |            |
-  | =get_plugin_dll_filename=              |            |
-  | =get_child_pid=                        |            |
-  | =get_child_fd=                         |            |
-  | =winsz_update=                         |            |
-  | =unicode_to_utf8=                      |            |
-  | =termios__init=                        |            |
-  | =termios__reset=                       |            |
-  | =signal_trap_norecover=                |            |
-  | =forkpty_with_exec=                    |            |
-  | =kill_forkpty=                         |            |
-  |----------------------------------------+------------|
-  | =hangeul_const_chojungjong_nul=        |            |
-  | =hangeul_const_choseong=               |            |
-  | =hangeul_const_jungseong=              |            |
-  | =hangeul_const_jongseong=              |            |
-  | =hangeul_const_moeum=                  |            |
-  | =hangeul_const_jaeum=                  |            |
-  |----------------------------------------+------------|
-  | =hangeul_automata_status__new=         |            |
-  | =hangeul_automata_status__delete=      |            |
-  | =hangeul_automata_status__get_stage=   |            |
-  | =hangeul_automata_status__set_stage=   |            |
-  | =hangeul_automata_status__get_prev_ch= |            |
-  | =hangeul_automata_status__set_prev_ch= |            |
-  | =hangeul_automata_status__get_cho=     |            |
-  | =hangeul_automata_status__set_cho=     |            |
-  | =hangeul_automata_status__get_jung=    |            |
-  | =hangeul_automata_status__set_jung=    |            |
-  | =hangeul_automata_status__get_jong=    |            |
-  | =hangeul_automata_status__set_jong=    |            |
-  |----------------------------------------+------------|
-  | =hangeul_clear_automata_status=        |            |
-  | =hangeul_flush_automata_status=        |            |
-  |----------------------------------------+------------|
-  | =hangeul_auto_compose_to_unicode=      |            |
-  | =hangeul_full_compose_to_unicode=      |            |
-  | =hangeul_jamo_compose_to_unicode=      |            |
-  | =hangeul_jamo_jaeum_to_unicode=        |            |
-  | =hangeul_partial_jamo_p=               |            |
-  | =hangeul_empty_automata_status_p=      |            |
-  | =hangeul_2beol_alpha_as_jamoeum=       |            |
-  | =hangeul_2beol_fill=                   |            |
-  | =hangeul_2beol_find_code=              |            |
-  | =hangeul_double_jaeum=                 |            |
-  | =hangeul_put_unicode=                  |            |
-  | =hangeul_decompose_jongseong=          |            |
-  | =hangeul_2beol_commit_1_and_flush=     |            |
-  | =hangeul_put_jamo_unicode=             |            |
-  | =hangeul_remap_code=                   |            |
+  | DLL API                                | Lua API          |
+  |----------------------------------------+------------------|
+  | =get_plugin_funcs=                     | N/A [fn:1]       |
+  | =get_plugin_funcs_len=                 | N/A [fn:1]       |
+  |----------------------------------------+------------------|
+  | =get_current_handle_input_fn=          | (동일)           |
+  | =set_current_handle_input_fn=          | (동일)           |
+  |----------------------------------------+------------------|
+  | =get_current_handle_input_status=      | N/A [fn:2]       |
+  | =set_current_handle_input_status=      | N/A [fn:2]       |
+  |----------------------------------------+------------------|
+  | =hangeul2_im_handler_status_empty=     | N/A [fn:2]       |
+  | =hangeul2_handle_stdin=                | N/A [fn:2]       |
+  | =get_current_hangeul_automata_status=  | N/A [fn:2]       |
+  |----------------------------------------+------------------|
+  | =ERR_err_p=                            | (동일)           |
+  | =ERR_clear=                            | (동일)           |
+  | =ERR_set=                              | (동일)           |
+  | =ERR_set_nofree=                       | N/A              |
+  | =ERR_dieif=                            | (동일)           |
+  | =ERR_warn_and_clear_if=                | (동일)           |
+  | N/A [fn:3]                             | =ERR_get_errmsg= |
+  |----------------------------------------+------------------|
+  | =cp_fd=                                | (동일)           |
+  | =fcntl_nb=                             | (동일)           |
+  |----------------------------------------+------------------|
+  | =print_banner=                         | (동일)           |
+  | =get_verbose_flag=                     | (동일)           |
+  | =set_verbose_flag=                     | (동일)           |
+  | =get_keylog_filename=                  | (동일)           |
+  | =get_default_keylog_filename=          | (동일)           |
+  | =get_plugin_dll_filename=              | (동일)           |
+  | =get_child_pid=                        | (동일)           |
+  | =get_child_fd=                         | (동일)           |
+  | =winsz_update=                         | (동일)           |
+  | =unicode_to_utf8=                      | (동일)           |
+  | =termios__init=                        | (동일)           |
+  | =termios__reset=                       | (동일)           |
+  | =signal_trap_norecover=                | (동일)           |
+  | =forkpty_with_exec=                    | (동일)           |
+  | =kill_forkpty=                         | (동일)           |
+  | N/A [fn:4]                             | =fdread=         |
+  | N/A [fn:4]                             | =fdwrite=        |
+  |----------------------------------------+------------------|
+  | =hangeul_const_chojungjong_nul=        | N/A [fn:2]       |
+  | =hangeul_const_choseong=               | N/A [fn:2]       |
+  | =hangeul_const_jungseong=              | N/A [fn:2]       |
+  | =hangeul_const_jongseong=              | N/A [fn:2]       |
+  | =hangeul_const_moeum=                  | N/A [fn:2]       |
+  | =hangeul_const_jaeum=                  | N/A [fn:2]       |
+  |----------------------------------------+------------------|
+  | =hangeul_automata_status__new=         | N/A [fn:2]       |
+  | =hangeul_automata_status__delete=      | N/A [fn:2]       |
+  | =hangeul_automata_status__get_stage=   | N/A [fn:2]       |
+  | =hangeul_automata_status__set_stage=   | N/A [fn:2]       |
+  | =hangeul_automata_status__get_prev_ch= | N/A [fn:2]       |
+  | =hangeul_automata_status__set_prev_ch= | N/A [fn:2]       |
+  | =hangeul_automata_status__get_cho=     | N/A [fn:2]       |
+  | =hangeul_automata_status__set_cho=     | N/A [fn:2]       |
+  | =hangeul_automata_status__get_jung=    | N/A [fn:2]       |
+  | =hangeul_automata_status__set_jung=    | N/A [fn:2]       |
+  | =hangeul_automata_status__get_jong=    | N/A [fn:2]       |
+  | =hangeul_automata_status__set_jong=    | N/A [fn:2]       |
+  |----------------------------------------+------------------|
+  | =hangeul_clear_automata_status=        | N/A [fn:2]       |
+  | =hangeul_flush_automata_status=        | N/A [fn:2]       |
+  |----------------------------------------+------------------|
+  | =hangeul_auto_compose_to_unicode=      | N/A [fn:2]       |
+  | =hangeul_full_compose_to_unicode=      | N/A [fn:2]       |
+  | =hangeul_jamo_compose_to_unicode=      | N/A [fn:2]       |
+  | =hangeul_jamo_jaeum_to_unicode=        | N/A [fn:2]       |
+  | =hangeul_partial_jamo_p=               | N/A [fn:2]       |
+  | =hangeul_empty_automata_status_p=      | N/A [fn:2]       |
+  | =hangeul_2beol_alpha_as_jamoeum=       | N/A [fn:2]       |
+  | =hangeul_2beol_fill=                   | N/A [fn:2]       |
+  | =hangeul_2beol_find_code=              | N/A [fn:2]       |
+  | =hangeul_double_jaeum=                 | N/A [fn:2]       |
+  | =hangeul_put_unicode=                  | N/A [fn:2]       |
+  | =hangeul_decompose_jongseong=          | N/A [fn:2]       |
+  | =hangeul_2beol_commit_1_and_flush=     | N/A [fn:2]       |
+  | =hangeul_put_jamo_unicode=             | N/A [fn:2]       |
+  | =hangeul_remap_code=                   | N/A [fn:2]       |
 
 
 * Footnotes
+[fn:4] 루아에는 없는 Unix file-descriptor read/write 지원.
+
+[fn:3] 루아는 C구조체 필드에 접근할 수 없으므로 지원.
+[fn:2] 루아 스크립팅은 내장 한글입력기 연동 지원 않음.
 
 [fn:1] ~ddakong~ lua module이 어차피 모든 API함수들을 노출하고
 있으므로 불필요.
