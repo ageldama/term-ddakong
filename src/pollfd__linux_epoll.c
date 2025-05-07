@@ -102,7 +102,7 @@ void pollfd_free(pollfd_t *p_pollfd)
 
 int pollfd_add(pollfd_t *p_pollfd,
                const int fd,
-               const uint32_t evt_type)
+               const pollfd_evt_type evt_type)
 {
   assert(p_pollfd != NULL);
 
@@ -123,7 +123,23 @@ int pollfd_add(pollfd_t *p_pollfd,
       p_pollfd->fds[p_pollfd->fds_len - 1] = fd;
     }
 
-  return epoll__add(p_pollfd->epollfd, fd, evt_type);
+  uint32_t evt_type_ = 0;
+
+  switch (evt_type)
+    {
+    case pollfd_evt_in:
+      evt_type_ = EPOLLIN;
+      break;
+
+    case pollfd_evt_out:
+      evt_type_ = EPOLLOUT;
+      break;
+
+    default:
+      assert("WTF-evt_type" == NULL);
+    }
+
+  return epoll__add(p_pollfd->epollfd, fd, evt_type_);
 }
 
 

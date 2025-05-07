@@ -267,15 +267,9 @@ main (int argc, char **argv)
       exit (EXIT_FAILURE);
     }
 
-  const uint32_t pollfd_in_evt_type =
-    #ifdef HAVE_SYS_EPOLL_H
-    EPOLLIN
-    #endif
-    ;
-
   if(-1 == pollfd_add(p_pollfd,
                       STDIN_FILENO,
-                      pollfd_in_evt_type))
+                      pollfd_evt_in))
     {
       perror ("epoll_ctl: stdin");
       exit (EXIT_FAILURE);
@@ -283,7 +277,7 @@ main (int argc, char **argv)
 
   if (-1 == pollfd_add(p_pollfd,
                        child_fd,
-                       pollfd_in_evt_type))
+                       pollfd_evt_in))
     {
       perror ("epoll_ctl: child_fd");
       exit (EXIT_FAILURE);
