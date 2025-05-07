@@ -83,6 +83,8 @@
   | =hangeul_put_jamo_unicode=             | N/A [fn:2]       |
   | =hangeul_remap_code=                   | N/A [fn:2]       |
 
+  1) 이하에 모든 함수와 타입을 설명하지 않음.
+     - 주로 Lua scripting을 하는데 필요한 내용 위주로 설명.
 
 * Plugin DLL entrypoints
 
@@ -206,6 +208,44 @@ typedef void (*handle_input_fn_t)
  handle_write_to_child_cb_t write_cb,
  void *write_cb_aux);
   #+end_src
+
+
+* Lua API =get_verbose_flag= / =set_verbose_flag=
+
+
+* Lua API =get_keylog_filename=
+
+
+* Lua API =get_default_keylog_filename=
+
+
+* Lua API =get_plugin_dll_filename=
+
+
+* Lua API =get_child_pid=
+
+
+* Lua API =get_child_fd=
+
+
+* Lua API =winsz_update=
+
+
+* Lua API =unicode_to_utf8=
+
+
+* Lua API =termios__init= / =termios__reset=
+
+
+* Lua API =signal_trap_norecover=
+
+
+* Lua API =forkpty_with_exec= / =kill_forkpty=
+
+
+* Lua API =fdread= / =fdwrite=
+
+
 
 
 * Footnotes
