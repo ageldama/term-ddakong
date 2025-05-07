@@ -240,15 +240,57 @@ typedef void (*handle_input_fn_t)
 
 
 * Lua API =unicode_to_utf8=
+  유니코드 코드값 정수를 UTF-8 문자열으로 변환:
+
+  #+begin_src lua
+    local unich = 44041
+    local u8_ch = ddakong.unicode_to_utf8(unich)
+    print(u8_ch) -- '갉'
+  #+end_src
 
 
 * Lua API =termios__init= / =termios__reset=
+  하위 쉘의 터미널 설정을 적용(init)/해제(reset0:
+
+  1. Control-C 등 제어키를 그대로 전달 받도록,
+  2. echo등을 끄기
+
+
+  #+begin_src lua
+    local echo = false
+    ddakong.termios__init(echo)
+
+    -- ...
+    ddakong.termios__reset()
+  #+end_src
+
 
 
 * Lua API =signal_trap_norecover=
+  Unix signal을 trap하여 Lua함수를 실행하도록 설정:
+
+  #+begin_src lua
+    local sig_usr1 = 10
+
+    ddakong.signal_trap_norecover(sig_usr1,
+       function(sig_no)
+          print("SIGUSR1 trapped!")
+       end)
+  #+end_src
 
 
 * Lua API =forkpty_with_exec= / =kill_forkpty=
+  새로운 하위 쉘을 forkpty + exec, 그리고 하위 쉘을 종료하기:
+
+  #+begin_src lua
+    -- 실행:
+    local t = ddakong.forkpty_with_exec()
+    local pid = t.pid
+    local fd = t.fd
+
+    -- 종료:
+    ddakong.kill_forkpty(pid, fd)
+  #+end_src
 
 
 * Lua API =fdread= / =fdwrite=
