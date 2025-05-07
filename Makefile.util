@@ -12,7 +12,9 @@ dbg-tail-xxd:
 
 find-src-inc = find .  -type f \
 	\( -path './src/*' -or \
-	    -path './include/*' \) \
+	    -path './include/*' -or \
+			-path './plugins/random-phrase/src/*' -or \
+			-path './plugins/lua/src/*' \) \
 	-name '*.[ch]' \
 	-exec $(1) \;
 

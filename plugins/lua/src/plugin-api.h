@@ -7,20 +7,15 @@
 
 #include <stdlib.h>
 
-
-typedef struct {
+typedef struct
+{
   void *p_func;
   char *sz_func_name;
   char *sz_func_doc;
 } plugin_func_t;
 
+EXTERN_ void ddakong_plugin_entry (const plugin_func_t *, const ssize_t);
 
-EXTERN_ void ddakong_plugin_entry
-(const plugin_func_t *, const ssize_t);
-
-
-EXTERN_ void ddakong_plugin_deinit();
-
-
+EXTERN_ void ddakong_plugin_deinit ();
 
 #endif /* ! __plugin_api_h__ */

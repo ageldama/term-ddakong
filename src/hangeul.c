@@ -147,7 +147,6 @@ hangeul_2beol_alpha_as_jamoeum (const BYTE ch)
     }
 }
 
-
 ssize_t
 hangeul_2beol_fill (const BYTE ch, hangeul_automata_status *p_status,
                     UNICODE_32 *outbuf, const ssize_t outbuf_max)

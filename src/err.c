@@ -83,13 +83,15 @@ ERR_warn_and_clear_if (ERR *p_err, FILE *fp_out)
   if (ERR_err_p (p_err))
     {
       FILE *fp = fp_out;
-      if (fp == NULL) fp = stderr;
+      if (fp == NULL)
+        fp = stderr;
       fprintf (fp_out, "[WARN] %s\n", p_err->errmsg);
       ERR_clear (p_err);
     }
 }
 
-void ERR_set_nofree_fn(ERR *p_err, const char *sz_errmsg)
+void
+ERR_set_nofree_fn (ERR *p_err, const char *sz_errmsg)
 {
-  ERR_set_nofree(p_err, sz_errmsg);
+  ERR_set_nofree (p_err, sz_errmsg);
 }

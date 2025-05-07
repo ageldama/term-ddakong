@@ -6,7 +6,6 @@
  * that can be found in the license file.
  */
 
-
 #ifndef extern__h
 #define extern__h 1
 

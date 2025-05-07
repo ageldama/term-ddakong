@@ -22,20 +22,18 @@
 #include "hangeul.h"
 #include "im_handler.h"
 #include "im_handler_hangeul.h"
+#include "plugin.h"
 #include "pty_.h"
 #include "sig.h"
 #include "termios_.h"
 #include "typedef_.h"
 #include "winsz.h"
-#include "plugin.h"
-
 
 /* globals */
 
 int child_fd = -1;
 pid_t child_pid = 0;
 dll_plugin_context_t dll_plugin_ctx;
-
 
 /* internals */
 
@@ -107,7 +105,7 @@ _exit_cleanup (void)
 {
   if (verbose_flag)
     {
-      fprintf(stderr, "# cleanup on exiting...\n");
+      fprintf (stderr, "# cleanup on exiting...\n");
     }
 
   termios__reset ();
@@ -115,7 +113,7 @@ _exit_cleanup (void)
 
   if (dll_plugin_ctx.p_dll != NULL)
     {
-      dll_plugin_unload(&dll_plugin_ctx);
+      dll_plugin_unload (&dll_plugin_ctx);
     }
 }
 
@@ -151,10 +149,10 @@ trap_term (int sig_no)
 {
   if (verbose_flag)
     {
-      fprintf(stderr, "# trapped (%d) : exiting\n", sig_no);
+      fprintf (stderr, "# trapped (%d) : exiting\n", sig_no);
     }
 
-  exit(EXIT_FAILURE);
+  exit (EXIT_FAILURE);
 }
 
 void
@@ -179,8 +177,8 @@ main (int argc, char **argv)
   im_handler_status default_im_hndlr_st;
   im_handler_status__empty (&default_im_hndlr_st);
 
-  set_current_handle_input_status(&default_im_hndlr_st);
-  set_current_handle_input_fn((handle_input_fn_t) handle_stdin);
+  set_current_handle_input_status (&default_im_hndlr_st);
+  set_current_handle_input_fn ((handle_input_fn_t)handle_stdin);
 
   hangeul_clear_automata_status (&_hangeul_avtomat);
 
@@ -189,7 +187,7 @@ main (int argc, char **argv)
 
   if (verbose_flag)
     {
-      print_banner(stderr);
+      print_banner (stderr);
     }
 
   /* dll-plugin: 초기화 */
@@ -197,12 +195,11 @@ main (int argc, char **argv)
 
   if (NULL != plugin_dll_filename)
     {
-      BOOL dll_plugin_loaded = dll_plugin_load(&dll_plugin_ctx,
-                                               plugin_dll_filename);
+      BOOL dll_plugin_loaded
+          = dll_plugin_load (&dll_plugin_ctx, plugin_dll_filename);
       if (verbose_flag)
         {
-          fprintf(stderr, "# dll-plugin loaded?(%d)\n",
-                  dll_plugin_loaded);
+          fprintf (stderr, "# dll-plugin loaded?(%d)\n", dll_plugin_loaded);
         }
     }
 
@@ -283,8 +280,8 @@ main (int argc, char **argv)
   char buf[buf_max];
 
   /* mainloop */
-  handle_input_fn_t handle_input = get_current_handle_input_fn();
-  void *p_handle_input_status = get_current_handle_input_status();
+  handle_input_fn_t handle_input = get_current_handle_input_fn ();
+  void *p_handle_input_status = get_current_handle_input_status ();
 
   while (1)
     {
@@ -306,11 +303,10 @@ main (int argc, char **argv)
             }
           else if (STDIN_FILENO == fd)
             {
-              handle_input
-                (p_handle_input_status, STDIN_FILENO /* fd_keyin */,
-                 child_fd /* fd_child */, buf, buf_max,
-                 handle_stdin_written /* write_cb */,
-                 (void *)fp /* write_cb_aux */
+              handle_input (p_handle_input_status, STDIN_FILENO /* fd_keyin */,
+                            child_fd /* fd_child */, buf, buf_max,
+                            handle_stdin_written /* write_cb */,
+                            (void *)fp /* write_cb_aux */
               );
             }
         }

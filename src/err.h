@@ -6,7 +6,6 @@
  * that can be found in the license file.
  */
 
-
 #ifndef err_h
 #define err_h 1
 
@@ -79,7 +78,7 @@ EXTERN_ void ERR_set (ERR *p_err, const char *errmsg,
  */
 #define ERR_set_nofree(p_err, errmsg) (ERR_set (p_err, errmsg, NULL))
 
-EXTERN_ void ERR_set_nofree_fn(ERR *p_err, const char *sz_errmsg);
+EXTERN_ void ERR_set_nofree_fn (ERR *p_err, const char *sz_errmsg);
 
 /**
  * 에러메시지를 printf.

@@ -14,8 +14,6 @@
 #include "typedef_.h"
 #include <stdlib.h>
 
-
-
 #ifndef DDAKONG_PLUGIN_ENTRY_NAME
 
 /**
@@ -29,14 +27,13 @@
 #define DDAKONG_PLUGIN_DEINIT_NAME "ddakong_plugin_deinit"
 #endif
 
-
 /**
  * DLL-PLUGIN 구조체 타입
  */
-typedef struct {
+typedef struct
+{
   void *p_dll;
 } dll_plugin_context_t;
-
 
 /**
  * 로딩한 DLL 파일의 * ddakong_plugin_entry() 함수에 전달할 함수포인터
@@ -48,12 +45,12 @@ typedef struct {
  *
  * @field sz_func_doc 함수설명 (예: "prints somethign")
  */
-typedef struct {
+typedef struct
+{
   void *p_func;
   char *sz_func_name;
   char *sz_func_doc;
 } plugin_func_t;
-
 
 /**
  * DLL-PLUGIN에 전달할 함수포인터 배열
@@ -65,18 +62,16 @@ EXTERN_ const plugin_func_t plugin_funcs[];
  */
 EXTERN_ const ssize_t plugin_funcs_len;
 
-
 /**
  * DLL-PLUGIN에서 찾아 실행할 ddakong_plugin_entry() 함수의 타입
  */
-typedef void (*ddakong_plugin_entry_fn_t)
-(const plugin_func_t *, const ssize_t);
+typedef void (*ddakong_plugin_entry_fn_t) (const plugin_func_t *,
+                                           const ssize_t);
 
 /**
  * DLL-PLUGIN에서 deinitialization시 호출할 함수의 타입
  */
-typedef void (*ddakong_plugin_deinit_fn_t)();
-
+typedef void (*ddakong_plugin_deinit_fn_t) ();
 
 /**
  * DLL-PLUGIN 로드 + 초기화
@@ -91,8 +86,8 @@ typedef void (*ddakong_plugin_deinit_fn_t)();
  * @return 로딩 및 초기화에 성공했다면 TRUE
  */
 EXTERN_
-BOOL dll_plugin_load
-(dll_plugin_context_t *p_plugin_ctx, const char *sz_dll_filename);
+BOOL dll_plugin_load (dll_plugin_context_t *p_plugin_ctx,
+                      const char *sz_dll_filename);
 
 /**
  * DLL-PLUGIN 해제
@@ -100,8 +95,6 @@ BOOL dll_plugin_load
  * @param p_plugin_ctx (non-null)
  */
 EXTERN_
-void dll_plugin_unload
-(dll_plugin_context_t *p_plugin_ctx);
-
+void dll_plugin_unload (dll_plugin_context_t *p_plugin_ctx);
 
 #endif /* ! plugin_h */

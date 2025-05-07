@@ -7,10 +7,9 @@
 #define EXTERN_ extern
 #endif
 
-
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
 
 /**
  * 1-바이트
@@ -42,7 +41,6 @@
 #define BOOL char
 #endif /* ! BOOL */
 
-
 #ifndef IM_HANDLER_TOGGLE_STATE
 
 /** "toggle-key" 눌린 횟수 카운터 타입 */
@@ -56,19 +54,16 @@
 
 #endif /* ! IM_HANDLER_TOGGLE_STATE */
 
-
-typedef struct {
+typedef struct
+{
   void *p_func;
   char *sz_func_name;
   char *sz_func_doc;
 } plugin_func_t;
 
+EXTERN_ void ddakong_plugin_entry (const plugin_func_t *, const ssize_t);
 
-EXTERN_ void ddakong_plugin_entry
-(const plugin_func_t *, const ssize_t);
-
-EXTERN_ void ddakong_plugin_deinit();
-
+EXTERN_ void ddakong_plugin_deinit ();
 
 typedef struct
 {
@@ -79,20 +74,18 @@ typedef struct
 typedef void handle_write_to_child_cb_t (const ssize_t n_written,
                                          const BYTE *buf, void *cb_aux);
 
-typedef void (*handle_input_fn_t)
-(void *p_status,
- const int fd_keyin,
- const int fd_child,
- BYTE *buf,
- const ssize_t buf_max,
- handle_write_to_child_cb_t write_cb,
- void *write_cb_aux);
+typedef void (*handle_input_fn_t) (void *p_status, const int fd_keyin,
+                                   const int fd_child, BYTE *buf,
+                                   const ssize_t buf_max,
+                                   handle_write_to_child_cb_t write_cb,
+                                   void *write_cb_aux);
 
 typedef void (*set_current_handle_input_fn_t) (handle_input_fn_t fn);
 
-EXTERN_ void
-handle_input (im_handler_status *p_status, const int fd_keyin,
-              const int fd_child, BYTE *buf, const ssize_t buf_max,
-              handle_write_to_child_cb_t write_cb, void *write_cb_aux);
+EXTERN_ void handle_input (im_handler_status *p_status, const int fd_keyin,
+                           const int fd_child, BYTE *buf,
+                           const ssize_t buf_max,
+                           handle_write_to_child_cb_t write_cb,
+                           void *write_cb_aux);
 
 #endif /* ! __plugin_api_h__ */

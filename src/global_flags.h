@@ -13,7 +13,6 @@
 
 #include <stdio.h>
 
-
 /**
  * (BOOL) "verbose logging" 할지?
  */
@@ -30,17 +29,12 @@ EXTERN_ int child_fd;
 
 EXTERN_ pid_t child_pid;
 
-
-
 /**
  * (sz, nullable) 플러그인 DLL 파일경로. NULL-이면 로딩하지 않음.
  */
 EXTERN_ char *plugin_dll_filename;
 
-
-
-void print_banner(FILE *fp);
-
+void print_banner (FILE *fp);
 
 /**
  * 커맨드라인 처리함수

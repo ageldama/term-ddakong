@@ -53,7 +53,6 @@ typedef struct
   IM_HANDLER_TOGGLE_STATE toggle;
 } im_handler_status;
 
-
 /**
  * 입력처리기 함수 타입
  *
@@ -73,34 +72,29 @@ typedef struct
  *
  * @param write_cb_aux 콜백함수 호출시 함께 전달할 데이터 (closure)
  */
-typedef void (*handle_input_fn_t)
-(void *p_status,
- const int fd_keyin,
- const int fd_child,
- BYTE *buf,
- const ssize_t buf_max,
- handle_write_to_child_cb_t write_cb,
- void *write_cb_aux);
+typedef void (*handle_input_fn_t) (void *p_status, const int fd_keyin,
+                                   const int fd_child, BYTE *buf,
+                                   const ssize_t buf_max,
+                                   handle_write_to_child_cb_t write_cb,
+                                   void *write_cb_aux);
 
 /** 현재 handle_input_fn 함수포인터 */
 EXTERN_ handle_input_fn_t current_handle_input_fn;
 
 /** 현재 handle_input_fn 함수포인터 얻기  */
-EXTERN_ handle_input_fn_t get_current_handle_input_fn(void);
+EXTERN_ handle_input_fn_t get_current_handle_input_fn (void);
 
 /** handle_input_fn 함수포인터 설정하기  */
-EXTERN_ void set_current_handle_input_fn
-(handle_input_fn_t fn);
+EXTERN_ void set_current_handle_input_fn (handle_input_fn_t fn);
 
 /** 현재 handle_input_fn 호출시 전달할 상태값 포인터 */
 EXTERN_ void *p_current_handle_input_status;
 
 /** handle_input_fn 호출시 전달할 상태값 포인터를 얻기 */
-EXTERN_ void *get_current_handle_input_status(void);
+EXTERN_ void *get_current_handle_input_status (void);
 
 /** handle_input_fn 호출시 전달할 상태값 포인터를 설정하기 */
-EXTERN_ void set_current_handle_input_status(void *p_new_status);
-
+EXTERN_ void set_current_handle_input_status (void *p_new_status);
 
 /**
  * 표준입력 처리기 상태 초기화

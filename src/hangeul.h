@@ -41,7 +41,6 @@
 
 #endif
 
-
 /**
  * 한글 2벌식 오토마타 상태 구조체
  *
@@ -71,7 +70,6 @@ typedef struct
   BYTE jung;
   BYTE jong;
 } hangeul_automata_status;
-
 
 /**
  * 한글 자모/자음의 [입력코드 => 유티코드] 대응표의 행 구조체
@@ -272,8 +270,7 @@ EXTERN_ BYTE hangeul_2beol_find_code (const CHOJUNGJONG chojungjong,
  * @return 변환한 결과 LUT-index, 변환 실패시 CHOJUNGJONG_NUL.
  */
 EXTERN_ BYTE hangeul_double_jaeum (const CHOJUNGJONG chojungjong,
-                                   const BYTE prev_ch,
-                                   const BYTE ch);
+                                   const BYTE prev_ch, const BYTE ch);
 
 /**
  * 유니코드 포인트 정수값을 outbuf에 출력
