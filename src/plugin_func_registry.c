@@ -27,19 +27,6 @@
 #include <stdlib.h>
 
 
-/* SUPPORT: global_flags.h */
-
-int __get_verbose_flag(void) { return verbose_flag; }
-void __set_verbose_flag(const int verbose)
-{ verbose_flag = verbose; }
-
-char *__get_keylog_filename(void) { return keylog_filename; }
-void __set_keylog_filename(char *sz_filename)
-{ keylog_filename = sz_filename; }
-
-char *__get_default_keylog_filename(void)
-{ return default_keylog_filename; }
-
 
 /* SUPPORT: im_handler_hangeul.h */
 
@@ -165,6 +152,28 @@ ssize_t get_plugin_funcs_len(void)
 { return plugin_funcs_len; }
 
 
+/* SUPPORT: global_flags.h */
+
+int __get_verbose_flag(void) { return verbose_flag; }
+
+void __set_verbose_flag(const int verbose)
+{ verbose_flag = verbose; }
+
+char *__get_keylog_filename(void) { return keylog_filename; }
+
+char *__get_default_keylog_filename(void)
+{ return default_keylog_filename; }
+
+pid_t __get_child_pid(void)
+{ return child_pid; }
+
+int __get_child_fd(void)
+{ return child_fd; }
+
+char *__get_plugin_dll_filename(void)
+{ return plugin_dll_filename; }
+
+
 /* function regitry */
 
 const plugin_func_t plugin_funcs[] = {
@@ -188,14 +197,13 @@ const plugin_func_t plugin_funcs[] = {
   { .p_func = set_current_handle_input_status,
     .sz_func_name = "set_current_handle_input_status",
     .sz_func_doc = "", },
+
   { .p_func = im_handler_status__empty,
     .sz_func_name = "hangeul2_im_handler_status_empty",
     .sz_func_doc = "", },
   { .p_func = handle_stdin,
     .sz_func_name = "hangeul2_handle_stdin",
     .sz_func_doc = "", },
-
-  /* im_handler_hangeul.h */
   { .p_func = get_current_hangeul_automata_status,
     .sz_func_name = "get_current_hangeul_automata_status",
     .sz_func_doc = "", },
@@ -241,11 +249,17 @@ const plugin_func_t plugin_funcs[] = {
   { .p_func = __get_keylog_filename,
     .sz_func_name = "get_keylog_filename",
     .sz_func_doc = "", },
-  { .p_func = __set_keylog_filename,
-    .sz_func_name = "set_keylog_filename",
-    .sz_func_doc = "", },
   { .p_func = __get_default_keylog_filename,
     .sz_func_name = "get_default_keylog_filename",
+    .sz_func_doc = "", },
+  { .p_func = __get_plugin_dll_filename,
+    .sz_func_name = "get_plugin_dll_filename",
+    .sz_func_doc = "", },
+  { .p_func = __get_child_pid,
+    .sz_func_name = "get_child_pid",
+    .sz_func_doc = "", },
+  { .p_func = __get_child_fd,
+    .sz_func_name = "get_child_fd",
     .sz_func_doc = "", },
 
   /* winsz.h */

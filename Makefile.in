@@ -88,6 +88,8 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
+@RANDOM_PHRASE_TRUE@am__append_1 = plugins/random-phrase
+@LUA_TRUE@am__append_2 = plugins/lua
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_compile_flag.m4 \
@@ -183,10 +185,14 @@ am__define_uniq_tagged_files = \
   unique=`for i in $$list; do \
     if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
   done | $(am__uniquify_input)`
-DIST_SUBDIRS = $(SUBDIRS)
+DIST_SUBDIRS = src plugins/random-phrase plugins/lua
 am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/config.h.in \
-	ChangeLog ar-lib compile config.guess config.sub depcomp \
-	install-sh ltmain.sh missing
+	$(top_srcdir)/./autotools/ar-lib \
+	$(top_srcdir)/./autotools/compile \
+	$(top_srcdir)/./autotools/install-sh \
+	$(top_srcdir)/./autotools/missing ./autotools/ar-lib \
+	./autotools/compile ./autotools/depcomp ./autotools/install-sh \
+	./autotools/missing ChangeLog
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)
@@ -300,6 +306,9 @@ datadir = @datadir@
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
+enable_dlopen = @enable_dlopen@
+enable_lua = @enable_lua@
+enable_random_phrase = @enable_random_phrase@
 exec_prefix = @exec_prefix@
 host_alias = @host_alias@
 htmldir = @htmldir@
@@ -321,14 +330,15 @@ runstatedir = @runstatedir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
+subdirs = @subdirs@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-SUBDIRS = src
+SUBDIRS = src $(am__append_1) $(am__append_2)
 dist_doc_DATA = README.org TODOs.org LICENSE doc
-EXTRA_DIST = examples Makefile.util
+EXTRA_DIST = Makefile.util
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
@@ -838,18 +848,11 @@ uninstall-am: uninstall-dist_docDATA
 
 
 dist-hook:
-	-rm -rf examples/random-phrase-dll/src/.libs
-	-rm -rf examples/random-phrase-dll/src/.deps
-	-rm -rf examples/random-phrase-dll/src/Makefile
-	-rm -rf examples/random-phrase-dll/Makefile
-	-rm -rf examples/random-phrase-dll/config.log
-	-rm -rf examples/random-phrase-dll/stamp-h1
-	-rm -rf examples/random-phrase-dll/autom4te.cache
-
-	-find $(dist) -name '*~' -exec rm {} \;
-	-find $(dist) -name '*.o' -exec rm {} \;
-	-find $(dist) -name '*.la' -exec rm {} \;
-	-find $(dist) -name '*.lo' -exec rm {} \;
+	-find $(distdir) -name '*~' -exec rm {} \;
+	-find $(distdir) -name '*.a' -exec rm {} \;
+	-find $(distdir) -name '*.o' -exec rm {} \;
+	-find $(distdir) -name '*.la' -exec rm {} \;
+	-find $(distdir) -name '*.lo' -exec rm {} \;
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

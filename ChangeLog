@@ -1,17 +1,45 @@
 
-2025-05-29  윤종혁	<ageldama@gmail.com>
+2025-05-04  윤종혁	<ageldama@gmail.com>
+	v1.0 : 버전스킴 변경
+	* Lua 스크립팅, DLL 플러그인 API 문서 추가
 
-	v0.0.8 : DLL-Plugin
-	* DLL(Shared Library)으로 플러그인 작성/로딩 가능 기능 추가
-	* DLL 플러그인을 이용하여,
+
+2025-05-04  윤종혁	<ageldama@gmail.com>
+
+	v0.0.9 : Lua Scripting
+	* Lua 스키립팅으로 플러그인 기능을 지원
 		- UTF-8 이외에 다른 인코딩 지원
 		- Control-H 이외에 다른 토글키도 지원
 		- 두벌식 이외에 다른 자판도 지원
 		- 한글입력 이외에 다른 언어입력도 가능
+
+	* "-ㅆ" 종성/2중자음 테이블에 추가 "tt"
+
+	* autotools 빌드 구성
+	- random-phrase, lua plugins 한 번에 configure, make.
+	- lua-plugin 위한 옵션 추가
+	`with-lua', `with-lua-cflags', `with-lua-libs',
+	`with-lua-pkg-config'.
+
+	* plugins "deinit"-인터페이스 추가
+
+	* epoll "epoll_wait interrupted"-에 종료되는 버그 수정.
+	(터미널 크기변경시에)
+
+
+2025-05-03  윤종혁	<ageldama@gmail.com>
+
+	v0.0.8 : DLL-Plugin
+	* DLL(Shared Library)으로 플러그인 작성/로딩 가능 기능 추가
+	* DLL 플러그인을 이용하여,
+	- UTF-8 이외에 다른 인코딩 지원
+	- Control-H 이외에 다른 토글키도 지원
+	- 두벌식 이외에 다른 자판도 지원
+	- 한글입력 이외에 다른 언어입력도 가능
 	* DLL 플러그인 예시 추가
 
 
-2025-05-29  윤종혁	<ageldama@gmail.com>
+2025-05-03  윤종혁	<ageldama@gmail.com>
 
 	v0.0.7 : 주석, 문서작성
 	* src/getopt_.c (getopt/help) 배너 추가
@@ -19,7 +47,7 @@
 	* src/hangeul.c (hangeul/2beol) 사용 않는 internal 함수삭제
 
 
-2025-05-29  윤종혁	<ageldama@gmail.com>
+2025-05-03  윤종혁	<ageldama@gmail.com>
 
 	v0.0.6 : SIGTERM 처리
 
@@ -29,7 +57,7 @@
 
 
 
-2025-05-29  윤종혁	<ageldama@gmail.com>
+2025-05-03  윤종혁	<ageldama@gmail.com>
 
 	v0.0.5 : 안정화, 기본기능, 다양한 플랫폼 바이너리 릴리즈.
 

@@ -1,3 +1,5 @@
+
+
 AM_CPPFLAGS = -fPIC \
     -Wall -Wextra -Werror \
     -Wconversion -Wsign-conversion \
@@ -5,8 +7,8 @@ AM_CPPFLAGS = -fPIC \
     -Wno-nullability-completeness \
     -std=c99 -D_POSIX_C_SOURCE -D_GNU_SOURCE
 
-# TODO -fhardened (gcc)
-# -Wno-c23-extensions 
+## TODO -fhardened (gcc)
+## -Wno-c23-extensions 
 
 
 noinst_LIBRARIES = libddakongs.a
@@ -21,5 +23,7 @@ bin_PROGRAMS = ddakong
 
 ddakong_SOURCES = main_ddakong.c
 ddakong_LDADD = libddakongs.a
+## ddakong_LDFLAGS =
 
 EXTRA_DIST = *.h
+
