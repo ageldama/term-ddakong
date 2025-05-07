@@ -24,7 +24,6 @@ nodist_liblua_ddakong_la_SOURCES = __lua_built__.c
 __lua_built__.c:
 if EXTERNAL_LUA
 else
-	-patch -N $(top_srcdir)/$(LUA_SRC)/src/Makefile $(top_srcdir)/lua-5.4.7-src-Makefile.patch
 	make -C $(top_srcdir)/$(LUA_SRC)
 endif
 	touch $(srcdir)/__lua_built__.c
