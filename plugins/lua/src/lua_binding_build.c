@@ -44,6 +44,18 @@ void lua_binding_build
         }
     }
 
+  for (int j = 0; j < __lua_bindings_len; j ++)
+    {
+      lua_binding_row_t b_row = __lua_bindings[j];
+
+      if (b_row.ppfn == NULL)
+        {
+          lua_pushstring(L, b_row.sz_lua_func_name);
+          lua_pushcfunction(L, b_row.pfn_wrap);
+          lua_settable(L, -3);
+        }
+    }
+
   lua_binding_build__posix(L);
 }
 
