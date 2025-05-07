@@ -132,7 +132,7 @@
   ddakong의 내장된 모든 함수를 플러그인 DLL에 전달하여 호출하여
   원하는대로 hack할 수 있습니다.🧨(예제 플러그인의 코드 참고)
 
--> ref: plugin-api.md
+  ➡️ [[./doc/PLUGIN-API.org]] 문서에 자세한 플러그인 API을 설명
 
 
 * Plug-in: Lua scripting
@@ -161,8 +161,7 @@
   이 환경변수를 지정하지 않으면 ~$HOME/.ddakong/init.lua~-파일을
   로딩합니다.
 
-
-  [[./doc/PLUGIN-API.org]] 문서에 자세한 플러그인 API을 설명
+  ➡️ [[./doc/PLUGIN-API.org]] 문서에 자세한 플러그인 API을 설명
 
 
 * 라이센스 / License
