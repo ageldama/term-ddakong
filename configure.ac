@@ -139,7 +139,6 @@ sigemptyset sigaction waitpid
 perror
 ioctl tcgetattr tcsetattr
 getopt
-vasprintf
 fcntl],[],[AC_MSG_ERROR([required function cannot be found])])
 
 

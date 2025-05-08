@@ -6890,7 +6890,7 @@ printf "%s\n" "#define PREFER_PORTABLE_SNPRINTF 1" >>confdefs.h
 fi
 
 
-  for ac_func in atexit getenv execlp kill close read write sigemptyset sigaction waitpid perror ioctl tcgetattr tcsetattr getopt vasprintf fcntl
+  for ac_func in atexit getenv execlp kill close read write sigemptyset sigaction waitpid perror ioctl tcgetattr tcsetattr getopt fcntl
 do :
   as_ac_var=`printf "%s\n" "ac_cv_func_$ac_func" | sed "$as_sed_sh"`
 ac_fn_c_check_func "$LINENO" "$ac_func" "$as_ac_var"
