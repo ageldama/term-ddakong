@@ -72,13 +72,15 @@
   CLOSED: [2025-05-07 Wed 15:43]
 
 
-* TODO FreeBSD [4/6]
+* DONE FreeBSD [6/6]
+  CLOSED: [2025-05-08 Thu 18:30]
   1) [X] -Wno-error=c32-extensions + gcc?
   2) [X] _XOPEN_SOURCE=700
   3) [X] _BSD_SOURCE __BSD_VISIBLE
   4) [X] -lutil
-  5) [ ] kqueue
-  6) [ ] license headers?
+  5) [X] kqueue
+  6) [X] license headers?
 
 
 
+* TODO xbuild + linux | freebsd?
