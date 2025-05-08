@@ -7,5 +7,5 @@
 #include "pollfd__linux_epoll.c"
 #else
 /* fallback */
-#include "pollfd__select.h"
+#include "pollfd__select.c"
 #endif
