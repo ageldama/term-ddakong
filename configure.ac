@@ -68,6 +68,8 @@ AX_CHECK_COMPILE_FLAG([-Wsign-conversion], [CFLAGS="$CFLAGS -Wsign-conversion"])
 AX_CHECK_COMPILE_FLAG([-Wformat-security], [CFLAGS="$CFLAGS -Wformat-security"])
 AX_CHECK_COMPILE_FLAG([-Wno-error=nullability-completeness], [CFLAGS="$CFLAGS -Wno-error=nullability-completeness"])
 AX_CHECK_COMPILE_FLAG([-Wno-error=c23-extensions], [CFLAGS="$CFLAGS -Wno-error=c23-extensions"])
+AX_CHECK_COMPILE_FLAG([-Wno-nullability-completeness], [CFLAGS="$CFLAGS -Wno-nullability-completeness"])
+AX_CHECK_COMPILE_FLAG([-Wno-c23-extensions], [CFLAGS="$CFLAGS -Wno-c23-extensions"])
 
 
 AC_GNU_SOURCE

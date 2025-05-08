@@ -6202,6 +6202,88 @@ else case e in #(
 esac
 fi
 
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking whether C compiler accepts -Wno-nullability-completeness" >&5
+printf %s "checking whether C compiler accepts -Wno-nullability-completeness... " >&6; }
+if test ${ax_cv_check_cflags___Wno_nullability_completeness+y}
+then :
+  printf %s "(cached) " >&6
+else case e in #(
+  e)
+  ax_check_save_flags=$CFLAGS
+  CFLAGS="$CFLAGS  -Wno-nullability-completeness"
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+int
+main (void)
+{
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"
+then :
+  ax_cv_check_cflags___Wno_nullability_completeness=yes
+else case e in #(
+  e) ax_cv_check_cflags___Wno_nullability_completeness=no ;;
+esac
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.beam conftest.$ac_ext
+  CFLAGS=$ax_check_save_flags ;;
+esac
+fi
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ax_cv_check_cflags___Wno_nullability_completeness" >&5
+printf "%s\n" "$ax_cv_check_cflags___Wno_nullability_completeness" >&6; }
+if test "x$ax_cv_check_cflags___Wno_nullability_completeness" = xyes
+then :
+  CFLAGS="$CFLAGS -Wno-nullability-completeness"
+else case e in #(
+  e) : ;;
+esac
+fi
+
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking whether C compiler accepts -Wno-c23-extensions" >&5
+printf %s "checking whether C compiler accepts -Wno-c23-extensions... " >&6; }
+if test ${ax_cv_check_cflags___Wno_c23_extensions+y}
+then :
+  printf %s "(cached) " >&6
+else case e in #(
+  e)
+  ax_check_save_flags=$CFLAGS
+  CFLAGS="$CFLAGS  -Wno-c23-extensions"
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+int
+main (void)
+{
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"
+then :
+  ax_cv_check_cflags___Wno_c23_extensions=yes
+else case e in #(
+  e) ax_cv_check_cflags___Wno_c23_extensions=no ;;
+esac
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.beam conftest.$ac_ext
+  CFLAGS=$ax_check_save_flags ;;
+esac
+fi
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ax_cv_check_cflags___Wno_c23_extensions" >&5
+printf "%s\n" "$ax_cv_check_cflags___Wno_c23_extensions" >&6; }
+if test "x$ax_cv_check_cflags___Wno_c23_extensions" = xyes
+then :
+  CFLAGS="$CFLAGS -Wno-c23-extensions"
+else case e in #(
+  e) : ;;
+esac
+fi
+
 
 
 
