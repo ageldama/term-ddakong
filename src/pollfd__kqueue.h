@@ -22,10 +22,17 @@
 #include <sys/event.h>
 #endif
 
+#ifdef HAVE_SYS_TIME_H
+#include <sys/time.h>
+#endif
+
+
 typedef struct
 {
   size_t max_evts;
+
   int timeout_millis;
+  struct timespec timeout;
 
   int kq;
   struct kevent evt_change;

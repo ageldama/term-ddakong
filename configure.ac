@@ -124,6 +124,8 @@ AC_HEADER_TIOCGWINSZ
 ## kqueue header
 AC_CHECK_HEADERS([sys/event.h])
 
+AC_CHECK_HEADERS([sys/time.h])
+
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_TYPE_PID_T

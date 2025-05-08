@@ -36,6 +36,8 @@ pollfd_new (const size_t max_evts, const int timeout_millis)
   p->max_evts = max_evts;
   p->timeout_millis = timeout_millis;
 
+  p->timeout.tv_sec = timeout_millis / 1000;
+
   int kq = kqueue ();
   if (-1 == kq)
     {
@@ -103,8 +105,10 @@ pollfd_wait (pollfd_t *p_pollfd, int *fds, const size_t fds_len)
 {
   assert (p_pollfd != NULL);
 
-  int n_evt = kevent (p_pollfd->kq, NULL, 0, p_pollfd->evt_triggered,
-                      (int)p_pollfd->max_evts, NULL);
+  int n_evt = kevent (p_pollfd->kq, NULL, 0,
+                      p_pollfd->evt_triggered,
+                      (int)p_pollfd->max_evts,
+                      &(p_pollfd->timeout));
 
   if (n_evt < 0)
     {
