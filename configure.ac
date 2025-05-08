@@ -55,6 +55,8 @@ AC_ARG_WITH([lua-pkg-config],
 
 
 # Checks for programs.
+AC_USE_SYSTEM_EXTENSIONS()
+
 AC_PROG_CC
 
 AX_CHECK_COMPILE_FLAG([-std=c99], [CFLAGS="$CFLAGS -std=c99"])
@@ -64,8 +66,12 @@ AX_CHECK_COMPILE_FLAG([-Werror], [CFLAGS="$CFLAGS -Werror"])
 AX_CHECK_COMPILE_FLAG([-Wconversion], [CFLAGS="$CFLAGS -Wconversion"])
 AX_CHECK_COMPILE_FLAG([-Wsign-conversion], [CFLAGS="$CFLAGS -Wsign-conversion"])
 AX_CHECK_COMPILE_FLAG([-Wformat-security], [CFLAGS="$CFLAGS -Wformat-security"])
-AX_CHECK_COMPILE_FLAG([-Wno-nullability-completeness], [CFLAGS="$CFLAGS -Wno-nullability-completeness"])
+AX_CHECK_COMPILE_FLAG([-Wno-error=nullability-completeness], [CFLAGS="$CFLAGS -Wno-error=nullability-completeness"])
 AX_CHECK_COMPILE_FLAG([-Wno-error=c23-extensions], [CFLAGS="$CFLAGS -Wno-error=c23-extensions"])
+
+
+AC_GNU_SOURCE
+
 
 ## -Wimplicit-fallthrough
 ## -Wtrampolines
