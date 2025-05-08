@@ -20,6 +20,8 @@
 #include "pollfd__select.h"
 #elif (HAVE_SYS_EPOLL_H)
 #include "pollfd__linux_epoll.h"
+#elif (HAVE_KQUEUE)
+#include "pollfd__kqueue.h"
 #else
 /* fallback */
 #include "pollfd__select.h"
@@ -31,6 +33,13 @@ typedef enum {
   pollfd_evt_out,
 } pollfd_evt_type;
 
+
+/**
+ * pollfd 구현방식 이름 문자열
+ *
+ * @return "epoll" / "select" / "kqueue"
+ */
+const char *pollfd_impl_name(void);
 
 /**
  * file-descriptor event poller 생성

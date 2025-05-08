@@ -13,6 +13,8 @@
 #include "pollfd__select.c"
 #elif (HAVE_SYS_EPOLL_H)
 #include "pollfd__linux_epoll.c"
+#elif (HAVE_KQUEUE)
+#include "pollfd__kqueue.c"
 #else
 /* fallback */
 #include "pollfd__select.c"

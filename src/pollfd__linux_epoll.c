@@ -55,6 +55,11 @@ epoll__del (const int epollfd, const int fd)
 }
 
 
+const char *pollfd_impl_name(void)
+{
+  return "select";
+}
+
 
 pollfd_t *pollfd_new(const size_t max_evts,
                      const int timeout_millis)
@@ -162,7 +167,11 @@ int pollfd_wait(pollfd_t *p_pollfd,
                          p_pollfd->epoll_evts,
                          p_pollfd->epoll_evts_len,
                          p_pollfd->epoll_timeout_millis);
-  if (nfds < 0) return nfds;
+  if (nfds < 0)
+    {
+      perror("epoll_wait");
+      return nfds;
+    }
 
   for (int i=0; i < nfds; i++)
     {

@@ -1,5 +1,11 @@
 
-2025-05-04  윤종혁	<ageldama@gmail.com>
+2025-05-08  윤종혁	<ageldama@gmail.com>
+	v1.1 : FreeBSD 지원추가
+	* kqueue(2) 이벤트 지원
+	* (... fallback select(2) 도 지원추가 )
+
+
+2025-05-07  윤종혁	<ageldama@gmail.com>
 	v1.0 : 버전스킴 변경
 	* Lua 스크립팅, DLL 플러그인 API 문서 추가
 

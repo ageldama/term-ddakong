@@ -261,6 +261,12 @@ main (int argc, char **argv)
   const int MAX_EVTS = 10;
   const int EVT_TIMEOUT_MILLIS = 1000;
 
+  if (verbose_flag)
+    {
+      fprintf(stderr, "# pollfd(%s)\n",
+              pollfd_impl_name());
+    }
+
   p_pollfd = pollfd_new (MAX_EVTS, EVT_TIMEOUT_MILLIS);
   if (p_pollfd == NULL)
     {

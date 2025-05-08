@@ -18,6 +18,12 @@
 #include "cc_nanny.h"
 
 
+const char *pollfd_impl_name(void)
+{
+  return "select";
+}
+
+
 pollfd_t *pollfd_new(const size_t max_evts UNUSED,
                      const int timeout_millis)
 {
