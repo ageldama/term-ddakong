@@ -15,7 +15,6 @@
 
 #include <stdint.h>
 
-
 #if (ENABLE_SELECT)
 #include "pollfd__select.h"
 #elif (HAVE_SYS_EPOLL_H)
@@ -27,19 +26,18 @@
 #include "pollfd__select.h"
 #endif
 
-
-typedef enum {
+typedef enum
+{
   pollfd_evt_in = 1,
   pollfd_evt_out,
 } pollfd_evt_type;
-
 
 /**
  * pollfd 구현방식 이름 문자열
  *
  * @return "epoll" / "select" / "kqueue"
  */
-const char *pollfd_impl_name(void);
+const char *pollfd_impl_name (void);
 
 /**
  * file-descriptor event poller 생성
@@ -53,9 +51,7 @@ const char *pollfd_impl_name(void);
  * @return 에러시엔 NULL
  */
 EXTERN_
-pollfd_t *pollfd_new(const size_t max_evts,
-                     const int timeout_millis);
-
+pollfd_t *pollfd_new (const size_t max_evts, const int timeout_millis);
 
 /**
  * pollfd_t 메모리해제
@@ -65,8 +61,7 @@ pollfd_t *pollfd_new(const size_t max_evts,
  * @param p_pollfd (non-nullable)
  */
 EXTERN_
-void pollfd_free(pollfd_t *p_pollfd);
-
+void pollfd_free (pollfd_t *p_pollfd);
 
 /**
  * polling-할 fd 추가
@@ -78,10 +73,8 @@ void pollfd_free(pollfd_t *p_pollfd);
  * @param evt_type event-type: input/output
  */
 EXTERN_
-int pollfd_add(pollfd_t *p_pollfd,
-               const int fd,
-               const pollfd_evt_type evt_type);
-
+int pollfd_add (pollfd_t *p_pollfd, const int fd,
+                const pollfd_evt_type evt_type);
 
 /**
  * polling
@@ -95,12 +88,6 @@ int pollfd_add(pollfd_t *p_pollfd,
  * @return 몇 개의 이벤트가 발생했는지
  */
 EXTERN_
-int pollfd_wait(pollfd_t *p_pollfd,
-                int *fds, const size_t fds_len);
-
-
-
-
-
+int pollfd_wait (pollfd_t *p_pollfd, int *fds, const size_t fds_len);
 
 #endif /* ! pollfd_h */

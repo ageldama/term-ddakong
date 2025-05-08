@@ -1,9 +1,11 @@
 # -*- mode: makefile-gmake; -*-
 
-
-
-
 KEYLOG ?= KEYLOG.txt
+
+CLANG_FORMAT ?= clang-format
+
+CLANG_TIDY ?= clang-tidy
+
 
 .PHONY: dbg-tail-xxd
 dbg-tail-xxd:
@@ -21,12 +23,12 @@ find-src-inc = find .  -type f \
 
 .PHONY: clang-format
 clang-format:
-	$(call find-src-inc,clang-format --style=file -i {})
+	$(call find-src-inc,$(CLANG_FORMAT) --style=file -i {})
 
 
 .PHONY: clang-tidy
 clang-tidy:
-	$(call find-src-inc,clang-tidy --config-file .clang-tidy -p compile_commands.json -header-filter=.* {})
+	$(call find-src-inc,$(CLANG_TIDY) --config-file .clang-tidy -p compile_commands.json -header-filter=.* {})
 
 
 .PHONY: iwyu

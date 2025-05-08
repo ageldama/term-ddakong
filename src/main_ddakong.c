@@ -22,13 +22,12 @@
 #include "im_handler.h"
 #include "im_handler_hangeul.h"
 #include "plugin.h"
+#include "pollfd.h"
 #include "pty_.h"
 #include "sig.h"
 #include "termios_.h"
 #include "typedef_.h"
 #include "winsz.h"
-#include "pollfd.h"
-
 
 /* globals */
 
@@ -120,7 +119,7 @@ _exit_cleanup (void)
 
   if (p_pollfd != NULL)
     {
-      pollfd_free(p_pollfd);
+      pollfd_free (p_pollfd);
     }
 }
 
@@ -263,8 +262,7 @@ main (int argc, char **argv)
 
   if (verbose_flag)
     {
-      fprintf(stderr, "# pollfd(%s)\n",
-              pollfd_impl_name());
+      fprintf (stderr, "# pollfd(%s)\n", pollfd_impl_name ());
     }
 
   p_pollfd = pollfd_new (MAX_EVTS, EVT_TIMEOUT_MILLIS);
@@ -273,22 +271,17 @@ main (int argc, char **argv)
       exit (EXIT_FAILURE);
     }
 
-  if(-1 == pollfd_add(p_pollfd,
-                      STDIN_FILENO,
-                      pollfd_evt_in))
+  if (-1 == pollfd_add (p_pollfd, STDIN_FILENO, pollfd_evt_in))
     {
       perror ("epoll_ctl: stdin");
       exit (EXIT_FAILURE);
     }
 
-  if (-1 == pollfd_add(p_pollfd,
-                       child_fd,
-                       pollfd_evt_in))
+  if (-1 == pollfd_add (p_pollfd, child_fd, pollfd_evt_in))
     {
       perror ("epoll_ctl: child_fd");
       exit (EXIT_FAILURE);
     }
-
 
   /* prepare: mainloop */
   const ssize_t buf_max = 1024;

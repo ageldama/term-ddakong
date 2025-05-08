@@ -6,8 +6,8 @@
  * that can be found in the license file.
  */
 
-#include "config.h"
 #include "sig.h"
+#include "config.h"
 
 #include <signal.h>
 #include <stdlib.h>

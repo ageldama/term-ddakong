@@ -9,8 +9,8 @@
 #ifndef typedef__h
 #define typedef__h 1
 
-#include <stdint.h>
 #include "extern_.h"
+#include <stdint.h>
 
 /**
  * 1-바이트

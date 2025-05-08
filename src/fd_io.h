@@ -51,5 +51,4 @@ EXTERN_ ssize_t cp_fd (const int src_fd, const int dst_fd, char *buf,
  */
 EXTERN_ int fcntl_nb (const int fd, int *p_old_fl);
 
-
 #endif /* ! fd_io_h */

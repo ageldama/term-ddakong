@@ -8,8 +8,8 @@
 #ifndef pty__h
 #define pty__h 1
 
-#include <sys/types.h>  /* for pid_t */
-#include "extern_.h"    /* for EXTERN_ */
+#include "extern_.h"   /* for EXTERN_ */
+#include <sys/types.h> /* for pid_t */
 
 #ifdef __APPLE__
 #include <util.h>

@@ -6,8 +6,8 @@
  * that can be found in the license file.
  */
 
-#include "config.h"
 #include "winsz.h"
+#include "config.h"
 
 #include <stdlib.h>
 #include <sys/ioctl.h>

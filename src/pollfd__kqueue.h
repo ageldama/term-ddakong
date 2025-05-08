@@ -15,22 +15,21 @@
 
 #include "extern_.h"
 
-#include <stdint.h>
 #include <stddef.h>
+#include <stdint.h>
 
 #ifdef HAVE_SYS_EVENT_H
 #include <sys/event.h>
 #endif
 
-
-typedef struct {
+typedef struct
+{
   size_t max_evts;
   int timeout_millis;
-  
+
   int kq;
   struct kevent evt_change;
   struct kevent *evt_triggered;
 } pollfd_t;
-
 
 #endif /* ! pollfd__kqueue_h */

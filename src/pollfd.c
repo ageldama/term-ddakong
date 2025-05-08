@@ -8,7 +8,6 @@
 
 #include "pollfd.h"
 
-
 #if (ENABLE_SELECT)
 #include "pollfd__select.c"
 #elif (HAVE_SYS_EPOLL_H)

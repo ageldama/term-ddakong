@@ -11,19 +11,18 @@
 #ifndef pollfd__select_h
 #define pollfd__select_h 1
 
-
 #include "config.h"
 #include "extern_.h"
 
-#include <stdint.h>
 #include <stddef.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/time.h>
+#include <stdint.h>
 #include <sys/select.h>
+#include <sys/time.h>
+#include <sys/types.h>
+#include <unistd.h>
 
-
-typedef struct {
+typedef struct
+{
   int _timeout_millis;
 
   struct timeval tv_timeout;
@@ -34,7 +33,5 @@ typedef struct {
   int *wfds;
   int wfds_len;
 } pollfd_t;
-
-
 
 #endif /* ! pollfd__select_h */

@@ -8,9 +8,9 @@
 
 #include "fd_io.h"
 
-#include <fcntl.h>      /* for fcntl, F_GETFL, F_SETFL, O_NONBLOCK */
-#include <stddef.h>     /* for size_t, NULL */
-#include <unistd.h>     /* for read, write */
+#include <fcntl.h>  /* for fcntl, F_GETFL, F_SETFL, O_NONBLOCK */
+#include <stddef.h> /* for size_t, NULL */
+#include <unistd.h> /* for read, write */
 
 ssize_t
 cp_fd (const int src_fd, const int dst_fd, char *buf, const ssize_t buf_max)
@@ -43,4 +43,3 @@ fcntl_nb (const int fd, int *p_old_fl)
 
   return fcntl (fd, F_SETFL, old_fl | O_NONBLOCK);
 }
-
