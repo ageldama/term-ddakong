@@ -4,6 +4,7 @@
 #include "extern_.h"
 
 #include <stdlib.h>
+#include <unistd.h>
 #include <wordexp.h>
 
 EXTERN_ char *wordexp__errmsg (const int n_wordexp);

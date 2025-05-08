@@ -67,8 +67,14 @@ AM_PROG_AR
 # Checks for header files.
 AC_CHECK_HEADERS([sys/epoll.h])
 
+AC_CHECK_HEADERS([pty.h])
+
+AC_CHECK_HEADERS([libutil.h])
+
+AC_CHECK_HEADERS([sys/signal.h])
+
 AC_CHECK_HEADERS([stdint.h fcntl.h stdint.h
-sys/ioctl.h pty.h
+sys/ioctl.h
 sys/types.h stddef.h
 signal.h sys/wait.h
 stdarg.h ctype.h
@@ -87,7 +93,9 @@ AC_TYPE_SSIZE_T
 
 AC_CHECK_FUNCS([epoll_create1])
 
-AC_CHECK_FUNCS([atexit forkpty
+AC_CHECK_FUNCS([forkpty])
+
+AC_CHECK_FUNCS([atexit
 getenv execlp kill close read write
 sigemptyset sigaction waitpid
 snprintf perror

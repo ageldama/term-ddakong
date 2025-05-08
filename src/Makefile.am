@@ -5,10 +5,13 @@ AM_CPPFLAGS = -fPIC \
     -Wconversion -Wsign-conversion \
     -Wformat-security \
     -Wno-nullability-completeness \
-    -std=c99 -D_POSIX_C_SOURCE -D_GNU_SOURCE
+    -std=c99 \
+		-D_GNU_SOURCE \
+		-D_POSIX_C_SOURCE -D_XOPEN_SOURCE=700 \
+		-D_BSD_SOURCE -D__BSD_VISIBLE \
+		-Wno-error=c23-extensions
 
 ## TODO -fhardened (gcc)
-## -Wno-c23-extensions 
 
 
 noinst_LIBRARIES = libddakongs.a
@@ -24,7 +27,7 @@ bin_PROGRAMS = ddakong
 
 ddakong_SOURCES = main_ddakong.c
 ddakong_LDADD = libddakongs.a
-## ddakong_LDFLAGS =
+ddakong_LDFLAGS = -lutil
 
 EXTRA_DIST = *.h
 

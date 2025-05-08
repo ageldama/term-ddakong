@@ -6,6 +6,7 @@
 #include "extern_.h"
 
 #include <stdlib.h>
+#include <unistd.h>
 
 typedef struct
 {

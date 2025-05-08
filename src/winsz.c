@@ -6,11 +6,16 @@
  * that can be found in the license file.
  */
 
+#include "config.h"
 #include "winsz.h"
 
 #include <stdlib.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
+
+#ifdef HAVE_SYS_SIGNAL_H
+#include <sys/signal.h>
+#endif
 
 void
 winsz_update (const int child_fd)

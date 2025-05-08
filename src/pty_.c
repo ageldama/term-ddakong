@@ -5,15 +5,23 @@
  * reserved. Use of this source code is governed by a GPLv3 license
  * that can be found in the license file.
  */
+#include "config.h"
 #include "pty_.h"
 
 #include <fcntl.h>
-#include <pty.h>
 #include <signal.h>
-#include <stddef.h> // for size_t
+#include <stddef.h> /* for size_t */
 #include <stdlib.h>
 #include <sys/wait.h>
 #include <unistd.h>
+
+#ifdef HAVE_PTY_H
+#include <pty.h>
+#endif
+
+#ifdef HAVE_LIBUTIL_H
+#include <libutil.h>
+#endif
 
 pid_t
 forkpty_with_exec (int *fd_amaster)

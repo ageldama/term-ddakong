@@ -13,6 +13,7 @@
 #include "extern_.h"
 #include "typedef_.h"
 #include <stdlib.h>
+#include <unistd.h>
 
 #ifndef DDAKONG_PLUGIN_ENTRY_NAME
 
