@@ -6761,6 +6761,16 @@ printf "%s\n" "#define GWINSZ_IN_SYS_IOCTL 1" >>confdefs.h
 fi
 
 
+## kqueue header
+ac_fn_c_check_header_compile "$LINENO" "sys/event.h" "ac_cv_header_sys_event_h" "$ac_includes_default"
+if test "x$ac_cv_header_sys_event_h" = xyes
+then :
+  printf "%s\n" "#define HAVE_SYS_EVENT_H 1" >>confdefs.h
+
+fi
+
+
+
 # Checks for typedefs, structures, and compiler characteristics.
 
   ac_fn_c_check_type "$LINENO" "pid_t" "ac_cv_type_pid_t" "$ac_includes_default
@@ -6831,6 +6841,14 @@ ac_fn_c_check_func "$LINENO" "epoll_create1" "ac_cv_func_epoll_create1"
 if test "x$ac_cv_func_epoll_create1" = xyes
 then :
   printf "%s\n" "#define HAVE_EPOLL_CREATE1 1" >>confdefs.h
+
+fi
+
+
+ac_fn_c_check_func "$LINENO" "kqueue" "ac_cv_func_kqueue"
+if test "x$ac_cv_func_kqueue" = xyes
+then :
+  printf "%s\n" "#define HAVE_KQUEUE 1" >>confdefs.h
 
 fi
 

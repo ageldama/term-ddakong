@@ -72,7 +72,7 @@ AX_CHECK_COMPILE_FLAG([-Wno-nullability-completeness], [CFLAGS="$CFLAGS -Wno-nul
 AX_CHECK_COMPILE_FLAG([-Wno-c23-extensions], [CFLAGS="$CFLAGS -Wno-c23-extensions"])
 
 
-AC_GNU_SOURCE
+AC_USE_SYSTEM_EXTENSIONS
 
 
 ## -Wimplicit-fallthrough
@@ -121,6 +121,10 @@ termios.h unistd.h],[],[AC_MSG_ERROR([required header cannot be found])])
 AC_HEADER_ASSERT
 AC_HEADER_TIOCGWINSZ
 
+## kqueue header
+AC_CHECK_HEADERS([sys/event.h])
+
+
 # Checks for typedefs, structures, and compiler characteristics.
 AC_TYPE_PID_T
 AC_TYPE_SIZE_T
@@ -130,6 +134,8 @@ AC_TYPE_SSIZE_T
 
 
 AC_CHECK_FUNCS([epoll_create1])
+
+AC_CHECK_FUNCS([kqueue])
 
 AC_CHECK_FUNCS([forkpty])
 
