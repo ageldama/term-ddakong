@@ -70,3 +70,14 @@
 
 * DONE xbuild: lua
   CLOSED: [2025-05-07 Wed 15:43]
+
+
+* TODO FreeBSD [0/5]
+  1) [ ] license headers?
+  2) [ ] -Wno-error=c32-extensions + gcc?
+  3) [ ] _XOPEN_SOURCE=700
+  4) [ ] _BSD_SOURCE __BSD_VISIBLE
+  5) [ ] -lutil
+
+
+
