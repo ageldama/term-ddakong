@@ -1,3 +1,13 @@
+/**
+ * "poll-fd" portable file-descriptor polling abstration
+ *
+ * epoll implementation
+ *
+ * Copyright Jonghyouk Yun <ageldama@gmail.com>, 2025. All rights
+ * reserved. Use of this source code is governed by a GPLv3 license
+ * that can be found in the license file.
+ */
+
 #ifndef pollfd__linux_epoll_h
 #define pollfd__linux_epoll_h 1
 
