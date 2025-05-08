@@ -150,7 +150,7 @@ _fd_isset (fd_set *p_fd_set, int *fds_in, int fds_in_len, int *fds_out,
 }
 
 int
-pollfd_wait (pollfd_t *p_pollfd, int *fds UNUSED, const size_t fds_len UNUSED)
+pollfd_wait (pollfd_t *p_pollfd, int *fds, const size_t fds_len)
 {
   assert (p_pollfd != NULL);
 
@@ -171,7 +171,7 @@ pollfd_wait (pollfd_t *p_pollfd, int *fds UNUSED, const size_t fds_len UNUSED)
       return n_select;
     }
 
-  int cur_pos UNUSED = 0;
+  int cur_pos = 0;
 
   _fd_isset (&rfds, p_pollfd->rfds, p_pollfd->rfds_len, fds, (int)fds_len,
              &cur_pos);
