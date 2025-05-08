@@ -1368,3 +1368,4 @@ AC_SUBST(am__xargs_n)
 ])
 
 m4_include([m4/ax_check_compile_flag.m4])
+m4_include([m4/ax_func_snprintf.m4])

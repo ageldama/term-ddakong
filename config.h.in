@@ -6,9 +6,6 @@
 /* Define to 1 if 'TIOCGWINSZ' requires <sys/ioctl.h>. */
 #undef GWINSZ_IN_SYS_IOCTL
 
-/* Define to 1 if you have the 'abort' function. */
-#undef HAVE_ABORT
-
 /* Define to 1 if you have the 'atexit' function. */
 #undef HAVE_ATEXIT
 
@@ -27,9 +24,6 @@
 /* Define to 1 if you have the 'execlp' function. */
 #undef HAVE_EXECLP
 
-/* Define to 1 if you have the 'exit' function. */
-#undef HAVE_EXIT
-
 /* Define to 1 if you have the 'fcntl' function. */
 #undef HAVE_FCNTL
 
@@ -38,9 +32,6 @@
 
 /* Define to 1 if you have the 'forkpty' function. */
 #undef HAVE_FORKPTY
-
-/* Define to 1 if you have the 'fprintf' function. */
-#undef HAVE_FPRINTF
 
 /* Define to 1 if you have the 'getenv' function. */
 #undef HAVE_GETENV
@@ -53,12 +44,6 @@
 
 /* Define to 1 if you have the 'ioctl' function. */
 #undef HAVE_IOCTL
-
-/* Define to 1 if you have the 'isalpha' function. */
-#undef HAVE_ISALPHA
-
-/* Define to 1 if you have the 'isprint' function. */
-#undef HAVE_ISPRINT
 
 /* Define to 1 if you have the 'kill' function. */
 #undef HAVE_KILL
@@ -141,6 +126,9 @@
 /* Define to 1 if you have the 'vasprintf' function. */
 #undef HAVE_VASPRINTF
 
+/* Define to 1 if you have the 'vsnprintf' function. */
+#undef HAVE_VSNPRINTF
+
 /* Define to 1 if you have the 'waitpid' function. */
 #undef HAVE_WAITPID
 
@@ -170,6 +158,9 @@
 
 /* Define to the version of this package. */
 #undef PACKAGE_VERSION
+
+/* "enable replacement (v)snprintf if system (v)snprintf is broken" */
+#undef PREFER_PORTABLE_SNPRINTF
 
 /* Define to 1 if all of the C89 standard headers exist (not just the ones
    required in a freestanding environment). This macro is provided for

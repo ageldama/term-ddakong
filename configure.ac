@@ -56,7 +56,33 @@ AC_ARG_WITH([lua-pkg-config],
 
 # Checks for programs.
 AC_PROG_CC
-AX_CHECK_COMPILE_FLAG([-std=c99])
+
+AX_CHECK_COMPILE_FLAG([-std=c99], [CFLAGS="$CFLAGS -std=c99"])
+AX_CHECK_COMPILE_FLAG([-Wall], [CFLAGS="$CFLAGS -Wall"])
+AX_CHECK_COMPILE_FLAG([-Wextra], [CFLAGS="$CFLAGS -Wextra"])
+AX_CHECK_COMPILE_FLAG([-Werror], [CFLAGS="$CFLAGS -Werror"])
+AX_CHECK_COMPILE_FLAG([-Wconversion], [CFLAGS="$CFLAGS -Wconversion"])
+AX_CHECK_COMPILE_FLAG([-Wsign-conversion], [CFLAGS="$CFLAGS -Wsign-conversion"])
+AX_CHECK_COMPILE_FLAG([-Wformat-security], [CFLAGS="$CFLAGS -Wformat-security"])
+AX_CHECK_COMPILE_FLAG([-Wno-nullability-completeness], [CFLAGS="$CFLAGS -Wno-nullability-completeness"])
+AX_CHECK_COMPILE_FLAG([-Wno-error=c23-extensions], [CFLAGS="$CFLAGS -Wno-error=c23-extensions"])
+
+## -Wimplicit-fallthrough
+## -Wtrampolines
+## -Wformat
+## -Wformat=2
+## -Werror=implicit
+## -Werror=incompatible-pointer-types
+## -Werror=int-conversion
+## -O2
+## -D_FORTIFY_SOURCE=2
+## -fhardened
+## -fexceptions
+## -Wl,-z,relro
+## -Wl,-z,now
+## -fcf-protection=full
+## -mbranch-protection=standard
+
 AC_PROG_RANLIB
 AM_PROG_AR
 
@@ -65,6 +91,10 @@ AM_PROG_AR
 # Checks for libraries.
 
 # Checks for header files.
+AC_CHECK_HEADERS([stdio.h])
+AC_CHECK_HEADERS([stdlib.h])
+AC_CHECK_HEADERS([unistd.h])
+
 AC_CHECK_HEADERS([sys/epoll.h])
 
 AC_CHECK_HEADERS([pty.h])
@@ -95,15 +125,16 @@ AC_CHECK_FUNCS([epoll_create1])
 
 AC_CHECK_FUNCS([forkpty])
 
+AX_FUNC_SNPRINTF()
+
 AC_CHECK_FUNCS([atexit
 getenv execlp kill close read write
 sigemptyset sigaction waitpid
-snprintf perror
-isalpha isprint
+perror
 ioctl tcgetattr tcsetattr
-getopt abort
+getopt
 vasprintf
-exit fprintf fcntl],[],[AC_MSG_ERROR([required function cannot be found])])
+fcntl],[],[AC_MSG_ERROR([required function cannot be found])])
 
 
 AC_CHECK_LIB(dl, [dlopen],
@@ -119,7 +150,8 @@ AC_CHECK_LIB(dl, [dlopen],
   AC_MSG_NOTICE(["libdl" cannot be found, Plugin system DISABLED.])
 ])
 
-
+AC_CHECK_LIB(util, [forkpty],
+  [AC_SUBST(LDFLAGS_LIBUTIL, [-lutil])])
 
 #
 AM_CONDITIONAL([LUA], [test x"$enable_lua" != x"no"])

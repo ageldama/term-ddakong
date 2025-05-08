@@ -93,6 +93,7 @@ bin_PROGRAMS = ddakong$(EXEEXT)
 subdir = src
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_compile_flag.m4 \
+	$(top_srcdir)/m4/ax_func_snprintf.m4 \
 	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
@@ -215,6 +216,7 @@ INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
 LDFLAGS = @LDFLAGS@
+LDFLAGS_LIBUTIL = @LDFLAGS_LIBUTIL@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LTLIBOBJS = @LTLIBOBJS@
@@ -285,15 +287,9 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CPPFLAGS = -fPIC \
-    -Wall -Wextra -Werror \
-    -Wconversion -Wsign-conversion \
-    -Wformat-security \
-    -Wno-nullability-completeness \
-    -std=c99 \
 		-D_GNU_SOURCE \
 		-D_POSIX_C_SOURCE -D_XOPEN_SOURCE=700 \
-		-D_BSD_SOURCE -D__BSD_VISIBLE \
-		-Wno-error=c23-extensions
+		-D_DEFAULT_SOURCE -D__BSD_VISIBLE
 
 noinst_LIBRARIES = libddakongs.a
 libddakongs_a_SOURCES = err.c fd_io.c getopt_.c \
@@ -305,7 +301,7 @@ libddakongs_a_SOURCES = err.c fd_io.c getopt_.c \
 
 ddakong_SOURCES = main_ddakong.c
 ddakong_LDADD = libddakongs.a
-ddakong_LDFLAGS = -lutil
+ddakong_LDFLAGS = $(LDFLAGS_LIBUTIL)
 EXTRA_DIST = *.h
 all: all-am
 
