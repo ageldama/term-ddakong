@@ -12,7 +12,6 @@
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/epoll.h>
 #include <sys/wait.h>
 #include <unistd.h>
 
@@ -28,11 +27,14 @@
 #include "termios_.h"
 #include "typedef_.h"
 #include "winsz.h"
+#include "pollfd.h"
+
 
 /* globals */
 
 int child_fd = -1;
 pid_t child_pid = 0;
+pollfd_t *p_pollfd = NULL;
 dll_plugin_context_t dll_plugin_ctx;
 
 /* internals */
@@ -114,6 +116,11 @@ _exit_cleanup (void)
   if (dll_plugin_ctx.p_dll != NULL)
     {
       dll_plugin_unload (&dll_plugin_ctx);
+    }
+
+  if (p_pollfd != NULL)
+    {
+      pollfd_free(p_pollfd);
     }
 }
 
@@ -250,32 +257,40 @@ main (int argc, char **argv)
       exit (EXIT_FAILURE);
     }
 
-  /* epoll: prepare */
-  int epollfd = epoll_create1 (0 /* flags */);
-  if (epollfd == -1)
+  /* pollfd: prepare */
+  const int MAX_EVTS = 10;
+  const int EVT_TIMEOUT_MILLIS = 1000;
+
+  if (verbose_flag)
     {
-      perror ("epoll_create1");
+      fprintf(stderr, "# pollfd(%s)\n",
+              pollfd_impl_name());
+    }
+
+  p_pollfd = pollfd_new (MAX_EVTS, EVT_TIMEOUT_MILLIS);
+  if (p_pollfd == NULL)
+    {
       exit (EXIT_FAILURE);
     }
 
-  if (epoll__add (epollfd, STDIN_FILENO) == -1)
+  if(-1 == pollfd_add(p_pollfd,
+                      STDIN_FILENO,
+                      pollfd_evt_in))
     {
       perror ("epoll_ctl: stdin");
       exit (EXIT_FAILURE);
     }
 
-  if (epoll__add (epollfd, child_fd) == -1)
+  if (-1 == pollfd_add(p_pollfd,
+                       child_fd,
+                       pollfd_evt_in))
     {
       perror ("epoll_ctl: child_fd");
       exit (EXIT_FAILURE);
     }
 
-  const int MAX_EVENTS = 10;
-  struct epoll_event events[MAX_EVENTS];
 
   /* prepare: mainloop */
-  const int epoll_timeout_ms = 1000;
-
   const ssize_t buf_max = 1024;
   char buf[buf_max];
 
@@ -283,19 +298,19 @@ main (int argc, char **argv)
   handle_input_fn_t handle_input = get_current_handle_input_fn ();
   void *p_handle_input_status = get_current_handle_input_status ();
 
+  int fds[MAX_EVTS];
+
   while (1)
     {
-      int nfds = epoll_wait (epollfd, events, MAX_EVENTS, epoll_timeout_ms);
+      int nfds = pollfd_wait (p_pollfd, fds, MAX_EVTS);
       if (nfds == -1)
         {
-          /* perror ("epoll_wait"); */
-          /* exit (EXIT_FAILURE); */
           continue;
         }
 
       for (int n = 0; n < nfds; ++n)
         {
-          int fd = events[n].data.fd;
+          int fd = fds[n];
 
           if (child_fd == fd)
             {

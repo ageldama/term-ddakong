@@ -1,3 +1,11 @@
+/**
+ * ddakong Lua-scripting plugin
+ *
+ * Copyright Jonghyouk Yun <ageldama@gmail.com>, 2025. All rights
+ * reserved. Use of this source code is governed by a GPLv3 license
+ * that can be found in the license file.
+ */
+
 #ifndef lua_binding__err_h
 #define lua_binding__err_h 1
 
