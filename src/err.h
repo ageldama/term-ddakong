@@ -26,10 +26,10 @@ typedef void (*ERR_errmsg_free) (void *_Nullable);
 typedef struct
 {
   /** 에러메시지 (nullable) */
-  char * _Nullable errmsg;
+  char *errmsg;
 
   /** 에러메시지 해제함수 (nullable) */
-  ERR_errmsg_free _Nullable errmsg_free;
+  ERR_errmsg_free errmsg_free;
 } ERR;
 
 /**
@@ -39,7 +39,7 @@ typedef struct
  *
  * @return BOOL
  */
-EXTERN_ BOOL ERR_err_p (const ERR * _Nonnull p_err);
+EXTERN_ BOOL ERR_err_p (const ERR *p_err);
 
 /**
  * 에러메시지 구조체의 필드들을 모두 비우기
@@ -49,7 +49,7 @@ EXTERN_ BOOL ERR_err_p (const ERR * _Nonnull p_err);
  *
  * @param p_err 에러구조체 (non-null)
  */
-EXTERN_ void ERR_clear (ERR * _Nonnull p_err);
+EXTERN_ void ERR_clear (ERR *p_err);
 
 /**
  * 에러메시지를 assign.
@@ -63,8 +63,8 @@ EXTERN_ void ERR_clear (ERR * _Nonnull p_err);
  *
  * @param errmsg_free 에러메시지 해제함수 (nullable)
  */
-EXTERN_ void ERR_set (ERR * _Nonnull p_err, const char * _Nonnull errmsg,
-                      ERR_errmsg_free _Nullable errmsg_free);
+EXTERN_ void ERR_set (ERR *p_err, const char *errmsg,
+                      ERR_errmsg_free errmsg_free);
 
 /**
  * 에러메시지 해제가 불필요한 에러메시지를 assign.
@@ -78,7 +78,7 @@ EXTERN_ void ERR_set (ERR * _Nonnull p_err, const char * _Nonnull errmsg,
  */
 #define ERR_set_nofree(p_err, errmsg) (ERR_set (p_err, errmsg, NULL))
 
-EXTERN_ void ERR_set_nofree_fn (ERR * _Nonnull p_err, const char * _Nonnull sz_errmsg);
+EXTERN_ void ERR_set_nofree_fn (ERR *p_err, const char *sz_errmsg);
 
 /**
  * 에러메시지를 printf.
@@ -90,14 +90,14 @@ EXTERN_ void ERR_set_nofree_fn (ERR * _Nonnull p_err, const char * _Nonnull sz_e
  *
  * @param errmsg_fmt `sprintf' 포매팅문자열
  */
-EXTERN_ char * _Nonnull ERR_printf (ERR * _Nonnull p_err, const char * _Nonnull errmsg_fmt, ...);
+EXTERN_ char *ERR_printf (ERR *p_err, const char *errmsg_fmt, ...);
 
 /**
  * 에러가 있다면(`ERR_err_p'), 프로세스를 강제종료.
  *
  * @param p_err (non-null)
  */
-EXTERN_ void ERR_dieif (const ERR * _Nonnull p_err);
+EXTERN_ void ERR_dieif (const ERR *p_err);
 
 /**
  * 에러가 있다면(`ERR_err_p'), `fp_out'-에 경고출력.
@@ -106,7 +106,7 @@ EXTERN_ void ERR_dieif (const ERR * _Nonnull p_err);
  *
  * @param fp_out 경고를 출력할 `FILE *' (nullable: NULL-이면 stderr에 출력)
  */
-EXTERN_ void ERR_warn_and_clear_if (ERR * _Nonnull p_err, FILE * _Nullable fp_out);
+EXTERN_ void ERR_warn_and_clear_if (ERR *p_err, FILE *fp_out);
 
 /**
  * Assertion-expression을 평가후(runtime), 에러가 있다면 에러메시지
