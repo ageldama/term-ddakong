@@ -52,7 +52,7 @@ epoll__del (const int epollfd, const int fd)
 const char *
 pollfd_impl_name (void)
 {
-  return "select";
+  return "epoll";
 }
 
 pollfd_t *
