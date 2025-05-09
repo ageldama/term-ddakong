@@ -78,7 +78,6 @@ Makefile
 
 /term-ddakong-*.tar.gz
 /ddakong-*.tar.gz
-libtool
 
 term-ddakong-*.tar.gz
 ddakong-*.tar.gz
