@@ -56,6 +56,8 @@ AC_ARG_WITH([lua-pkg-config],
 
 # Checks for programs.
 AC_USE_SYSTEM_EXTENSIONS()
+##AC_DEFINE([_POSIX_SOURCE], [1])
+##AC_DEFINE([_POSIX_1_SOURCE], [2])
 
 AC_PROG_CC
 

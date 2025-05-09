@@ -4721,6 +4721,8 @@ then :
 
 fi
 
+##AC_DEFINE([_POSIX_SOURCE], [1])
+##AC_DEFINE([_POSIX_1_SOURCE], [2])
 
 ac_ext=c
 ac_cpp='$CPP $CPPFLAGS'
