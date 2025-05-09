@@ -75,6 +75,7 @@ Makefile
 .libs/
 stamp-h1
 Makefile
+libtool
 
 /term-ddakong-*.tar.gz
 /ddakong-*.tar.gz
