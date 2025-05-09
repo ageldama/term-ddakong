@@ -6,7 +6,7 @@ AC_INIT([ddakong-plugin-lua],[0.0.01],[Jonghyouk Yun <ageldama@gmail.com>])
 
 AC_CONFIG_AUX_DIR([./autotools])
 
-AM_INIT_AUTOMAKE([-Wall -Werror foreign])
+AM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])
 AM_MAINTAINER_MODE
 
 AC_CONFIG_SRCDIR([src/dllmain.c])

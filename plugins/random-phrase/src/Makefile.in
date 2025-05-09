@@ -652,10 +652,10 @@ uninstall-am: uninstall-libLTLIBRARIES
 
 
 all-local:
-	-cp -fv .libs/librandom_phrase_ddakong.so $(top_srcdir)
+	-cp -fv .libs/librandom_phrase_ddakong.so $(top_builddir)
 
 clean-local:
-	-rm -fv $(top_srcdir)/librandom_phrase_ddakong.so
+	-rm -fv $(top_builddir)/librandom_phrase_ddakong.so
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
