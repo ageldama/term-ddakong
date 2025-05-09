@@ -7,6 +7,7 @@ AC_INIT([ddakong-plugin-random-phrase],[0.0.01],[Jonghyouk Yun <ageldama@gmail.c
 AC_CONFIG_AUX_DIR([./autotools])
 
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
+AM_MAINTAINER_MODE
 
 AC_CONFIG_SRCDIR([src/dllmain.c])
 AC_CONFIG_HEADERS([config.h])
