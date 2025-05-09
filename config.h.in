@@ -3,13 +3,13 @@
 /* use select(1) */
 #undef ENABLE_SELECT
 
-/* Define to 1 if 'TIOCGWINSZ' requires <sys/ioctl.h>. */
+/* Define to 1 if `TIOCGWINSZ' requires <sys/ioctl.h>. */
 #undef GWINSZ_IN_SYS_IOCTL
 
-/* Define to 1 if you have the 'atexit' function. */
+/* Define to 1 if you have the `atexit' function. */
 #undef HAVE_ATEXIT
 
-/* Define to 1 if you have the 'close' function. */
+/* Define to 1 if you have the `close' function. */
 #undef HAVE_CLOSE
 
 /* Define to 1 if you have the <ctype.h> header file. */
@@ -18,37 +18,37 @@
 /* have dlopen */
 #undef HAVE_DLOPEN
 
-/* Define to 1 if you have the 'epoll_create1' function. */
+/* Define to 1 if you have the `epoll_create1' function. */
 #undef HAVE_EPOLL_CREATE1
 
-/* Define to 1 if you have the 'execlp' function. */
+/* Define to 1 if you have the `execlp' function. */
 #undef HAVE_EXECLP
 
-/* Define to 1 if you have the 'fcntl' function. */
+/* Define to 1 if you have the `fcntl' function. */
 #undef HAVE_FCNTL
 
 /* Define to 1 if you have the <fcntl.h> header file. */
 #undef HAVE_FCNTL_H
 
-/* Define to 1 if you have the 'forkpty' function. */
+/* Define to 1 if you have the `forkpty' function. */
 #undef HAVE_FORKPTY
 
-/* Define to 1 if you have the 'getenv' function. */
+/* Define to 1 if you have the `getenv' function. */
 #undef HAVE_GETENV
 
-/* Define to 1 if you have the 'getopt' function. */
+/* Define to 1 if you have the `getopt' function. */
 #undef HAVE_GETOPT
 
 /* Define to 1 if you have the <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H
 
-/* Define to 1 if you have the 'ioctl' function. */
+/* Define to 1 if you have the `ioctl' function. */
 #undef HAVE_IOCTL
 
-/* Define to 1 if you have the 'kill' function. */
+/* Define to 1 if you have the `kill' function. */
 #undef HAVE_KILL
 
-/* Define to 1 if you have the 'kqueue' function. */
+/* Define to 1 if you have the `kqueue' function. */
 #undef HAVE_KQUEUE
 
 /* Define to 1 if you have the <libutil.h> header file. */
@@ -57,25 +57,25 @@
 /* Define to 1 if you have the <minix/config.h> header file. */
 #undef HAVE_MINIX_CONFIG_H
 
-/* Define to 1 if you have the 'perror' function. */
+/* Define to 1 if you have the `perror' function. */
 #undef HAVE_PERROR
 
 /* Define to 1 if you have the <pty.h> header file. */
 #undef HAVE_PTY_H
 
-/* Define to 1 if you have the 'read' function. */
+/* Define to 1 if you have the `read' function. */
 #undef HAVE_READ
 
-/* Define to 1 if you have the 'sigaction' function. */
+/* Define to 1 if you have the `sigaction' function. */
 #undef HAVE_SIGACTION
 
-/* Define to 1 if you have the 'sigemptyset' function. */
+/* Define to 1 if you have the `sigemptyset' function. */
 #undef HAVE_SIGEMPTYSET
 
 /* Define to 1 if you have the <signal.h> header file. */
 #undef HAVE_SIGNAL_H
 
-/* Define to 1 if you have the 'snprintf' function. */
+/* Define to 1 if you have the `snprintf' function. */
 #undef HAVE_SNPRINTF
 
 /* Define to 1 if you have the <stdarg.h> header file. */
@@ -123,10 +123,10 @@
 /* Define to 1 if you have the <sys/wait.h> header file. */
 #undef HAVE_SYS_WAIT_H
 
-/* Define to 1 if you have the 'tcgetattr' function. */
+/* Define to 1 if you have the `tcgetattr' function. */
 #undef HAVE_TCGETATTR
 
-/* Define to 1 if you have the 'tcsetattr' function. */
+/* Define to 1 if you have the `tcsetattr' function. */
 #undef HAVE_TCSETATTR
 
 /* Define to 1 if you have the <termios.h> header file. */
@@ -135,16 +135,16 @@
 /* Define to 1 if you have the <unistd.h> header file. */
 #undef HAVE_UNISTD_H
 
-/* Define to 1 if you have the 'vsnprintf' function. */
+/* Define to 1 if you have the `vsnprintf' function. */
 #undef HAVE_VSNPRINTF
 
-/* Define to 1 if you have the 'waitpid' function. */
+/* Define to 1 if you have the `waitpid' function. */
 #undef HAVE_WAITPID
 
 /* Define to 1 if you have the <wchar.h> header file. */
 #undef HAVE_WCHAR_H
 
-/* Define to 1 if you have the 'write' function. */
+/* Define to 1 if you have the `write' function. */
 #undef HAVE_WRITE
 
 /* Define to 1 if assertions should be disabled. */
@@ -174,12 +174,12 @@
 /* "enable replacement (v)snprintf if system (v)snprintf is broken" */
 #undef PREFER_PORTABLE_SNPRINTF
 
-/* Define to 1 if all of the C89 standard headers exist (not just the ones
+/* Define to 1 if all of the C90 standard headers exist (not just the ones
    required in a freestanding environment). This macro is provided for
    backward compatibility; new code need not use it. */
 #undef STDC_HEADERS
 
-/* Enable extensions on AIX, Interix, z/OS.  */
+/* Enable extensions on AIX 3, Interix.  */
 #ifndef _ALL_SOURCE
 # undef _ALL_SOURCE
 #endif
@@ -240,15 +240,11 @@
 #ifndef __STDC_WANT_IEC_60559_DFP_EXT__
 # undef __STDC_WANT_IEC_60559_DFP_EXT__
 #endif
-/* Enable extensions specified by C23 Annex F.  */
-#ifndef __STDC_WANT_IEC_60559_EXT__
-# undef __STDC_WANT_IEC_60559_EXT__
-#endif
 /* Enable extensions specified by ISO/IEC TS 18661-4:2015.  */
 #ifndef __STDC_WANT_IEC_60559_FUNCS_EXT__
 # undef __STDC_WANT_IEC_60559_FUNCS_EXT__
 #endif
-/* Enable extensions specified by C23 Annex H and ISO/IEC TS 18661-3:2015.  */
+/* Enable extensions specified by ISO/IEC TS 18661-3:2015.  */
 #ifndef __STDC_WANT_IEC_60559_TYPES_EXT__
 # undef __STDC_WANT_IEC_60559_TYPES_EXT__
 #endif
@@ -277,8 +273,8 @@
 /* Define as a signed integer type capable of holding a process identifier. */
 #undef pid_t
 
-/* Define as 'unsigned int' if <stddef.h> doesn't define. */
+/* Define to `unsigned int' if <sys/types.h> does not define. */
 #undef size_t
 
-/* Define as 'int' if <sys/types.h> doesn't define. */
+/* Define to `int' if <sys/types.h> does not define. */
 #undef ssize_t
