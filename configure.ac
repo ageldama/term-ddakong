@@ -134,6 +134,7 @@ AC_CHECK_HEADERS([sys/time.h])
 AC_TYPE_PID_T
 AC_TYPE_SIZE_T
 AC_TYPE_SSIZE_T
+AC_TYPE_UINT32_T
 
 # Checks for library functions.
 

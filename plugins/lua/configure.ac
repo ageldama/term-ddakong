@@ -99,6 +99,8 @@ AC_SUBST(LUA_SRC, [lua-5.4.7])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_TYPE_SSIZE_T
+AC_TYPE_PID_T
+AC_TYPE_UINT32_T
 
 # Checks for library functions.
 
