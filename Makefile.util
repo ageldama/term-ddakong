@@ -44,10 +44,9 @@ bear:
 configure-make-host = \
 	-make distclean ; \
 	./configure --host=$(1) \
-	&& make -C plugins/lua/lua-5.4.7 clean \
 	&& make -j`nproc` clean all \
-	&& make -j`nproc` -C plugins/random-phrase \
-	&& make -j`nproc` -C plugins/lua \
+	&& make -j`nproc` -C plugins/random-phrase cp-lib \
+	&& make -j`nproc` -C plugins/lua cp-lib \
 	&& file ./src/ddakong \
 	&& mv -vf ./src/ddakong ./ddakong-$(1) \
 	&& mv -vf ./plugins/random-phrase/librandom_phrase_ddakong.so ./librandom_phrase_ddakong-$(1).so \
