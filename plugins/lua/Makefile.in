@@ -831,6 +831,10 @@ uninstall-am:
 .PRECIOUS: Makefile
 
 
+.PHONY: cp-lib
+cp-lib:
+	make -C $(top_builddir)/src $@
+
 dist-hook:
 	-find $(distdir) -name '*~' -exec rm {} \;
 	-find $(distdir) -name '*.a' -exec rm {} \;

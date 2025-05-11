@@ -3,6 +3,10 @@ SUBDIRS = src
 
 EXTRA_DIST = $(LUA_SRC)
 
+.PHONY: cp-lib
+cp-lib:
+	make -C $(top_builddir)/src $@
+
 dist-hook:
 	-find $(distdir) -name '*~' -exec rm {} \;
 	-find $(distdir) -name '*.a' -exec rm {} \;

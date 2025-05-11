@@ -125,7 +125,7 @@
 
   #+begin_src shell
     cd ./plugins/random-phrase/
-    ./configure && make
+    ./configure && make cp-lib
 
     # 빌드된 플러그인을 로딩하여 실행:
     ddakong -d ./librandom_phrase_ddakong.so
@@ -152,7 +152,7 @@
 
 
   Lua 스크립팅으로 원하는대로 수정이 가능합니다. 간단한 예시는 다음과
-  같이 ~make~-이후에 실행해 볼 수 있습니다:
+  같이 ~make cp-lib~-이후에 실행해 볼 수 있습니다:
 
   #+begin_src shell
     $ DDAKONG_LUA=$PWD/plugins/lua/examples/passthru.lua ./src/ddakong -d ./plugins/lua/liblua_ddakong.so

@@ -29,12 +29,14 @@ endif
 	touch $(abs_builddir)/__lua_built__.c
 
 
-all-local:
+.PHONY: cp-lib
+cp-lib: all
 	-cp -fv .libs/liblua_ddakong.so $(top_builddir)
 
 
 clean-local:
-	-rm -fv $(top_builddir)/liblua_ddakong.so
+	-rm -fv $(abs_builddir)/__lua_built__.c \
+		$(top_builddir)/liblua_ddakong.so
 	-make -C $(top_srcdir)/$(LUA_SRC) clean
-	-rm -fv $(abs_builddir)/__lua_built__.c
+
 
