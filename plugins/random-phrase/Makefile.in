@@ -824,6 +824,10 @@ uninstall-am:
 .PRECIOUS: Makefile
 
 
+.PHONY: cp-lib
+cp-lib:
+	make -C $(top_builddir)/src $@
+
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
