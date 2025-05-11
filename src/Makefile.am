@@ -16,6 +16,8 @@ libddakongs_a_SOURCES = err.c fd_io.c getopt_.c \
     plugin.c plugin_func_registry.c \
     pollfd.c
 
+EXTRA_libddakongs_a_SOURCES = pollfd__kqueue.c pollfd__linux_epoll.c pollfd__select.c
+
 bin_PROGRAMS = ddakong
 
 ddakong_SOURCES = main_ddakong.c

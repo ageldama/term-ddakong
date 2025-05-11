@@ -74,6 +74,7 @@ Makefile
 .deps/
 .libs/
 stamp-h1
+.dirstamp
 Makefile
 libtool
 

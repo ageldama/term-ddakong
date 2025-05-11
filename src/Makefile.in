@@ -142,9 +142,11 @@ am__depfiles_remade = ./$(DEPDIR)/err.Po ./$(DEPDIR)/fd_io.Po \
 	./$(DEPDIR)/hangeul_tables.Po ./$(DEPDIR)/im_handler.Po \
 	./$(DEPDIR)/im_handler_hangeul.Po ./$(DEPDIR)/main_ddakong.Po \
 	./$(DEPDIR)/plugin.Po ./$(DEPDIR)/plugin_func_registry.Po \
-	./$(DEPDIR)/pollfd.Po ./$(DEPDIR)/pty_.Po ./$(DEPDIR)/sig.Po \
-	./$(DEPDIR)/termios_.Po ./$(DEPDIR)/utf8_.Po \
-	./$(DEPDIR)/winsz.Po
+	./$(DEPDIR)/pollfd.Po ./$(DEPDIR)/pollfd__kqueue.Po \
+	./$(DEPDIR)/pollfd__linux_epoll.Po \
+	./$(DEPDIR)/pollfd__select.Po ./$(DEPDIR)/pty_.Po \
+	./$(DEPDIR)/sig.Po ./$(DEPDIR)/termios_.Po \
+	./$(DEPDIR)/utf8_.Po ./$(DEPDIR)/winsz.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -158,8 +160,10 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(libddakongs_a_SOURCES) $(ddakong_SOURCES)
-DIST_SOURCES = $(libddakongs_a_SOURCES) $(ddakong_SOURCES)
+SOURCES = $(libddakongs_a_SOURCES) $(EXTRA_libddakongs_a_SOURCES) \
+	$(ddakong_SOURCES)
+DIST_SOURCES = $(libddakongs_a_SOURCES) $(EXTRA_libddakongs_a_SOURCES) \
+	$(ddakong_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -294,6 +298,7 @@ libddakongs_a_SOURCES = err.c fd_io.c getopt_.c \
     plugin.c plugin_func_registry.c \
     pollfd.c
 
+EXTRA_libddakongs_a_SOURCES = pollfd__kqueue.c pollfd__linux_epoll.c pollfd__select.c
 ddakong_SOURCES = main_ddakong.c
 ddakong_LDADD = libddakongs.a
 ddakong_LDFLAGS = $(LDFLAGS_LIBUTIL)
@@ -403,6 +408,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/plugin.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/plugin_func_registry.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pollfd.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pollfd__kqueue.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pollfd__linux_epoll.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pollfd__select.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pty_.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sig.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/termios_.Po@am__quote@ # am--include-marker
@@ -567,6 +575,9 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/plugin.Po
 	-rm -f ./$(DEPDIR)/plugin_func_registry.Po
 	-rm -f ./$(DEPDIR)/pollfd.Po
+	-rm -f ./$(DEPDIR)/pollfd__kqueue.Po
+	-rm -f ./$(DEPDIR)/pollfd__linux_epoll.Po
+	-rm -f ./$(DEPDIR)/pollfd__select.Po
 	-rm -f ./$(DEPDIR)/pty_.Po
 	-rm -f ./$(DEPDIR)/sig.Po
 	-rm -f ./$(DEPDIR)/termios_.Po
@@ -628,6 +639,9 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/plugin.Po
 	-rm -f ./$(DEPDIR)/plugin_func_registry.Po
 	-rm -f ./$(DEPDIR)/pollfd.Po
+	-rm -f ./$(DEPDIR)/pollfd__kqueue.Po
+	-rm -f ./$(DEPDIR)/pollfd__linux_epoll.Po
+	-rm -f ./$(DEPDIR)/pollfd__select.Po
 	-rm -f ./$(DEPDIR)/pty_.Po
 	-rm -f ./$(DEPDIR)/sig.Po
 	-rm -f ./$(DEPDIR)/termios_.Po
