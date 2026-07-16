@@ -105,10 +105,8 @@ pollfd_wait (pollfd_t *p_pollfd, int *fds, const size_t fds_len)
 {
   assert (p_pollfd != NULL);
 
-  int n_evt = kevent (p_pollfd->kq, NULL, 0,
-                      p_pollfd->evt_triggered,
-                      (int)p_pollfd->max_evts,
-                      &(p_pollfd->timeout));
+  int n_evt = kevent (p_pollfd->kq, NULL, 0, p_pollfd->evt_triggered,
+                      (int)p_pollfd->max_evts, &(p_pollfd->timeout));
 
   if (n_evt < 0)
     {

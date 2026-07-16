@@ -21,6 +21,8 @@ char *default_keylog_filename = "KEYLOG.txt";
 
 char *plugin_dll_filename = NULL;
 
+int preedit_flag = 1;
+
 void
 print_banner (FILE *fp)
 {
@@ -35,7 +37,7 @@ do_getopt (int argc, char **argv)
 {
   int c;
 
-  while ((c = getopt (argc, argv, "hqLl:d:")) != -1)
+  while ((c = getopt (argc, argv, "hqLl:d:P")) != -1)
     switch (c)
       {
       case 'h':
@@ -51,6 +53,9 @@ do_getopt (int argc, char **argv)
         fprintf (stderr, "\t                       플러그인 DLL파일\n");
         fprintf (stderr, "\tOption (-L) : Write keylog to `%s'\n",
                  default_keylog_filename);
+        fprintf (
+            stderr,
+            "\tOption (-P) : No pre-edit 조합중인 글자를 표시하지 않기\n");
         exit (EXIT_SUCCESS);
         break;
 
@@ -70,6 +75,10 @@ do_getopt (int argc, char **argv)
         plugin_dll_filename = optarg;
         break;
 
+      case 'P':
+        preedit_flag = 0;
+        break;
+
       case '?':
         if (optopt == 'l')
           fprintf (stderr, "Option -%c requires an argument.\n", optopt);
@@ -85,7 +94,8 @@ do_getopt (int argc, char **argv)
 
   if (verbose_flag)
     {
-      fprintf (stderr, "# getopt: verbose:%d keylog:%s plugin_dll(%s)\n",
-               verbose_flag, keylog_filename, plugin_dll_filename);
+      fprintf (
+          stderr, "# getopt: verbose:%d keylog:%s plugin_dll(%s) preedit:%d\n",
+          verbose_flag, keylog_filename, plugin_dll_filename, preedit_flag);
     }
 }

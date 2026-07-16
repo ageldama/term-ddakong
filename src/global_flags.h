@@ -35,6 +35,11 @@ EXTERN_ pid_t child_pid;
  */
 EXTERN_ char *plugin_dll_filename;
 
+/**
+ * (BOOL) 조합중인 글자(pre-edit)를 화면에 표시할지?
+ */
+EXTERN_ int preedit_flag;
+
 void print_banner (FILE *fp);
 
 /**

@@ -113,7 +113,7 @@ libddakongs_a_LIBADD =
 am_libddakongs_a_OBJECTS = err.$(OBJEXT) fd_io.$(OBJEXT) \
 	getopt_.$(OBJEXT) hangeul.$(OBJEXT) hangeul_tables.$(OBJEXT) \
 	im_handler.$(OBJEXT) im_handler_hangeul.$(OBJEXT) \
-	pty_.$(OBJEXT) sig.$(OBJEXT) termios_.$(OBJEXT) \
+	preedit.$(OBJEXT) pty_.$(OBJEXT) sig.$(OBJEXT) termios_.$(OBJEXT) \
 	utf8_.$(OBJEXT) winsz.$(OBJEXT) plugin.$(OBJEXT) \
 	plugin_func_registry.$(OBJEXT) pollfd.$(OBJEXT)
 libddakongs_a_OBJECTS = $(am_libddakongs_a_OBJECTS)
@@ -144,7 +144,8 @@ am__depfiles_remade = ./$(DEPDIR)/err.Po ./$(DEPDIR)/fd_io.Po \
 	./$(DEPDIR)/plugin.Po ./$(DEPDIR)/plugin_func_registry.Po \
 	./$(DEPDIR)/pollfd.Po ./$(DEPDIR)/pollfd__kqueue.Po \
 	./$(DEPDIR)/pollfd__linux_epoll.Po \
-	./$(DEPDIR)/pollfd__select.Po ./$(DEPDIR)/pty_.Po \
+	./$(DEPDIR)/pollfd__select.Po ./$(DEPDIR)/preedit.Po \
+	./$(DEPDIR)/pty_.Po \
 	./$(DEPDIR)/sig.Po ./$(DEPDIR)/termios_.Po \
 	./$(DEPDIR)/utf8_.Po ./$(DEPDIR)/winsz.Po
 am__mv = mv -f
@@ -294,7 +295,7 @@ noinst_LIBRARIES = libddakongs.a
 libddakongs_a_SOURCES = err.c fd_io.c getopt_.c \
     hangeul.c hangeul_tables.c \
     im_handler.c im_handler_hangeul.c \
-    pty_.c sig.c termios_.c utf8_.c winsz.c \
+    preedit.c pty_.c sig.c termios_.c utf8_.c winsz.c \
     plugin.c plugin_func_registry.c \
     pollfd.c
 
@@ -411,6 +412,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pollfd__kqueue.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pollfd__linux_epoll.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pollfd__select.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/preedit.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pty_.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sig.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/termios_.Po@am__quote@ # am--include-marker

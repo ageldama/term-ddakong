@@ -14,6 +14,7 @@
 #include "hangeul.h"
 #include "im_handler.h"
 #include "im_handler_hangeul.h"
+#include "preedit.h"
 #include "pty_.h"
 #include "sig.h"
 #include "termios_.h"
@@ -204,6 +205,18 @@ __get_plugin_dll_filename (void)
   return plugin_dll_filename;
 }
 
+int
+__get_preedit_flag (void)
+{
+  return preedit_flag;
+}
+
+void
+__set_preedit_flag (const int preedit)
+{
+  preedit_flag = preedit;
+}
+
 /* function regitry */
 
 const plugin_func_t plugin_funcs[] = {
@@ -342,10 +355,38 @@ const plugin_func_t plugin_funcs[] = {
       .sz_func_doc = "",
   },
 
+  {
+      .p_func = __get_preedit_flag,
+      .sz_func_name = "get_preedit_flag",
+      .sz_func_doc = "",
+  },
+  {
+      .p_func = __set_preedit_flag,
+      .sz_func_name = "set_preedit_flag",
+      .sz_func_doc = "",
+  },
+
   /* winsz.h */
   {
       .p_func = winsz_update,
       .sz_func_name = "winsz_update",
+      .sz_func_doc = "",
+  },
+
+  /* preedit.h */
+  {
+      .p_func = preedit_erase,
+      .sz_func_name = "preedit_erase",
+      .sz_func_doc = "",
+  },
+  {
+      .p_func = preedit_draw,
+      .sz_func_name = "preedit_draw",
+      .sz_func_doc = "",
+  },
+  {
+      .p_func = preedit_invalidate,
+      .sz_func_name = "preedit_invalidate",
       .sz_func_doc = "",
   },
 

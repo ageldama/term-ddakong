@@ -23,6 +23,7 @@
 #include "im_handler_hangeul.h"
 #include "plugin.h"
 #include "pollfd.h"
+#include "preedit.h"
 #include "pty_.h"
 #include "sig.h"
 #include "termios_.h"
@@ -148,6 +149,7 @@ void
 trap_winch (int sig_no UNUSED)
 {
   winsz_update (child_fd);
+  preedit_on_resize ();
 }
 
 void
@@ -283,6 +285,30 @@ main (int argc, char **argv)
       exit (EXIT_FAILURE);
     }
 
+  /* preedit: 조합중인 글자 표시 준비 */
+  int preedit_fd = -1;
+
+  if (preedit_flag)
+    {
+      preedit_init (STDOUT_FILENO, STDIN_FILENO);
+      preedit_fd = preedit_carry_fd ();
+    }
+
+  if (preedit_fd != -1)
+    {
+      if (-1 == fcntl_nb (preedit_fd, NULL))
+        {
+          perror ("fcntl_nb(preedit_fd)");
+          exit (EXIT_FAILURE);
+        }
+
+      if (-1 == pollfd_add (p_pollfd, preedit_fd, pollfd_evt_in))
+        {
+          perror ("epoll_ctl: preedit_fd");
+          exit (EXIT_FAILURE);
+        }
+    }
+
   /* prepare: mainloop */
   const ssize_t buf_max = 1024;
   char buf[buf_max];
@@ -301,21 +327,46 @@ main (int argc, char **argv)
           continue;
         }
 
+      /* preedit CPR응답 대기중 끼어들었던 키입력(carry)부터 처리
+         (stdin의 새 입력보다 시간상 앞선 입력이므로) */
+      for (int n = 0; n < nfds; ++n)
+        {
+          if (preedit_fd != -1 && preedit_fd == fds[n])
+            {
+              preedit_erase ();
+              handle_input (p_handle_input_status, preedit_fd /* fd_keyin */,
+                            child_fd /* fd_child */, buf, buf_max,
+                            handle_stdin_written /* write_cb */,
+                            (void *)fp /* write_cb_aux */
+              );
+              preedit_draw ();
+            }
+        }
+
       for (int n = 0; n < nfds; ++n)
         {
           int fd = fds[n];
 
-          if (child_fd == fd)
+          if (preedit_fd != -1 && preedit_fd == fd)
             {
+              ; /* 위에서 처리함 */
+            }
+          else if (child_fd == fd)
+            {
+              preedit_erase ();
               cp_fd (child_fd, STDOUT_FILENO, buf, buf_max);
+              preedit_invalidate (); /* 커서가 움직였을 것 */
+              preedit_draw ();
             }
           else if (STDIN_FILENO == fd)
             {
+              preedit_erase ();
               handle_input (p_handle_input_status, STDIN_FILENO /* fd_keyin */,
                             child_fd /* fd_child */, buf, buf_max,
                             handle_stdin_written /* write_cb */,
                             (void *)fp /* write_cb_aux */
               );
+              preedit_draw ();
             }
         }
     }
