@@ -224,7 +224,7 @@ main (int argc, char **argv)
           char errmsg[errmsg_len];
           snprintf (errmsg, errmsg_len, "open(%s) as 'w+' fail",
                     keylog_filename);
-          perror_exit_bad (errmsg);
+          PERROR_exit_bad (errmsg);
         }
     }
 
@@ -248,12 +248,12 @@ main (int argc, char **argv)
   /* fd non-blocking */
   if (-1 == fcntl_nb (STDIN_FILENO, NULL))
     {
-      perror_exit_bad ("fcntl_nb(stdin)");
+      PERROR_exit_bad ("fcntl_nb(stdin)");
     }
 
   if (-1 == fcntl_nb (child_fd, NULL))
     {
-      perror_exit_bad ("fcntl_nb(child_fd)");
+      PERROR_exit_bad ("fcntl_nb(child_fd)");
     }
 
   /* pollfd: prepare */
@@ -273,12 +273,12 @@ main (int argc, char **argv)
 
   if (-1 == pollfd_add (p_pollfd, STDIN_FILENO, pollfd_evt_in))
     {
-      perror_exit_bad ("pollfd_add(stdin)");
+      PERROR_exit_bad ("pollfd_add(stdin)");
     }
 
   if (-1 == pollfd_add (p_pollfd, child_fd, pollfd_evt_in))
     {
-      perror_exit_bad ("pollfd_add(child_fd)");
+      PERROR_exit_bad ("pollfd_add(child_fd)");
     }
 
   /* preedit: 조합중인 글자 표시 준비 */
@@ -294,12 +294,12 @@ main (int argc, char **argv)
     {
       if (-1 == fcntl_nb (preedit_fd, NULL))
         {
-          perror_exit_bad ("fcntl_nb(preedit_fd)");
+          PERROR_exit_bad ("fcntl_nb(preedit_fd)");
         }
 
       if (-1 == pollfd_add (p_pollfd, preedit_fd, pollfd_evt_in))
         {
-          perror_exit_bad ("pollfd_add(preedit_fd)");
+          PERROR_exit_bad ("pollfd_add(preedit_fd)");
         }
     }
 
