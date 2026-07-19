@@ -9,6 +9,8 @@
 #ifndef err_h
 #define err_h 1
 
+#include "config.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 

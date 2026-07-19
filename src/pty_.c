@@ -6,7 +6,6 @@
  * that can be found in the license file.
  */
 #include "pty_.h"
-#include "config.h"
 
 #include <fcntl.h>
 #include <signal.h>
