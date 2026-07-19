@@ -29,6 +29,7 @@
 #include "termios_.h"
 #include "typedef_.h"
 #include "winsz.h"
+#include "perror_.h"
 
 /* globals */
 
@@ -223,8 +224,7 @@ main (int argc, char **argv)
           char errmsg[errmsg_len];
           snprintf (errmsg, errmsg_len, "open(%s) as 'w+' fail",
                     keylog_filename);
-          perror (errmsg);
-          exit (EXIT_FAILURE);
+          perror_exit_bad (errmsg);
         }
     }
 
@@ -248,14 +248,12 @@ main (int argc, char **argv)
   /* fd non-blocking */
   if (-1 == fcntl_nb (STDIN_FILENO, NULL))
     {
-      perror ("fcntl_nb(stdin)");
-      exit (EXIT_FAILURE);
+      perror_exit_bad ("fcntl_nb(stdin)");
     }
 
   if (-1 == fcntl_nb (child_fd, NULL))
     {
-      perror ("fcntl_nb(child_fd)");
-      exit (EXIT_FAILURE);
+      perror_exit_bad ("fcntl_nb(child_fd)");
     }
 
   /* pollfd: prepare */
@@ -275,14 +273,12 @@ main (int argc, char **argv)
 
   if (-1 == pollfd_add (p_pollfd, STDIN_FILENO, pollfd_evt_in))
     {
-      perror ("pollfd_add(stdin)");
-      exit (EXIT_FAILURE);
+      perror_exit_bad ("pollfd_add(stdin)");
     }
 
   if (-1 == pollfd_add (p_pollfd, child_fd, pollfd_evt_in))
     {
-      perror ("pollfd_add(child_fd)");
-      exit (EXIT_FAILURE);
+      perror_exit_bad ("pollfd_add(child_fd)");
     }
 
   /* preedit: 조합중인 글자 표시 준비 */
@@ -298,14 +294,12 @@ main (int argc, char **argv)
     {
       if (-1 == fcntl_nb (preedit_fd, NULL))
         {
-          perror ("fcntl_nb(preedit_fd)");
-          exit (EXIT_FAILURE);
+          perror_exit_bad ("fcntl_nb(preedit_fd)");
         }
 
       if (-1 == pollfd_add (p_pollfd, preedit_fd, pollfd_evt_in))
         {
-          perror ("pollfd_add(preedit_fd)");
-          exit (EXIT_FAILURE);
+          perror_exit_bad ("pollfd_add(preedit_fd)");
         }
     }
 
