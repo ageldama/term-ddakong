@@ -8,6 +8,8 @@
 #ifndef pty__h
 #define pty__h 1
 
+#include "config.h"
+
 #include "extern_.h"   /* for EXTERN_ */
 #include <sys/types.h> /* for pid_t */
 

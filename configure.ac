@@ -3,6 +3,7 @@
 
 AC_PREREQ([2.71])
 AC_INIT([ddakong],[1.1],[Jonghyouk Yun <ageldama@gmail.com>])
+AC_USE_SYSTEM_EXTENSIONS
 AC_CONFIG_AUX_DIR([./autotools])
 
 AM_INIT_AUTOMAKE([-Wall -Werror foreign parallel-tests])
@@ -56,7 +57,7 @@ AC_ARG_WITH([lua-pkg-config],
 
 
 # Checks for programs.
-AC_USE_SYSTEM_EXTENSIONS()
+##AC_USE_SYSTEM_EXTENSIONS()
 ##AC_DEFINE([_POSIX_SOURCE], [1])
 ##AC_DEFINE([_POSIX_1_SOURCE], [2])
 
@@ -75,7 +76,6 @@ AX_CHECK_COMPILE_FLAG([-Wno-nullability-completeness], [CFLAGS="$CFLAGS -Wno-nul
 AX_CHECK_COMPILE_FLAG([-Wno-c23-extensions], [CFLAGS="$CFLAGS -Wno-c23-extensions"])
 
 
-AC_USE_SYSTEM_EXTENSIONS
 
 
 ## -Wimplicit-fallthrough

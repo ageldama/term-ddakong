@@ -8,7 +8,6 @@
 
 #include "err.h"
 #include "cc_nanny.h"
-#include "config.h"
 
 #include <assert.h>
 #include <stdarg.h>
