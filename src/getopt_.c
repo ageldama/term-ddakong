@@ -14,14 +14,15 @@
 #include <unistd.h>
 
 #include "global_flags.h"
+#include "typedef_.h"
 
-int verbose_flag = 1;
+int verbose_flag = TRUE;
 char *keylog_filename = NULL;
 char *default_keylog_filename = "KEYLOG.txt";
 
 char *plugin_dll_filename = NULL;
 
-int preedit_flag = 1;
+int preedit_flag = TRUE;
 
 void
 print_banner (FILE *fp)
@@ -60,7 +61,7 @@ do_getopt (int argc, char **argv)
         break;
 
       case 'q':
-        verbose_flag = 0;
+        verbose_flag = FALSE;
         break;
 
       case 'l':
@@ -76,7 +77,7 @@ do_getopt (int argc, char **argv)
         break;
 
       case 'P':
-        preedit_flag = 0;
+        preedit_flag = FALSE;
         break;
 
       case '?':
@@ -94,8 +95,9 @@ do_getopt (int argc, char **argv)
 
   if (verbose_flag)
     {
-      fprintf (
-          stderr, "# getopt: verbose:%d keylog:%s plugin_dll(%s) preedit:%d\n",
-          verbose_flag, keylog_filename, plugin_dll_filename, preedit_flag);
+      fprintf (stderr,
+               "# getopt: verbose:%d keylog(%s) plugin_dll(%s) preedit:%d\n",
+               verbose_flag, keylog_filename, plugin_dll_filename,
+               preedit_flag);
     }
 }

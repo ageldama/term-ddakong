@@ -153,7 +153,8 @@ sigemptyset sigaction waitpid
 perror
 ioctl tcgetattr tcsetattr
 getopt
-fcntl],[],[AC_MSG_ERROR([required function cannot be found])])
+fcntl
+pipe],[],[AC_MSG_ERROR([required function cannot be found])])
 
 
 AC_CHECK_LIB(dl, [dlopen],

@@ -5,8 +5,8 @@
  * reserved. Use of this source code is governed by a GPLv3 license
  * that can be found in the license file.
  */
-#include "config.h"
 #include "pty_.h"
+#include "config.h"
 
 #include <fcntl.h>
 #include <signal.h>

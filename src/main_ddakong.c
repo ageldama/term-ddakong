@@ -275,13 +275,13 @@ main (int argc, char **argv)
 
   if (-1 == pollfd_add (p_pollfd, STDIN_FILENO, pollfd_evt_in))
     {
-      perror ("epoll_ctl: stdin");
+      perror ("pollfd_add(stdin)");
       exit (EXIT_FAILURE);
     }
 
   if (-1 == pollfd_add (p_pollfd, child_fd, pollfd_evt_in))
     {
-      perror ("epoll_ctl: child_fd");
+      perror ("pollfd_add(child_fd)");
       exit (EXIT_FAILURE);
     }
 
@@ -304,7 +304,7 @@ main (int argc, char **argv)
 
       if (-1 == pollfd_add (p_pollfd, preedit_fd, pollfd_evt_in))
         {
-          perror ("epoll_ctl: preedit_fd");
+          perror ("pollfd_add(preedit_fd)");
           exit (EXIT_FAILURE);
         }
     }
@@ -327,29 +327,20 @@ main (int argc, char **argv)
           continue;
         }
 
-      /* preedit CPR응답 대기중 끼어들었던 키입력(carry)부터 처리
-         (stdin의 새 입력보다 시간상 앞선 입력이므로) */
-      for (int n = 0; n < nfds; ++n)
-        {
-          if (preedit_fd != -1 && preedit_fd == fds[n])
-            {
-              preedit_erase ();
-              handle_input (p_handle_input_status, preedit_fd /* fd_keyin */,
-                            child_fd /* fd_child */, buf, buf_max,
-                            handle_stdin_written /* write_cb */,
-                            (void *)fp /* write_cb_aux */
-              );
-              preedit_draw ();
-            }
-        }
-
       for (int n = 0; n < nfds; ++n)
         {
           int fd = fds[n];
 
           if (preedit_fd != -1 && preedit_fd == fd)
             {
-              ; /* 위에서 처리함 */
+              /* preedit CPR응답 대기중 끼어들었던 키입력(carry)부터 처리
+                 (stdin의 새 입력보다 시간상 앞선 입력이므로) */
+              preedit_erase ();
+              handle_input (p_handle_input_status, preedit_fd /* fd_keyin */,
+                            child_fd /* fd_child */, buf, buf_max,
+                            handle_stdin_written /* write_cb */,
+                            (void *)fp /* write_cb_aux */);
+              preedit_draw ();
             }
           else if (child_fd == fd)
             {
@@ -364,8 +355,7 @@ main (int argc, char **argv)
               handle_input (p_handle_input_status, STDIN_FILENO /* fd_keyin */,
                             child_fd /* fd_child */, buf, buf_max,
                             handle_stdin_written /* write_cb */,
-                            (void *)fp /* write_cb_aux */
-              );
+                            (void *)fp /* write_cb_aux */);
               preedit_draw ();
             }
         }

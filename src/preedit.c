@@ -178,6 +178,7 @@ static BOOL
 _query_input_point (void)
 {
   struct winsize winsz;
+  /* TODO => winsz.c? */
   if (-1 == ioctl (_fd_in, TIOCGWINSZ, &winsz))
     return FALSE;
   _rows = winsz.ws_row;
