@@ -44,6 +44,36 @@ ERR_set (ERR *p_err, const char *errmsg, ERR_errmsg_free errmsg_free)
   p_err->errmsg_free = errmsg_free;
 }
 
+
+/* WARNING: Almighty LLM/AI code! */
+int _vasprintf(char **strp, const char *format, va_list args) {
+    va_list args_copy;
+    va_copy(args_copy, args); // Duplicate args since we need to use it twice
+
+    // Calculate the required length (excluding the null terminator)
+    int len = vsnprintf(NULL, 0, format, args_copy);
+    va_end(args_copy);
+
+    if (len < 0) {
+        return -1;
+    }
+
+    // Allocate memory for the string plus the null terminator
+    *strp = malloc((size_t) len + 1);
+    if (*strp == NULL) {
+        return -1;
+    }
+
+    // Write the formatted string into the allocated buffer
+    int result = vsnprintf(*strp, (size_t) len + 1, format, args);
+    if (result < 0) {
+        free(*strp);
+        *strp = NULL;
+    }
+
+    return result;
+}
+
 char *
 ERR_printf (ERR *p_err, const char *errmsg_fmt, ...)
 {
@@ -54,7 +84,7 @@ ERR_printf (ERR *p_err, const char *errmsg_fmt, ...)
 
   va_list vargs;
   va_start (vargs, errmsg_fmt);
-  int n UNUSED = vasprintf (&outbuf, errmsg_fmt, vargs);
+  int n UNUSED = _vasprintf (&outbuf, errmsg_fmt, vargs);
   va_end (vargs);
 
   p_err->errmsg = outbuf;
