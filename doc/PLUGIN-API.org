@@ -34,6 +34,8 @@
   | =get_plugin_dll_filename=              | (동일)           |
   | =get_child_pid=                        | (동일)           |
   | =get_child_fd=                         | (동일)           |
+  | =get_preedit_flag=                     | N/A [fn:2]       |
+  | =set_preedit_flag=                     | N/A [fn:2]       |
   | =winsz_update=                         | (동일)           |
   | =unicode_to_utf8=                      | (동일)           |
   | =termios__init=                        | (동일)           |
@@ -82,6 +84,10 @@
   | =hangeul_2beol_commit_1_and_flush=     | N/A [fn:2]       |
   | =hangeul_put_jamo_unicode=             | N/A [fn:2]       |
   | =hangeul_remap_code=                   | N/A [fn:2]       |
+  |----------------------------------------+------------------|
+  | =preedit_erase=                        | N/A [fn:2]       |
+  | =preedit_draw=                         | N/A [fn:2]       |
+  | =preedit_invalidate=                   | N/A [fn:2]       |
 
   1) 이하에 모든 함수와 타입을 설명하지 않음.
      - 주로 Lua scripting을 하는데 필요한 내용 위주로 설명.

@@ -26,7 +26,6 @@
 #include <sys/time.h>
 #endif
 
-
 typedef struct
 {
   size_t max_evts;
