@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.71])
-AC_INIT([ddakong],[1.1],[Jonghyouk Yun <ageldama@gmail.com>])
+AC_INIT([ddakong],[1.3],[Jonghyouk Yun <ageldama@gmail.com>])
 AC_USE_SYSTEM_EXTENSIONS
 AC_CONFIG_AUX_DIR([./autotools])
 
@@ -156,6 +156,28 @@ getopt
 fcntl
 pipe],[],[AC_MSG_ERROR([required function cannot be found])])
 
+AC_MSG_CHECKING([for sscanf])
+AC_LINK_IFELSE([
+    AC_LANG_PROGRAM(
+        [[#include <stdio.h>]],
+        [[
+            char buf[] = "123";
+            int val;
+            sscanf(buf, "%d", &val);
+        ]]
+    )
+], [
+    AC_MSG_RESULT([yes])
+    AC_DEFINE([HAVE_SSCANF], [1], [Define to 1 if you have the sscanf function.])
+], [
+    AC_MSG_RESULT([no])
+    AC_MSG_ERROR([Required function 'sscanf' cannot be linked! Check config.log.])
+])
+
+AC_CHECK_DECLS([isdigit],
+        [],
+        [AC_MSG_ERROR([required function/macro cannot be found])],
+        [[#include <ctype.h>]])
 
 AC_CHECK_LIB(dl, [dlopen],
 [

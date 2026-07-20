@@ -15,6 +15,10 @@
 /* Define to 1 if you have the <ctype.h> header file. */
 #undef HAVE_CTYPE_H
 
+/* Define to 1 if you have the declaration of 'isdigit', and to 0 if you
+   don't. */
+#undef HAVE_DECL_ISDIGIT
+
 /* have dlopen */
 #undef HAVE_DLOPEN
 
@@ -80,6 +84,9 @@
 
 /* Define to 1 if you have the 'snprintf' function. */
 #undef HAVE_SNPRINTF
+
+/* Define to 1 if you have the sscanf function. */
+#undef HAVE_SSCANF
 
 /* Define to 1 if you have the <stdarg.h> header file. */
 #undef HAVE_STDARG_H
@@ -185,6 +192,10 @@
 /* Enable extensions on AIX, Interix, z/OS.  */
 #ifndef _ALL_SOURCE
 # undef _ALL_SOURCE
+#endif
+/* Enable extensions on Cosmopolitan Libc. */
+#ifndef _COSMO_SOURCE
+# undef _COSMO_SOURCE
 #endif
 /* Enable general extensions on macOS.  */
 #ifndef _DARWIN_C_SOURCE
