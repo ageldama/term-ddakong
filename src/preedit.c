@@ -111,6 +111,7 @@ _read_cpr (int *p_row, int *p_col)
 
   while (n_carried < preedit__CPR_CARRY_MAX)
     {
+      /* TODO => pollfd.c */
       struct pollfd pfd = { .fd = _fd_in, .events = POLLIN };
       int n_evt = poll (&pfd, 1, preedit__CPR_TIMEOUT_MILLIS);
       if (n_evt == -1 && errno == EINTR)
@@ -178,7 +179,7 @@ static BOOL
 _query_input_point (void)
 {
   struct winsize winsz;
-  /* TODO => winsz.c? */
+  /* TODO => termios_.c / winsz.c? */
   if (-1 == ioctl (_fd_in, TIOCGWINSZ, &winsz))
     return FALSE;
   _rows = winsz.ws_row;
